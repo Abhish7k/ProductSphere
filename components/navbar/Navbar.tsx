@@ -18,7 +18,9 @@ const Navbar = () => {
           </h1>
         </Link>
 
-        <Search />
+        <div className="hidden md:block ml-5">
+          <Search />
+        </div>
       </div>
 
       {/* menu */}
