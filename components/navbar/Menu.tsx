@@ -2,9 +2,11 @@
 
 import React, { useState } from "react";
 import LaunchesMenu from "./menus/LaunchesMenu";
+import CommunityMenu from "./menus/CommunityMenu";
 
 const Menu = () => {
   const [showLaunchesMenu, setShowLaunchesMenu] = useState(false);
+  const [showCommunityMenu, setShowCommunityMenu] = useState(false);
 
   return (
     <div className="hidden lg:flex items-center gap-8 transition-all">
@@ -21,8 +23,13 @@ const Menu = () => {
         Categories
       </div>
 
-      <div className="font-medium text-foreground/70 hover:text-orange-400 cursor-pointer transition-all">
-        Community
+      <div
+        className="font-medium text-foreground/70 hover:text-orange-400 cursor-pointer transition-all"
+        onMouseEnter={() => setShowCommunityMenu(true)}
+        onMouseLeave={() => setShowCommunityMenu(false)}
+      >
+        <h1 className="cursor-pointer">Community</h1>
+        {showCommunityMenu && <CommunityMenu />}
       </div>
 
       <div className="font-medium text-foreground/70 hover:text-orange-400 cursor-pointer transition-all">

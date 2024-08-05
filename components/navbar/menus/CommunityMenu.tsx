@@ -1,9 +1,9 @@
 import React from "react";
 
-const LaunchesMenu = () => {
+const CommunityMenu = () => {
   return (
-    <div className="absolute top-full transition-all duration-500">
-      <div className="mt-4 p-2 bg-white text-foreground border rounded-md shadow-md">
+    <div className="absolute top-full transition-all duration-500 w-full">
+      <div className="mt-4 p-2 bg-white text-foreground border rounded-md shadow-md w-fit">
         <div className="flex flex-col gap-4">
           {items.map((item, idx) => (
             <div
@@ -23,25 +23,25 @@ const LaunchesMenu = () => {
   );
 };
 
-export default LaunchesMenu;
+export default CommunityMenu;
 
 const items = [
   {
-    icon: "🗓️",
-    title: "Coming Soon",
-    description: " Check out launches that are coming soon",
-    bgColor: "bg-green-100",
-  },
-  {
-    icon: "🔮",
-    title: "Launch archive",
-    description: " Most-loved launches by the community",
-    bgColor: "bg-orange-100",
-  },
-  {
-    icon: "🧭",
-    title: "Launch Guide",
-    description: "Checklist and pro tips for launching",
+    icon: "🎙️",
+    title: "Discussions",
+    description: "Ask questions, find support, and connect",
     bgColor: "bg-blue-100",
+  },
+  {
+    icon: "✏️",
+    title: "Stories",
+    description: "Tech news, interviews and tips from makers",
+    bgColor: "bg-red-100",
+  },
+  {
+    icon: "🔥",
+    title: "Visit Streaks",
+    description: "The most active community members",
+    bgColor: "bg-green-100",
   },
 ];
