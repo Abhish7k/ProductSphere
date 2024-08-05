@@ -11,6 +11,7 @@ import {
 } from "@/components/ui/sheet";
 import { MenuIcon } from "lucide-react";
 import Search from "./Search";
+import Link from "next/link";
 
 const MobileNav = () => {
   const [showLaunchesMenu, setShowLaunchesMenu] = useState(false);
@@ -41,9 +42,12 @@ const MobileNav = () => {
               {showLaunchesMenu && "hello"}
             </div>
 
-            <div className="text-xl font-medium text-foreground/80 hover:text-orange-400 cursor-pointer transition-all">
+            <Link
+              href="/categories"
+              className="text-xl font-medium text-foreground/80 hover:text-orange-400 cursor-pointer transition-all"
+            >
               Categories
-            </div>
+            </Link>
 
             <div className="text-xl font-medium text-foreground/80 hover:text-orange-400 cursor-pointer transition-all">
               <h1 className="cursor-pointer">Community</h1>

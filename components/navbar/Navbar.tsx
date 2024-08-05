@@ -1,12 +1,22 @@
+"use client";
+
 import Image from "next/image";
 import Link from "next/link";
-import React from "react";
+import React, { useState } from "react";
 import Search from "./Search";
 import Menu from "./Menu";
 import AuthButtons from "./AuthButtons";
 import MobileNav from "./MobileNav";
+import Modal from "../ui/modal/modal";
 
 const Navbar = () => {
+  const [authModalVisible, setAuthModalVisible] = useState(false);
+
+  const handleButtonClick = () => {
+    setAuthModalVisible(true);
+    console.log("btn clicked");
+  };
+
   return (
     <div className="h-16 px-5 py-3 xl:px-10 border-b flex items-center justify-between transition-all">
       {/* logo */}
@@ -30,7 +40,13 @@ const Navbar = () => {
 
       <div className="flex items-center gap-5">
         {/* auth */}
-        <AuthButtons />
+        <div onClick={handleButtonClick}>
+          <AuthButtons />
+        </div>
+
+        <Modal visible={authModalVisible} setVisible={setAuthModalVisible}>
+          hello
+        </Modal>
 
         <MobileNav />
       </div>

@@ -3,6 +3,7 @@
 import React, { useState } from "react";
 import LaunchesMenu from "./menus/LaunchesMenu";
 import CommunityMenu from "./menus/CommunityMenu";
+import Link from "next/link";
 
 const Menu = () => {
   const [showLaunchesMenu, setShowLaunchesMenu] = useState(false);
@@ -19,9 +20,12 @@ const Menu = () => {
         {showLaunchesMenu && <LaunchesMenu />}
       </div>
 
-      <div className="font-medium text-foreground/70 hover:text-orange-400 cursor-pointer transition-all">
+      <Link
+        href="/categories"
+        className="font-medium text-foreground/70 hover:text-orange-400 cursor-pointer transition-all"
+      >
         Categories
-      </div>
+      </Link>
 
       <div
         className="font-medium text-foreground/70 hover:text-orange-400 cursor-pointer transition-all"
