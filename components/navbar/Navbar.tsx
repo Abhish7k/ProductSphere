@@ -8,13 +8,13 @@ import Menu from "./Menu";
 import AuthButtons from "./AuthButtons";
 import MobileNav from "./MobileNav";
 import Modal from "../ui/modal/modal";
+import AuthContent from "./AuthContent";
 
 const Navbar = () => {
   const [authModalVisible, setAuthModalVisible] = useState(false);
 
   const handleButtonClick = () => {
     setAuthModalVisible(true);
-    console.log("btn clicked");
   };
 
   return (
@@ -45,7 +45,7 @@ const Navbar = () => {
         </div>
 
         <Modal visible={authModalVisible} setVisible={setAuthModalVisible}>
-          hello
+          <AuthContent />
         </Modal>
 
         <MobileNav />

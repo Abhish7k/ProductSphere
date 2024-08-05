@@ -33,8 +33,8 @@ const Modal: React.FC<ModalProps> = ({ visible, setVisible, children }) => {
           leaveFrom="opacity-100 scale-100 "
           leaveTo="opacity-0 scale-95 0"
         >
-          <div className="fixed inset-0 z-50 flex items-center justify-center">
-            <Dialog.Panel className="relative h-fit w-full mt-auto sm:mt-0 sm:w-[650px] flex bg-white k rounded-sm shadow-md">
+          <div className="fixed inset-0 z-50 mt-20">
+            <Dialog.Panel className="relative h-fit w-fit mx-10 md:mx-auto mt-auto sm:mt-0 flex bg-white rounded-sm shadow-md">
               <div className="absolute top-0 right-0 mt-4 mr-4">
                 <button
                   onClick={() => setVisible(false)}
