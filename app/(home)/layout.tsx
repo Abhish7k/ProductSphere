@@ -11,7 +11,7 @@ const HomeLayout = async ({
   return (
     <html lang="en">
       <body>
-        <Navbar />
+        <Navbar authenticatedUser={authenticatedUser} />
 
         {children}
       </body>

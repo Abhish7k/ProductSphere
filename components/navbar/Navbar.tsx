@@ -9,8 +9,13 @@ import AuthButtons from "./AuthButtons";
 import MobileNav from "./MobileNav";
 import Modal from "../ui/modal/modal";
 import AuthContent from "./AuthContent";
+import Avatar from "./Avatar";
 
-const Navbar = () => {
+interface NavbarProps {
+  authenticatedUser?: any;
+}
+
+const Navbar: React.FC<NavbarProps> = ({ authenticatedUser }) => {
   const [authModalVisible, setAuthModalVisible] = useState(false);
 
   const handleButtonClick = () => {
@@ -39,10 +44,16 @@ const Navbar = () => {
       </div>
 
       <div className="flex items-center gap-5">
-        {/* auth */}
-        <div onClick={handleButtonClick}>
-          <AuthButtons />
-        </div>
+        {authenticatedUser ? (
+          <div>
+            <Avatar authenticatedUser={authenticatedUser} />
+          </div>
+        ) : (
+          // auth
+          <div onClick={handleButtonClick}>
+            <AuthButtons />
+          </div>
+        )}
 
         <Modal visible={authModalVisible} setVisible={setAuthModalVisible}>
           <AuthContent />
