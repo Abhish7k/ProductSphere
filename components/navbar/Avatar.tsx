@@ -14,24 +14,22 @@ import {
 
 import Avvvatars from "avvvatars-react";
 
-import Image from "next/image";
 import Link from "next/link";
 import { PiGear, PiHeart, PiPackage } from "react-icons/pi";
 import { signOut } from "next-auth/react";
+import { IoLogOutOutline } from "react-icons/io5";
 
 interface AvatarProps {
   authenticatedUser?: any;
 }
 
 const Avatar: React.FC<AvatarProps> = ({ authenticatedUser }) => {
-  console.log(authenticatedUser);
-
   const handleMyUpvotes = () => {
     window.location.href = "/my-upvoted";
   };
 
   return (
-    <div>
+    <div className="mr-2">
       <DropdownMenu>
         <DropdownMenuTrigger asChild className="cursor-pointer">
           <AvatarShadcn>
@@ -43,7 +41,19 @@ const Avatar: React.FC<AvatarProps> = ({ authenticatedUser }) => {
           </AvatarShadcn>
         </DropdownMenuTrigger>
 
-        <DropdownMenuContent>
+        <DropdownMenuContent className="mr-2">
+          <DropdownMenuLabel>
+            <div className="flex flex-col gap-1">
+              <p className="font-medium leading-none capitalize">
+                {authenticatedUser.user.name}
+              </p>
+              <p className="text-xs leading-none text-muted-foreground">
+                {authenticatedUser.user.email}
+              </p>
+            </div>
+          </DropdownMenuLabel>
+          <DropdownMenuSeparator />
+
           <DropdownMenuItem>
             <Link
               href="/my-products"
@@ -74,8 +84,13 @@ const Avatar: React.FC<AvatarProps> = ({ authenticatedUser }) => {
             </Link>
           </DropdownMenuItem>
 
-          <DropdownMenuItem>
-            <div onClick={() => signOut()}>Log out</div>
+          <DropdownMenuSeparator />
+
+          <DropdownMenuItem className="cursor-pointer">
+            <div onClick={() => signOut()} className="flex items-center gap-2">
+              <IoLogOutOutline className="text-xl" />
+              Log out
+            </div>
           </DropdownMenuItem>
         </DropdownMenuContent>
       </DropdownMenu>
