@@ -19,11 +19,15 @@ import { PiGear, PiHeart, PiPackage } from "react-icons/pi";
 import { signOut } from "next-auth/react";
 import { IoLogOutOutline } from "react-icons/io5";
 
+import { unstable_noStore as noStore } from "next/cache";
+
 interface AvatarProps {
   authenticatedUser?: any;
 }
 
 const Avatar: React.FC<AvatarProps> = ({ authenticatedUser }) => {
+  noStore();
+
   const handleMyUpvotes = () => {
     window.location.href = "/my-upvoted";
   };

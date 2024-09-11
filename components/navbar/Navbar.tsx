@@ -10,12 +10,15 @@ import MobileNav from "./MobileNav";
 import Modal from "../ui/modal/modal";
 import AuthContent from "./AuthContent";
 import Avatar from "./Avatar";
+import { unstable_noStore as noStore } from "next/cache";
 
 interface NavbarProps {
   authenticatedUser?: any;
 }
 
 const Navbar: React.FC<NavbarProps> = ({ authenticatedUser }) => {
+  noStore();
+
   const [authModalVisible, setAuthModalVisible] = useState(false);
 
   const handleButtonClick = () => {
