@@ -31,7 +31,7 @@ const Navbar: React.FC<NavbarProps> = ({ authenticatedUser }) => {
     <div className="h-16 px-5 py-3 xl:px-10 border-b flex items-center justify-between transition-all">
       {/* logo */}
       <div className="flex items-center">
-        <Link href="" className="flex items-start gap-2">
+        <Link href="/" className="flex items-start gap-2">
           <Image src="/logo.svg" alt="logo" height={28} width={28} />
           <h1 className="hidden text-2xl font-medium tracking-tight">
             ProductPulse
