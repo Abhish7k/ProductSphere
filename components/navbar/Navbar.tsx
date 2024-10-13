@@ -11,6 +11,8 @@ import Modal from "../ui/modal/modal";
 import AuthContent from "./AuthContent";
 import Avatar from "./Avatar";
 import { unstable_noStore as noStore } from "next/cache";
+import NotificationIcon from "./NotificationIcon";
+import SubmitButton from "./SubmitButton";
 
 interface NavbarProps {
   authenticatedUser?: any;
@@ -48,7 +50,11 @@ const Navbar: React.FC<NavbarProps> = ({ authenticatedUser }) => {
 
       <div className="flex items-center gap-5">
         {authenticatedUser ? (
-          <div>
+          <div className="flex items-center gap-5">
+            <SubmitButton />
+
+            <NotificationIcon />
+
             <Avatar authenticatedUser={authenticatedUser} />
           </div>
         ) : (
