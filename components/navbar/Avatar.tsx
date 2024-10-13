@@ -45,17 +45,18 @@ const Avatar: React.FC<AvatarProps> = ({ authenticatedUser }) => {
           </AvatarShadcn>
         </DropdownMenuTrigger>
 
-        <DropdownMenuContent className="mr-2">
-          <DropdownMenuLabel>
+        <DropdownMenuContent className="mr-10">
+          <DropdownMenuLabel className="pl-2 pr-4">
             <div className="flex flex-col gap-1">
               <p className="font-medium leading-none capitalize">
                 {authenticatedUser.user.name}
               </p>
-              <p className="text-xs leading-none text-muted-foreground">
+              <p className="text-xs leading-none text-muted-foreground max-w-40 truncate">
                 {authenticatedUser.user.email}
               </p>
             </div>
           </DropdownMenuLabel>
+
           <DropdownMenuSeparator />
 
           <DropdownMenuItem>
