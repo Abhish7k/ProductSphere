@@ -1,5 +1,6 @@
 "use client";
 
+import { ImagesUploader } from "@/components/ImagesUploader";
 import { LogoUploader } from "@/components/LogoUploader";
 import Image from "next/image";
 import { useCallback, useState } from "react";
@@ -42,6 +43,9 @@ const NewProduct = () => {
   const [shortDescription, setShortDescription] = useState("");
 
   const [uploadedLogoUrl, setUploadedLogoUrl] = useState<string>("");
+  const [uploadedProductImages, setUploadedProductImages] = useState<string[]>(
+    []
+  );
 
   const nextStep = useCallback(() => {
     setStep(step + 1);
@@ -83,6 +87,10 @@ const NewProduct = () => {
 
   const handleLogoUpload = useCallback((url: any) => {
     setUploadedLogoUrl(url);
+  }, []);
+
+  const handleProductImagesUpload = useCallback((urls: string[]) => {
+    setUploadedProductImages(urls);
   }, []);
 
   return (
@@ -232,6 +240,33 @@ const NewProduct = () => {
               <LogoUploader
                 endpoint="productLogo"
                 onChange={handleLogoUpload}
+              />
+            )}
+          </div>
+
+          <div className="mt-4">
+            <div className="font-medium">
+              Product Images (upload atleast 3 images)
+            </div>
+            {uploadedProductImages.length > 0 ? (
+              <div className="mt-2 md:flex gap-2 space-y-4 md:space-y-0">
+                {uploadedProductImages.map((url, index) => (
+                  <div key={index} className="relative  md:w-40 h-40 ">
+                    <Image
+                      priority
+                      src={url}
+                      alt="Uploaded Product Image"
+                      layout="fill"
+                      objectFit="cover"
+                      className="rounded-md"
+                    />
+                  </div>
+                ))}
+              </div>
+            ) : (
+              <ImagesUploader
+                endpoint="productImages"
+                onChange={handleProductImagesUpload}
               />
             )}
           </div>
