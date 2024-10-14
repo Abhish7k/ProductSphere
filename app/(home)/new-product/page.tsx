@@ -3,7 +3,17 @@
 import { ImagesUploader } from "@/components/ImagesUploader";
 import { LogoUploader } from "@/components/LogoUploader";
 import Image from "next/image";
-import { useCallback, useState } from "react";
+import React, { useCallback, useState } from "react";
+import {
+  Popover,
+  PopoverContent,
+  PopoverTrigger,
+} from "@/components/ui/popover";
+import { Button } from "@/components/ui/button";
+import { Calendar } from "@/components/ui/calendar";
+import { PiCalendar } from "react-icons/pi";
+import { cn } from "@/lib/utils";
+import { format } from "date-fns";
 
 const categories = [
   "Media",
@@ -46,6 +56,8 @@ const NewProduct = () => {
   const [uploadedProductImages, setUploadedProductImages] = useState<string[]>(
     []
   );
+
+  const [date, setDate] = React.useState<Date | undefined>(new Date());
 
   const nextStep = useCallback(() => {
     setStep(step + 1);
@@ -142,7 +154,6 @@ const NewProduct = () => {
           <h1 className="text-4xl font-semibold">
             🏷️ What category does your product belong to ?
           </h1>
-
           <p className="text-xl font-light mt-4 leading-8">
             Choose at least 3 categories that best fits your product. This will
             people discover your product
@@ -226,6 +237,7 @@ const NewProduct = () => {
 
           <div className="mt-10">
             <h2 className="font-medium">Logo</h2>
+
             {uploadedLogoUrl ? (
               <div className="mt-2">
                 <Image
@@ -248,6 +260,7 @@ const NewProduct = () => {
             <div className="font-medium">
               Product Images (upload atleast 3 images)
             </div>
+
             {uploadedProductImages.length > 0 ? (
               <div className="mt-2 md:flex gap-2 space-y-4 md:space-y-0">
                 {uploadedProductImages.map((url, index) => (
@@ -269,6 +282,47 @@ const NewProduct = () => {
                 onChange={handleProductImagesUpload}
               />
             )}
+          </div>
+        </div>
+      )}
+
+      {step === 5 && (
+        <div className="space-y-5">
+          <h1 className="text-4xl font-semibold"> 🗓️ Release Date</h1>
+          <p className="text-xl font-light mt-4 leading-8">
+            When will your product be available to the public? Select a date to
+            continue.
+          </p>
+
+          <div className="mt-10">
+            <h1 className="font-medium pb-4">Release Dates</h1>
+
+            <>
+              <Popover>
+                <PopoverTrigger asChild>
+                  <Button
+                    variant={"outline"}
+                    className={cn(
+                      "w-[300px] pl-3 text-left font-normal",
+                      !date && "text-muted-foreground"
+                    )}
+                  >
+                    {date ? format(date, "PPP") : <span>Pick a date</span>}
+
+                    <PiCalendar className="ml-auto h-4 w-4 opacity-50" />
+                  </Button>
+                </PopoverTrigger>
+                <PopoverContent className="w-auto p-0" align="start">
+                  <Calendar
+                    mode="single"
+                    selected={date}
+                    onSelect={(date) => setDate(date)}
+                    initialFocus
+                    disabled={(date) => date < new Date()}
+                  />
+                </PopoverContent>
+              </Popover>
+            </>
           </div>
         </div>
       )}
