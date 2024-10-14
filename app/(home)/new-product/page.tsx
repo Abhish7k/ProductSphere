@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import { useCallback, useState } from "react";
 
 const categories = [
@@ -38,6 +39,8 @@ const NewProduct = () => {
   const [selectedCategories, setSelectedCategories] = useState<string[]>([]);
   const [headline, setHeadline] = useState("");
   const [shortDescription, setShortDescription] = useState("");
+
+  const [uploadedLogoUrl, setUploadedLogoUrl] = useState<string>("");
 
   const nextStep = useCallback(() => {
     setStep(step + 1);
@@ -194,6 +197,39 @@ const NewProduct = () => {
             <div className="text-sm text-gray-500 mt-1">
               {shortDescription.length} / 300
             </div>
+          </div>
+        </div>
+      )}
+
+      {step === 4 && (
+        <div className="space-y-10">
+          <h1 className="text-4xl font-semibold">
+            🖼️ Add images to showcase your product
+          </h1>
+          <p className="text-xl font-light mt-4 leading-8">
+            Include images that best represent your product. This will help
+            people understand what your product looks like.
+          </p>
+
+          <div className="mt-10">
+            <h2 className="font-medium">Logo</h2>
+
+            {uploadedLogoUrl ? (
+              <div className="mt-2">
+                <Image
+                  src={uploadedLogoUrl}
+                  alt="logo"
+                  width={1000}
+                  height={1000}
+                  className="rounded-md h-40 w-40"
+                />
+              </div>
+            ) : (
+              <ImagesUploader
+                endpoint="productImages"
+                onChange={handleProductImagesUpload}
+              />
+            )}
           </div>
         </div>
       )}
