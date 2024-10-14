@@ -36,6 +36,8 @@ const NewProduct = () => {
   const [name, setName] = useState("");
   const [slug, setSlug] = useState("");
   const [selectedCategories, setSelectedCategories] = useState<string[]>([]);
+  const [headline, setHeadline] = useState("");
+  const [shortDescription, setShortDescription] = useState("");
 
   const nextStep = useCallback(() => {
     setStep(step + 1);
@@ -64,6 +66,15 @@ const NewProduct = () => {
     } else if (selectedCategories.length < 3) {
       setSelectedCategories((prevCategories) => [...prevCategories, category]);
     }
+  };
+
+  const handleHeadlineChange = (e: any) => {
+    const headlineText = e.target.value.slice(0, 70);
+    setHeadline(headlineText);
+  };
+
+  const handleShortDescriptionChange = (e: any) => {
+    setShortDescription(e.target.value.slice(0, 300));
   };
 
   return (
@@ -143,6 +154,45 @@ const NewProduct = () => {
                   </div>
                 </div>
               ))}
+            </div>
+          </div>
+        </div>
+      )}
+
+      {step === 3 && (
+        <div className="space-y-10">
+          <h1 className="text-4xl font-semibold">📝 Product Details</h1>
+          <p className="text-xl font-light mt-4 leading-8">
+            Keep it simple and clear. Describe your product in a way that makes
+            it easy for people to understand what it does.
+          </p>
+
+          <div className="mt-10">
+            <h2 className="font-medium">Headline</h2>
+            <input
+              type="text"
+              value={headline}
+              className="border rounded-md p-2 w-full mt-2 focus:outline-none"
+              onChange={handleHeadlineChange}
+            />
+
+            <div className="text-sm text-gray-500 mt-1">
+              {headline.length} / 70
+            </div>
+          </div>
+
+          <div className="mt-10">
+            <h2 className="font-medium">Short Description</h2>
+            <textarea
+              className="border rounded-md p-2 w-full mt-2 focus:outline-none"
+              rows={8}
+              maxLength={300}
+              value={shortDescription}
+              onChange={handleShortDescriptionChange}
+            />
+
+            <div className="text-sm text-gray-500 mt-1">
+              {shortDescription.length} / 300
             </div>
           </div>
         </div>
