@@ -1,5 +1,6 @@
 "use client";
 
+import { LogoUploader } from "@/components/LogoUploader";
 import Image from "next/image";
 import { useCallback, useState } from "react";
 
@@ -79,6 +80,10 @@ const NewProduct = () => {
   const handleShortDescriptionChange = (e: any) => {
     setShortDescription(e.target.value.slice(0, 300));
   };
+
+  const handleLogoUpload = useCallback((url: any) => {
+    setUploadedLogoUrl(url);
+  }, []);
 
   return (
     <div className="flex flex-col items-center justify-center py-8 md:py-20">
@@ -213,7 +218,6 @@ const NewProduct = () => {
 
           <div className="mt-10">
             <h2 className="font-medium">Logo</h2>
-
             {uploadedLogoUrl ? (
               <div className="mt-2">
                 <Image
@@ -221,13 +225,13 @@ const NewProduct = () => {
                   alt="logo"
                   width={1000}
                   height={1000}
-                  className="rounded-md h-40 w-40"
+                  className="rounded-md h-40 w-40 object-cover"
                 />
               </div>
             ) : (
-              <ImagesUploader
-                endpoint="productImages"
-                onChange={handleProductImagesUpload}
+              <LogoUploader
+                endpoint="productLogo"
+                onChange={handleLogoUpload}
               />
             )}
           </div>
