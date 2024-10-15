@@ -11,8 +11,6 @@ const HomeLayout = async ({
 
   const authenticatedUser = await auth();
 
-  console.log(authenticatedUser);
-
   return (
     <html lang="en">
       <body>

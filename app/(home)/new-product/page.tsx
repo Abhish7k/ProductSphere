@@ -405,6 +405,89 @@ const NewProduct = () => {
           </div>
         )}
 
+        {step === 7 && (
+          <div className="space-y-5">
+            <h1 className="text-4xl font-semibold"> 🔍 Review and submit</h1>
+            <p className="text-xl font-light mt-4 leading-8">
+              Review the details of your product and submit it to the world.
+              Your product will be reviewed by our team before it goes live.
+            </p>
+
+            <div className="mt-10 grid grid-cols-2 gap-8">
+              <div>
+                <h1 className="font-semibold">Name of the product</h1>
+                <h6 className="mt-2 text-gray-600">{name}</h6>
+              </div>
+
+              <div className="">
+                <div className="font-semibold">Slug ( URL ) </div>
+                <div className=" mt-2 text-gray-600">{slug}</div>
+              </div>
+
+              <div className="">
+                <div className="font-semibold">Category</div>
+                <div className="  mt-2 text-gray-600">
+                  {selectedCategories.join(", ")}
+                </div>
+              </div>
+
+              <div>
+                <div className="font-semibold">Website URL</div>
+                <div className=" mt-2 text-gray-600">{website}</div>
+              </div>
+
+              <div className="">
+                <div className="font-semibold">Headline</div>
+                <div className="  mt-2 text-gray-600">{headline}</div>
+              </div>
+
+              <div className="">
+                <div className="font-semibold">Short description</div>
+                <div className=" mt-2 text-gray-600 ">{shortDescription}</div>
+              </div>
+
+              <div>
+                <div className="font-semibold">Twitter</div>
+                <div className=" mt-2 text-gray-600">{twitter}</div>
+              </div>
+
+              <div>
+                <div className="font-semibold">Instagram</div>
+                <div className=" mt-2 text-gray-600">{instagram}</div>
+              </div>
+
+              <div className="">
+                <div className="font-semibold">
+                  Release date - Pending Approval
+                </div>
+
+                <div className=" mt-2 text-gray-600">
+                  {date ? date.toDateString() : "Not specified"}
+                </div>
+              </div>
+
+              <div className="cols-span-2">
+                <div className="font-semibold">Product Images</div>
+
+                <div className="mt-2 md:flex gap-2 w-full">
+                  {uploadedProductImages.map((url, index) => (
+                    <div key={index} className="relative w-28 h-28">
+                      <Image
+                        priority
+                        src={url}
+                        alt="Uploaded Product Image"
+                        layout="fill"
+                        objectFit="cover"
+                        className="rounded-md"
+                      />
+                    </div>
+                  ))}
+                </div>
+              </div>
+            </div>
+          </div>
+        )}
+
         <div className="flex gap-5 ">
           <button
             onClick={prevStep}
