@@ -76,7 +76,7 @@ model Product {
   releaseDate  String
   website      String
   twitter      String
-  discord      String
+  instagram    String
   notification Notification[]
   comments     Comment[]
   upvotes      Upvote[]
