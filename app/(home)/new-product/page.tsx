@@ -18,6 +18,7 @@ import { PiCalendar } from "react-icons/pi";
 import { CiGlobe } from "react-icons/ci";
 import { FaXTwitter } from "react-icons/fa6";
 import { FaInstagram } from "react-icons/fa";
+import { createProduct } from "@/lib/actions";
 
 const categories = [
   "Media",
@@ -66,6 +67,8 @@ const NewProduct = () => {
   const [website, setWebsite] = useState("");
   const [twitter, setTwitter] = useState("");
   const [instagram, setInstagram] = useState("");
+
+  const [loading, setLoading] = useState(false);
 
   const nextStep = useCallback(() => {
     setStep(step + 1);
@@ -124,9 +127,6 @@ const NewProduct = () => {
   const handleTwitterChange = (e: any) => {
     setTwitter(e.target.value);
   };
-  {
-    /* <Separator /> */
-  }
 
   const handleInstagramChange = (e: any) => {
     setInstagram(e.target.value);
@@ -151,8 +151,31 @@ const NewProduct = () => {
     setUploadedLogoUrl("");
   };
 
-  const submitProduct = () => {
-    setStep(8);
+  const submitProduct = async () => {
+    setLoading(true);
+
+    const formatedDate = date ? format(date, "dd/MM/YYYY") : "";
+
+    try {
+      await createProduct({
+        name,
+        slug,
+        headline,
+        website,
+        twitter,
+        instagram,
+        description: shortDescription,
+        logo: uploadedLogoUrl,
+        releaseDate: formatedDate,
+        images: uploadedProductImages,
+        category: selectedCategories,
+      });
+
+      setStep(8);
+    } catch (error) {
+      console.log(error);
+      setLoading(false);
+    }
   };
 
   return (
