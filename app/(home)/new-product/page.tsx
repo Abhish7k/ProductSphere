@@ -14,10 +14,10 @@ import { Calendar } from "@/components/ui/calendar";
 import { cn } from "@/lib/utils";
 import { format } from "date-fns";
 
-import { PiCalendar, PiDiscordLogoFill } from "react-icons/pi";
+import { PiCalendar } from "react-icons/pi";
 import { CiGlobe } from "react-icons/ci";
 import { FaXTwitter } from "react-icons/fa6";
-import { FaDiscord, FaInstagram } from "react-icons/fa";
+import { FaInstagram } from "react-icons/fa";
 
 const categories = [
   "Media",
@@ -124,9 +124,35 @@ const NewProduct = () => {
   const handleTwitterChange = (e: any) => {
     setTwitter(e.target.value);
   };
+  {
+    /* <Separator /> */
+  }
 
   const handleInstagramChange = (e: any) => {
     setInstagram(e.target.value);
+  };
+
+  const handleGoToProducts = () => {
+    window.location.href = "/my-products";
+  };
+
+  const submitAnotherProduct = () => {
+    setStep(1);
+    setName("");
+    setSlug("");
+    setHeadline("");
+    setShortDescription("");
+    setDate(new Date());
+    setWebsite("");
+    setTwitter("");
+    setInstagram("");
+    setSelectedCategories([]);
+    setUploadedProductImages([]);
+    setUploadedLogoUrl("");
+  };
+
+  const submitProduct = () => {
+    setStep(8);
   };
 
   return (
@@ -488,21 +514,69 @@ const NewProduct = () => {
           </div>
         )}
 
-        <div className="flex gap-5 ">
-          <button
-            onClick={prevStep}
-            className="mt-20 border px-4 py-2 rounded w-fit"
-          >
-            Previous
-          </button>
+        {step === 8 && (
+          <div className="space-y-10">
+            <div className="text-4xl font-semibold"> Congratulations 🎉 </div>
+            <div className="text-xl font-light mt-4 leading-8 ">
+              Your product has been successfully submitted. Our team will review
+              it and get back to you soon.
+            </div>
 
-          <button
-            onClick={nextStep}
-            className="mt-20 border px-4 py-2 rounded w-fit"
-          >
-            Next
-          </button>
-        </div>
+            <div className="flex items-center gap-5">
+              <div
+                onClick={handleGoToProducts}
+                className="bg-[#ff6154] hover:bg-orange-600 text-white py-2 px-4
+                 rounded mt-4 flex w-60 justify-center items-center cursor-pointer transition-all duration-300"
+              >
+                Go to your products
+              </div>
+
+              <Button
+                variant="outline"
+                onClick={submitAnotherProduct}
+                className="text-[#ff6154] py-2 px-4 rounded mt-4 
+                flex w-60 justify-center items-center cursor-pointer transition-all duration-300"
+              >
+                Submit another product
+              </Button>
+            </div>
+          </div>
+        )}
+
+        {step !== 8 && (
+          <>
+            <div className="flex justify-between items-center mt-10">
+              {step !== 1 && (
+                <Button
+                  variant="outline"
+                  onClick={prevStep}
+                  className="text-gray-700"
+                >
+                  Previous
+                </Button>
+              )}
+
+              <div className="flex items-center">
+                {step === 7 ? (
+                  <button
+                    onClick={submitProduct}
+                    className="bg-[#ff6154] hover:bg-orange-600 text-white py-2 px-4 rounded-md mt-4 items-end transition-all duration-300"
+                  >
+                    Submit
+                  </button>
+                ) : (
+                  <button
+                    onClick={nextStep}
+                    className="bg-[#ff6154] hover:bg-orange-600 text-white py-2 px-4 rounded-md mt-4 items-end transition-all duration-300"
+                  >
+                    {/* {step === 7 ? "Submit" : "Continue"} */}
+                    Continue
+                  </button>
+                )}
+              </div>
+            </div>
+          </>
+        )}
       </div>
     </div>
   );
