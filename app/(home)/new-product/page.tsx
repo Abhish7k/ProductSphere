@@ -19,6 +19,7 @@ import { CiGlobe } from "react-icons/ci";
 import { FaXTwitter } from "react-icons/fa6";
 import { FaInstagram } from "react-icons/fa";
 import { createProduct } from "@/lib/actions";
+import { LuLoader2 } from "react-icons/lu";
 
 const categories = [
   "Media",
@@ -154,7 +155,7 @@ const NewProduct = () => {
   const submitProduct = async () => {
     setLoading(true);
 
-    const formatedDate = date ? format(date, "dd/MM/YYYY") : "";
+    const formatedDate = date ? format(date, "dd/MM/yyyy") : "";
 
     try {
       await createProduct({
@@ -172,6 +173,8 @@ const NewProduct = () => {
       });
 
       setStep(8);
+
+      setLoading(false);
     } catch (error) {
       console.log(error);
       setLoading(false);
@@ -583,16 +586,20 @@ const NewProduct = () => {
                 {step === 7 ? (
                   <button
                     onClick={submitProduct}
-                    className="bg-[#ff6154] hover:bg-orange-600 text-white py-2 px-4 rounded-md mt-4 items-end transition-all duration-300"
+                    className="flex items-center gap-2 bg-[#ff6154] hover:bg-orange-600 text-white py-2 px-4 rounded-md mt-4 transition-all duration-300"
                   >
                     Submit
+                    {loading ? (
+                      <LuLoader2 className="w-5 h-5 animate-spin" />
+                    ) : (
+                      ""
+                    )}
                   </button>
                 ) : (
                   <button
                     onClick={nextStep}
                     className="bg-[#ff6154] hover:bg-orange-600 text-white py-2 px-4 rounded-md mt-4 items-end transition-all duration-300"
                   >
-                    {/* {step === 7 ? "Submit" : "Continue"} */}
                     Continue
                   </button>
                 )}
