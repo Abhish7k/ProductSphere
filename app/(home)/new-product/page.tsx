@@ -15,12 +15,13 @@ import { cn } from "@/lib/utils";
 import { format } from "date-fns";
 import { motion } from "framer-motion";
 
-import { PiCalendar } from "react-icons/pi";
+import { PiCalendar, PiXCircleFill } from "react-icons/pi";
 import { CiGlobe } from "react-icons/ci";
 import { FaXTwitter } from "react-icons/fa6";
 import { FaInstagram } from "react-icons/fa";
 import { createProduct } from "@/lib/actions";
 import { LuLoader2 } from "react-icons/lu";
+import { toast } from "sonner";
 
 const categories = [
   "Media",
@@ -73,8 +74,156 @@ const NewProduct = () => {
   const [loading, setLoading] = useState(false);
 
   const nextStep = useCallback(() => {
+    if (step === 1 && name.length < 4) {
+      toast(
+        <>
+          <div className="flex items-center gap-4  mx-auto">
+            <PiXCircleFill className="text-red-500 text-3xl" />
+            <div className="text-md font-semibold">
+              Please enter at least 4 characters for the product name.
+            </div>
+          </div>
+        </>,
+        {
+          position: "top-right",
+        }
+      );
+
+      return;
+    }
+
+    if (step === 2 && selectedCategories.length < 3) {
+      toast(
+        <>
+          <div className="flex items-center gap-4  mx-auto">
+            <PiXCircleFill className="text-red-500 text-3xl" />
+            <div className="text-md font-semibold">
+              Please select at least 3 categories for the product.
+            </div>
+          </div>
+        </>,
+        {
+          position: "top-right",
+        }
+      );
+      return;
+    }
+
+    if (step === 3 && headline.length < 10) {
+      toast(
+        <>
+          <div className="flex items-center gap-4  mx-auto">
+            <PiXCircleFill className="text-red-500 text-3xl" />
+            <div className="text-md font-semibold">
+              Please enter at least 10 characters for the headline.
+            </div>
+          </div>
+        </>,
+        {
+          position: "top-right",
+        }
+      );
+      return;
+    }
+    if (step === 3 && shortDescription.length < 20) {
+      toast(
+        <>
+          <div className="flex items-center gap-4  mx-auto">
+            <PiXCircleFill className="text-red-500 text-3xl" />
+            <div className="text-md font-semibold">
+              Please enter at least 20 characters for the short description.
+            </div>
+          </div>
+        </>,
+        {
+          position: "top-right",
+        }
+      );
+      return;
+    }
+
+    if (step === 4 && !uploadedLogoUrl) {
+      toast(
+        <>
+          <div className="flex items-center gap-4  mx-auto">
+            <PiXCircleFill className="text-red-500 text-3xl" />
+            <div className="text-md font-semibold">
+              Please upload a logo for the product.
+            </div>
+          </div>
+        </>,
+        {
+          position: "top-right",
+        }
+      );
+      return;
+    }
+
+    if (step === 4 && uploadedProductImages.length < 1) {
+      toast(
+        <>
+          <div className="flex items-center gap-4  mx-auto">
+            <PiXCircleFill className="text-red-500 text-3xl" />
+            <div className="text-md font-semibold">
+              Upload at least 3 images for the product.
+            </div>
+          </div>
+        </>,
+        {
+          position: "top-right",
+        }
+      );
+      return;
+    }
+
+    if (step === 5 && !date) {
+      toast(
+        <>
+          <div className="flex items-center gap-4  mx-auto">
+            <PiXCircleFill className="text-red-500 text-3xl" />
+            <div className="text-md font-semibold">
+              Please select a release date or choose the Coming soon option.
+            </div>
+          </div>
+        </>,
+        {
+          position: "top-right",
+        }
+      );
+      return;
+    }
+
+    if (step == 6 && !website && !twitter && !instagram) {
+      toast(
+        <>
+          <div className="flex items-center gap-4  mx-auto">
+            <PiXCircleFill className="text-red-500 text-3xl" />
+            <div className="text-md font-semibold">
+              Please enter at least one link for the product.
+            </div>
+          </div>
+        </>,
+        {
+          position: "top-right",
+        }
+      );
+      return;
+    }
+
     setStep(step + 1);
-  }, [step]);
+  }, [
+    step,
+    name,
+    selectedCategories,
+    headline,
+    shortDescription,
+    uploadedLogoUrl,
+    uploadedProductImages,
+    date,
+    website,
+    twitter,
+    instagram,
+  ]);
 
   const prevStep = useCallback(() => {
     setStep(step - 1);
