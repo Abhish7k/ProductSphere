@@ -13,6 +13,7 @@ import { Button } from "@/components/ui/button";
 import { Calendar } from "@/components/ui/calendar";
 import { cn } from "@/lib/utils";
 import { format } from "date-fns";
+import { motion } from "framer-motion";
 
 import { PiCalendar } from "react-icons/pi";
 import { CiGlobe } from "react-icons/ci";
@@ -183,9 +184,15 @@ const NewProduct = () => {
 
   return (
     <div className="flex flex-col items-center justify-center py-8 md:py-20">
-      <div className="px-8 md:w-3/5 md:mx-auto">
+      <div className="px-8 md:w-3/5 md:mx-auto overflow-hidden">
         {step === 1 && (
-          <div className="space-y-10">
+          <motion.div
+            initial={{ opacity: 0, x: "100%" }} // Slide in from the right
+            animate={{ opacity: 1, x: 0 }} // Slide to the center
+            exit={{ opacity: 0, x: "-100%" }} // Slide out to the left
+            transition={{ duration: 0.3 }}
+            className="space-y-10"
+          >
             <h1 className="text-4xl font-semibold"> 📦 New product</h1>
             <p className="text-xl font-light mt-4 leading-8">
               Ready to showcase your product to the world? You came to the right
@@ -221,11 +228,17 @@ const NewProduct = () => {
                 readOnly
               />
             </div>
-          </div>
+          </motion.div>
         )}
 
         {step === 2 && (
-          <div className="space-y-10">
+          <motion.div
+            initial={{ opacity: 0, x: "100%" }} // Slide in from the right
+            animate={{ opacity: 1, x: 0 }} // Slide to the center
+            exit={{ opacity: 0, x: "-100%" }} // Slide out to the left
+            transition={{ duration: 0.3 }}
+            className="space-y-10"
+          >
             <h1 className="text-4xl font-semibold">
               🏷️ What category does your product belong to ?
             </h1>
@@ -238,10 +251,11 @@ const NewProduct = () => {
               <h2 className="font-medium">Select Categories</h2>
               <div className="grid grid-cols-4 gap-2 pt-4 items-center justify-center">
                 {categories.map((category, index) => (
-                  <div
+                  <motion.div
                     key={index}
                     className="flex border rounded-full"
                     onClick={() => handleCategoryToggle(category)}
+                    whileTap={{ scale: 0.9 }}
                   >
                     <div
                       className={`text-xs md:text-sm p-2 cursor-pointer w-full text-center
@@ -254,15 +268,21 @@ const NewProduct = () => {
                     >
                       {category}
                     </div>
-                  </div>
+                  </motion.div>
                 ))}
               </div>
             </div>
-          </div>
+          </motion.div>
         )}
 
         {step === 3 && (
-          <div className="space-y-10">
+          <motion.div
+            initial={{ opacity: 0, x: "100%" }} // Slide in from the right
+            animate={{ opacity: 1, x: 0 }} // Slide to the center
+            exit={{ opacity: 0, x: "-100%" }} // Slide out to the left
+            transition={{ duration: 0.3 }}
+            className="space-y-10"
+          >
             <h1 className="text-4xl font-semibold">📝 Product Details</h1>
             <p className="text-xl font-light mt-4 leading-8">
               Keep it simple and clear. Describe your product in a way that
@@ -297,11 +317,17 @@ const NewProduct = () => {
                 {shortDescription.length} / 300
               </div>
             </div>
-          </div>
+          </motion.div>
         )}
 
         {step === 4 && (
-          <div className="space-y-10">
+          <motion.div
+            initial={{ opacity: 0, x: "100%" }} // Slide in from the right
+            animate={{ opacity: 1, x: 0 }} // Slide to the center
+            exit={{ opacity: 0, x: "-100%" }} // Slide out to the left
+            transition={{ duration: 0.3 }}
+            className="space-y-10"
+          >
             <h1 className="text-4xl font-semibold">
               🖼️ Add images to showcase your product
             </h1>
@@ -358,11 +384,17 @@ const NewProduct = () => {
                 />
               )}
             </div>
-          </div>
+          </motion.div>
         )}
 
         {step === 5 && (
-          <div className="space-y-5">
+          <motion.div
+            initial={{ opacity: 0, x: "100%" }} // Slide in from the right
+            animate={{ opacity: 1, x: 0 }} // Slide to the center
+            exit={{ opacity: 0, x: "-100%" }} // Slide out to the left
+            transition={{ duration: 0.3 }}
+            className="space-y-5"
+          >
             <h1 className="text-4xl font-semibold"> 🗓️ Release Date</h1>
             <p className="text-xl font-light mt-4 leading-8">
               When will your product be available to the public? Select a date
@@ -399,11 +431,17 @@ const NewProduct = () => {
                 </Popover>
               </>
             </div>
-          </div>
+          </motion.div>
         )}
 
         {step === 6 && (
-          <div className="space-y-10">
+          <motion.div
+            initial={{ opacity: 0, x: "100%" }} // Slide in from the right
+            animate={{ opacity: 1, x: 0 }} // Slide to the center
+            exit={{ opacity: 0, x: "-100%" }} // Slide out to the left
+            transition={{ duration: 0.3 }}
+            className="space-y-10"
+          >
             <h1 className="text-4xl font-semibold">🔗 Additional Links </h1>
             <p className="text-xl font-light mt-4 leading-8">
               Add links to your product&apos;s website, social media, and other
@@ -454,11 +492,17 @@ const NewProduct = () => {
                 onChange={handleInstagramChange}
               />
             </div>
-          </div>
+          </motion.div>
         )}
 
         {step === 7 && (
-          <div className="space-y-5">
+          <motion.div
+            initial={{ opacity: 0, x: "100%" }} // Slide in from the right
+            animate={{ opacity: 1, x: 0 }} // Slide to the center
+            exit={{ opacity: 0, x: "-100%" }} // Slide out to the left
+            transition={{ duration: 0.3 }}
+            className="space-y-5"
+          >
             <h1 className="text-4xl font-semibold"> 🔍 Review and submit</h1>
             <p className="text-xl font-light mt-4 leading-8">
               Review the details of your product and submit it to the world.
@@ -537,11 +581,17 @@ const NewProduct = () => {
                 </div>
               </div>
             </div>
-          </div>
+          </motion.div>
         )}
 
         {step === 8 && (
-          <div className="space-y-10">
+          <motion.div
+            initial={{ opacity: 0, x: "100%" }} // Slide in from the right
+            animate={{ opacity: 1, x: 0 }} // Slide to the center
+            exit={{ opacity: 0, x: "-100%" }} // Slide out to the left
+            transition={{ duration: 0.3 }}
+            className="space-y-10"
+          >
             <div className="text-4xl font-semibold"> Congratulations 🎉 </div>
             <div className="text-xl font-light mt-4 leading-8 ">
               Your product has been successfully submitted. Our team will review
@@ -566,12 +616,17 @@ const NewProduct = () => {
                 Submit another product
               </Button>
             </div>
-          </div>
+          </motion.div>
         )}
 
         {step !== 8 && (
           <>
-            <div className="flex justify-between items-center mt-10">
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ duration: 0.5 }}
+              className="flex justify-between items-center mt-10"
+            >
               {step !== 1 && (
                 <Button
                   variant="outline"
@@ -604,7 +659,7 @@ const NewProduct = () => {
                   </button>
                 )}
               </div>
-            </div>
+            </motion.div>
           </>
         )}
       </div>
