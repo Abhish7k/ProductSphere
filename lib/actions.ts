@@ -85,3 +85,26 @@ export const createProduct = async ({
     return null;
   }
 };
+
+export const getOwnerProducts = async () => {
+  try {
+    const authenticatedUser = await auth();
+
+    if (!authenticatedUser) {
+      return [];
+    }
+
+    const userId = authenticatedUser.user?.id;
+
+    const products = await db.product.findMany({
+      where: {
+        userId: userId,
+      },
+    });
+
+    return products;
+  } catch (error) {
+    console.error("Error fetching owner products:", error);
+    return [];
+  }
+};
