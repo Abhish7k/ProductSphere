@@ -108,3 +108,21 @@ export const getOwnerProducts = async () => {
     return [];
   }
 };
+
+export const getProductById = async (productId: string) => {
+  try {
+    const product = await db.product.findUnique({
+      where: {
+        id: productId,
+      },
+      include: {
+        categories: true,
+        images: true,
+      },
+    });
+
+    return product;
+  } catch (error) {
+    console.log(error);
+  }
+};
