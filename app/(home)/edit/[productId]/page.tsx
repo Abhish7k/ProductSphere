@@ -35,25 +35,27 @@ const ProductIdPage = async ({ params }: { params: IParams }) => {
             className="h-20 w-20 md:h-40 md:w-40 border rounded-lg"
           />
 
-          <div className="space-y-1">
+          <div className="space-y-3">
             <h1 className="text-3xl font-medium">{product.name}</h1>
             <p className="text-gray-500 text-sm w-3/4">{product.website}</p>
 
             {product.status === "PENDING" && (
-              <Badge className="bg-orange-400">Pending</Badge>
+              <Badge className="bg-orange-400 hover:bg-orange-400">
+                Pending
+              </Badge>
             )}
             {product.status === "ACTIVE" && (
-              <Badge className="bg-green-400">ACTIVE</Badge>
+              <Badge className="bg-green-400 hover:bg-green-400">ACTIVE</Badge>
             )}
             {product.status === "REJECTED" && (
-              <Badge className="bg-red-400">REJECTED</Badge>
+              <Badge className="bg-red-400 hover:bg-red-400">REJECTED</Badge>
             )}
           </div>
+        </div>
 
-          <div className="flex items-center gap-4">
-            <EditProduct product={product} />
-            <DeleteProduct productId={product.id} />
-          </div>
+        <div className="flex items-center gap-4">
+          <EditProduct product={product} />
+          <DeleteProduct productId={product.id} />
         </div>
       </div>
     </div>
