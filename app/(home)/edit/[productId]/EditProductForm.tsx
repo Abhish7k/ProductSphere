@@ -2,10 +2,12 @@
 
 import { ImagesUploader } from "@/components/ImagesUploader";
 import { LogoUploader } from "@/components/LogoUploader";
+import { updateProduct } from "@/lib/actions";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
-import { PiFlag, PiPencilLine } from "react-icons/pi";
+import { PiCheckCircle, PiFlag, PiPencilLine, PiXCircle } from "react-icons/pi";
+import { toast } from "sonner";
 
 const EditProductForm = ({ product }: { product: any }) => {
   const [isEditingLogo, setIsEditingLogo] = useState(false);
@@ -49,7 +51,55 @@ const EditProductForm = ({ product }: { product: any }) => {
     setName(truncatedName);
   };
 
-  const onSave = () => {};
+  const onSave = () => {
+    try {
+      updateProduct(product.id, {
+        name,
+        headline,
+        description,
+        releaseDate,
+        website,
+        slug,
+        twitter,
+        instagram,
+        category: categories,
+        logo: uploadedLogoUrl || product.logo,
+        images:
+          uploadedProductImages.length > 0
+            ? uploadedProductImages
+            : product.images.map((image: any) => image.url),
+      });
+
+      toast(
+        <>
+          <div className="flex items-center gap-4  mx-auto">
+            <PiCheckCircle className="text-emerald-500 text-3xl" />
+            <div className="text-md font-semibold">
+              Product updated successfully.
+            </div>
+          </div>
+        </>,
+        {
+          position: "top-right",
+        }
+      );
+
+      router.refresh();
+    } catch (error: any) {
+      toast(
+        <>
+          <div className="flex items-center gap-4  mx-auto">
+            <PiXCircle className="text-red-500 text-3xl" />
+            <div className="text-md font-semibold">
+              There was an error updating the product
+              {error.message}
+            </div>
+          </div>
+        </>,
+        { position: "top-right" }
+      );
+    }
+  };
 
   return (
     <div className="h-full">

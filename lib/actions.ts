@@ -86,6 +86,56 @@ export const createProduct = async ({
   }
 };
 
+export const updateProduct = async (
+  productId: string,
+  {
+    name,
+    slug,
+    headline,
+    description,
+    logo,
+    releaseDate,
+    website,
+    twitter,
+    instagram,
+    images,
+  }: ProductData
+) => {
+  const authenticatedUser = await auth();
+
+  if (!authenticatedUser) {
+    throw new Error("You must be signed in to update a product");
+  }
+
+  const product = await db.product.update({
+    where: {
+      id: productId,
+    },
+    data: {
+      name,
+      slug,
+      headline,
+      description,
+      logo,
+      releaseDate,
+      website,
+      twitter,
+      instagram,
+      images: {
+        deleteMany: {
+          productId,
+        },
+        createMany: {
+          data: images.map((image) => ({ url: image })),
+        },
+      },
+      status: "PENDING",
+    },
+  });
+
+  return product;
+};
+
 export const getOwnerProducts = async () => {
   try {
     const authenticatedUser = await auth();
