@@ -101,39 +101,65 @@ export const updateProduct = async (
     images,
   }: ProductData
 ) => {
-  const authenticatedUser = await auth();
+  try {
+    const authenticatedUser = await auth();
 
-  if (!authenticatedUser) {
-    throw new Error("You must be signed in to update a product");
-  }
+    if (!authenticatedUser) {
+      throw new Error("You must be signed in to update a product");
+    }
 
-  const product = await db.product.update({
-    where: {
-      id: productId,
-    },
-    data: {
-      name,
-      slug,
-      headline,
-      description,
-      logo,
-      releaseDate,
-      website,
-      twitter,
-      instagram,
-      images: {
-        deleteMany: {
-          productId,
-        },
-        createMany: {
-          data: images.map((image) => ({ url: image })),
-        },
+    const userId = authenticatedUser.user?.id;
+
+    const existingProduct = await db.product.findUnique({
+      where: { id: productId },
+    });
+
+    if (!existingProduct) {
+      throw new Error("Product not found");
+    }
+
+    if (existingProduct.userId !== userId) {
+      throw new Error("You don't have permission to update this product");
+    }
+
+    const updatedProduct = await db.product.update({
+      where: {
+        id: productId,
       },
-      status: "PENDING",
-    },
-  });
+      data: {
+        name,
+        slug,
+        headline,
+        description,
+        logo,
+        releaseDate,
+        website,
+        twitter,
+        instagram,
 
-  return product;
+        // Update images only if provided
+        images:
+          images.length > 0
+            ? {
+                deleteMany: {
+                  productId, // Delete all existing images related to the product
+                },
+                createMany: {
+                  data: images.map((image) => ({ url: image })),
+                },
+              }
+            : undefined, // If no new images, skip this part
+        status: "PENDING",
+      },
+    });
+
+    return updatedProduct;
+  } catch (error: any) {
+    console.error("Error updating product:", error);
+    throw new Error(
+      error.message || "Something went wrong while updating the product"
+    );
+  }
 };
 
 export const getOwnerProducts = async () => {

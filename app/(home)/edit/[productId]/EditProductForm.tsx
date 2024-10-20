@@ -51,9 +51,9 @@ const EditProductForm = ({ product }: { product: any }) => {
     setName(truncatedName);
   };
 
-  const onSave = () => {
+  const onSave = async () => {
     try {
-      updateProduct(product.id, {
+      await updateProduct(product.id, {
         name,
         headline,
         description,
