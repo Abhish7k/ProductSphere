@@ -19,7 +19,7 @@ const ProductIdPage = async ({ params }: { params: IParams }) => {
   }
 
   return (
-    <div className="md:w-4/5 mx-auto px-6 md:px-0 py-10">
+    <div className="md:w-4/5 mx-auto px-6 md:px-0 py-10 transition-all">
       <Link href="/my-products" className="flex items-center gap-2 mb-5">
         <PiArrowLeft className="text-xl text-gray-500" />
         <p>Go Back</p>
@@ -32,12 +32,14 @@ const ProductIdPage = async ({ params }: { params: IParams }) => {
             alt="logo"
             width={500}
             height={500}
-            className="h-20 w-20 md:h-40 md:w-40 border rounded-lg"
+            className="h-24 w-24 md:h-40 md:w-40 border rounded-lg"
           />
 
-          <div className="space-y-3">
-            <h1 className="text-3xl font-medium">{product.name}</h1>
-            <p className="text-gray-500 text-sm w-3/4">{product.website}</p>
+          <div className="space-y-1 md:space-y-3">
+            <h1 className="text-xl md:text-3xl font-medium">{product.name}</h1>
+            <p className="text-gray-500 text-xs md:text-sm w-3/4">
+              {product.website}
+            </p>
 
             {product.status === "PENDING" && (
               <Badge className="bg-orange-400 hover:bg-orange-400">

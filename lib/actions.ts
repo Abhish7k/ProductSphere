@@ -248,3 +248,103 @@ export const getProductById = async (productId: string) => {
     console.log(error);
   }
 };
+
+export const getUsers = async () => {
+  try {
+    const users = await db.user.findMany();
+
+    return users;
+  } catch (error) {
+    console.error("Error fetching users:", error);
+    throw new Error("Could not fetch users");
+  }
+};
+
+export const getPendingProducts = async () => {
+  try {
+    const pendingProducts = await db.product.findMany({
+      where: {
+        status: "PENDING",
+      },
+      include: {
+        categories: true,
+        images: true,
+      },
+
+      // get the most recent first
+      orderBy: {
+        createdAt: "desc",
+      },
+    });
+
+    return pendingProducts;
+  } catch (error) {
+    console.error("Error fetching pending products:", error);
+    throw new Error("Could not fetch pending products");
+  }
+};
+
+export const getActiveProducts = async () => {
+  try {
+    const activeProducts = await db.product.findMany({
+      where: {
+        status: "ACTIVE",
+      },
+      include: {
+        categories: true,
+        images: true,
+      },
+
+      //
+      orderBy: {
+        createdAt: "desc",
+      },
+    });
+
+    return activeProducts;
+  } catch (error) {
+    console.log("Error fetching active products:", error);
+    throw new Error("Could not fetch active products");
+  }
+};
+
+export const getRejectedProducts = async () => {
+  try {
+    const rejectedProducts = await db.product.findMany({
+      where: {
+        status: "REJECTED",
+      },
+      include: {
+        categories: true,
+        images: true,
+      },
+
+      //
+      orderBy: {
+        createdAt: "desc",
+      },
+    });
+
+    return rejectedProducts;
+  } catch (error) {
+    console.log("Error fetching active products:", error);
+    throw new Error("Could not fetch active products");
+  }
+};
+
+export const getTotalUpvotesCount = async () => {
+  try {
+    const totalUpvotes = await db.upvote.count({
+      where: {
+        product: {
+          status: "ACTIVE",
+        },
+      },
+    });
+
+    return totalUpvotes;
+  } catch (error) {
+    console.log("Error fetching total upvotes:", error);
+    throw new Error("Could not fetch total upvotes");
+  }
+};

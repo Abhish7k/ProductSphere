@@ -15,7 +15,7 @@ const MyProducts = async () => {
   const products = await getOwnerProducts();
 
   return (
-    <div className="mx-auto lg:w-3/5 py-10 px-5">
+    <div className="mx-auto lg:w-3/5 py-10 px-10 transition-all">
       {products.length === 0 ? (
         <div>
           <h1 className="text-3xl font-bold">No products found </h1>
@@ -39,12 +39,12 @@ const MyProducts = async () => {
           <h1 className="text-3xl font-bold">Your Products</h1>
           <p>Manage your products here</p>
 
-          <div className="grid grid-cols-2 lg:grid-cols-5 gap-4 mt-10">
+          <div className="grid grid-cols-2 md:grid-cols-3 xl:grid-cols-4 gap-4 mt-10 transition-all">
             {products.map((product) => (
               <Link
                 href={`/edit/${product.id} `}
                 key={product.id}
-                className="flex flex-col gap-2 hover:-translate-y-1 transition-all duration-500"
+                className="flex flex-col gap-2 hover:-translate-y-2 transition-all duration-500"
               >
                 <div>
                   <div className="rounded-lg justify-center items-center border p-2">
