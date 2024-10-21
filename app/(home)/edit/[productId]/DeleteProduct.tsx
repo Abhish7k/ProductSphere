@@ -2,14 +2,19 @@
 
 import { useState } from "react";
 import { useRouter } from "next/navigation";
-import { PiStorefront, PiTrash } from "react-icons/pi";
+import { PiCheckCircle, PiStorefront, PiTrash } from "react-icons/pi";
 import Modal from "@/components/ui/modal/modal";
+import { deleteProduct } from "@/lib/actions";
+import { toast } from "sonner";
+import { LuLoader2 } from "react-icons/lu";
 
 const DeleteProduct = ({ productId }: { productId: string }) => {
   const router = useRouter();
 
   const [confirmationInput, setConfirmationInput] = useState("");
   const [isDeleteButtonEnabled, setIsDeleteButtonEnabled] = useState(false);
+
+  const [loader, setLoader] = useState(false);
 
   const handleConfirmationInputChange = (e: any) => {
     const inputText = e.target.value.toLowerCase();
@@ -30,9 +35,28 @@ const DeleteProduct = ({ productId }: { productId: string }) => {
 
   const handleConfirmDelete = () => {
     if (confirmationInput === "delete") {
+      setLoader(true);
+
       setTimeout(async () => {
         try {
-          // await deleteProduct(productId);
+          await deleteProduct(productId);
+
+          toast(
+            <>
+              <div className="flex items-center gap-4  mx-auto">
+                <PiCheckCircle className="text-emerald-500 text-3xl" />
+                <div className="text-md font-semibold">
+                  Product deleted successfully.
+                </div>
+              </div>
+            </>,
+            {
+              position: "top-right",
+            }
+          );
+
+          setLoader(false);
+
           router.push("/my-products");
           router.refresh();
         } catch (error) {
@@ -97,11 +121,12 @@ const DeleteProduct = ({ productId }: { productId: string }) => {
                 isDeleteButtonEnabled
                   ? "bg-red-500 text-white rounded-full text-sm"
                   : "bg-gray-200 text-gray-500 rounded-full text-sm cursor-not-allowed"
-              } px-4 py-2 `}
+              } px-4 py-2 flex items-center gap-2`}
               disabled={!isDeleteButtonEnabled}
               onClick={handleConfirmDelete}
             >
               Confirm delete
+              {loader ? <LuLoader2 className="w-5 h-5 animate-spin" /> : ""}
             </button>
           </div>
         </div>

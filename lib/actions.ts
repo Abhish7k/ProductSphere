@@ -162,6 +162,52 @@ export const updateProduct = async (
   }
 };
 
+export const deleteProduct = async (productId: string) => {
+  try {
+    const authenticatedUser = await auth();
+
+    if (!authenticatedUser) {
+      throw new Error("You must be signed in to delete a product");
+    }
+
+    if (!authenticatedUser.user || !authenticatedUser.user.id) {
+      throw new Error("User Id is missing or invalid");
+    }
+
+    const userId = authenticatedUser.user?.id;
+
+    const product = await db.product.findUnique({
+      where: {
+        id: productId,
+      },
+    });
+
+    if (!product) {
+      throw new Error("Product not found");
+    }
+
+    if (product.userId !== userId) {
+      throw new Error("You don't have permission to delete this product");
+    }
+
+    await db.product.delete({
+      where: {
+        id: productId,
+      },
+      include: {
+        images: true,
+      },
+    });
+
+    return true;
+  } catch (error: any) {
+    console.error("Error updating product:", error);
+    throw new Error(
+      error.message || "Something went wrong while updating the product"
+    );
+  }
+};
+
 export const getOwnerProducts = async () => {
   try {
     const authenticatedUser = await auth();
