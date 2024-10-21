@@ -3,7 +3,7 @@
 import { ImagesUploader } from "@/components/ImagesUploader";
 import { LogoUploader } from "@/components/LogoUploader";
 import Image from "next/image";
-import React, { useCallback, useState } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import {
   Popover,
   PopoverContent,
@@ -22,6 +22,7 @@ import { FaInstagram } from "react-icons/fa";
 import { createProduct } from "@/lib/actions";
 import { LuLoader2 } from "react-icons/lu";
 import { toast } from "sonner";
+import confetti from "canvas-confetti";
 
 const categories = [
   "Media",
@@ -330,6 +331,42 @@ const NewProduct = () => {
       setLoading(false);
     }
   };
+
+  const ConfettiSideCannons = () => {
+    const end = Date.now() + 2 * 1000; // 3 seconds
+    const colors = ["#a786ff", "#fd8bbc", "#eca184", "#f8deb1"];
+
+    const frame = () => {
+      if (Date.now() > end) return;
+
+      confetti({
+        particleCount: 2,
+        angle: 60,
+        spread: 55,
+        startVelocity: 60,
+        origin: { x: 0, y: 0.5 },
+        colors: colors,
+      });
+      confetti({
+        particleCount: 2,
+        angle: 120,
+        spread: 55,
+        startVelocity: 60,
+        origin: { x: 1, y: 0.5 },
+        colors: colors,
+      });
+
+      requestAnimationFrame(frame);
+    };
+
+    frame();
+  };
+
+  useEffect(() => {
+    if (step === 8) {
+      ConfettiSideCannons();
+    }
+  }, [step]);
 
   return (
     <div className="flex flex-col items-center justify-center py-8 md:py-20">
@@ -739,9 +776,10 @@ const NewProduct = () => {
             animate={{ opacity: 1, x: 0 }} // Slide to the center
             exit={{ opacity: 0, x: "-100%" }} // Slide out to the left
             transition={{ duration: 0.3 }}
-            className="space-y-10"
+            className="flex flex-col items-start gap-5"
           >
-            <div className="text-4xl font-semibold"> Congratulations 🎉 </div>
+            <div className="text-4xl font-semibold"> Congratulations 🎉</div>
+
             <div className="text-xl font-light mt-4 leading-8 ">
               Your product has been successfully submitted. Our team will review
               it and get back to you soon.
@@ -756,14 +794,13 @@ const NewProduct = () => {
                 Go to your products
               </div>
 
-              <Button
-                variant="outline"
+              <button
                 onClick={submitAnotherProduct}
                 className="text-[#ff6154] py-2 px-4 rounded mt-4 
-                flex w-60 justify-center items-center cursor-pointer transition-all duration-300"
+                flex w-60 justify-center items-center cursor-pointer border hover:bg-foreground/5 transition-all duration-300"
               >
                 Submit another product
-              </Button>
+              </button>
             </div>
           </motion.div>
         )}
