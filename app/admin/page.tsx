@@ -1,9 +1,9 @@
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-
+import { Separator } from "@/components/ui/separator";
 import Image from "next/image";
 import Link from "next/link";
 import { PiBell, PiGear } from "react-icons/pi";
-
+import PendingProducts from "./PendingProducts";
 import { auth } from "@/auth";
 import {
   getActiveProducts,
@@ -28,8 +28,10 @@ const AdminPage = async () => {
 
   const premiumUsers = users.filter((user) => user.isPremium);
 
+  console.log(pendingProducts);
+
   return (
-    <div className="px-8 md:px-20">
+    <div className="px-8 md:px-20 transition-all">
       <div className="">
         <div className="flex justify-between items-center">
           <div className="flex gap-x-6 items-center py-10">
@@ -39,13 +41,15 @@ const AdminPage = async () => {
                 alt="logo"
                 width={500}
                 height={500}
-                className="w-20 h-20 rounded-md cursor-pointer"
+                className="w-14 h-14 md:w-20 md:h-20 rounded-md cursor-pointer transition-all"
               />
             </Link>
 
-            <div className="hidden md:block">
-              <h1 className="text-3xl font-bold">Welcome back Admin</h1>
-              <p className="text-gray-500 pt-1">
+            <div className="hidden sm:block transition-all">
+              <h1 className="text-xl md:text-3xl font-bold transition-all">
+                Welcome back Admin
+              </h1>
+              <p className="text-sm md:text-base text-gray-500 transition-all">
                 Here is what&apos;s happening in your business today
               </p>
             </div>
@@ -110,6 +114,16 @@ const AdminPage = async () => {
             </CardHeader>
             <CardContent>{totalUpvotesCount}</CardContent>
           </Card>
+        </div>
+
+        <Separator className="my-10" />
+
+        <div className="pb-10 space-y-10">
+          <h1 className="text-2xl font-bold">Pending Products</h1>
+          <PendingProducts
+            pendingProducts={pendingProducts}
+            authenticatedUser={authenticatedUser}
+          />
         </div>
       </div>
     </div>
