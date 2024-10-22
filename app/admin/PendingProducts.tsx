@@ -1,5 +1,6 @@
 "use client";
 
+import ProductModalContent from "@/components/ProductModalContent";
 import ActivateProductModal from "@/components/ui/modal/ActivateProductModal";
 import ProductModal from "@/components/ui/modal/ProductModal";
 import RejectProductModal from "@/components/ui/modal/RejectProductModal";
@@ -150,7 +151,14 @@ const PendingProducts: React.FC<PendingProductsProps> = ({
           visible={viewProductModalVisible}
           setVisible={setViewProductModalVisible}
         >
-          product modal
+          <ProductModalContent
+            currentProduct={currentProduct}
+            authenticatedUser={authenticatedUser}
+            hasUpvoted={false}
+            totalUpvotes={0}
+            setTotalUpvotes={() => {}}
+            setHasUpvoted={() => {}}
+          />
         </ProductModal>
 
         <ActivateProductModal

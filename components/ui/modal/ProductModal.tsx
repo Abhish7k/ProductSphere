@@ -38,7 +38,7 @@ const ProductModal: React.FC<ModalProps> = ({
           leaveTo="opacity-0 scale-95 0"
         >
           <div className="fixed inset-0 z-50 flex items-center justify-center">
-            <Dialog.Panel className="relative h-full w-full max-w-[80vw] max-h-[80vh] flex bg-white rounded-sm shadow-md">
+            <Dialog.Panel className="relative h-full w-full max-w-[70vw] max-h-[80vh] flex bg-white rounded-sm shadow-md">
               <div className="absolute top-0 right-0 mt-4 mr-4">
                 <button
                   onClick={() => setVisible(false)}
@@ -48,7 +48,7 @@ const ProductModal: React.FC<ModalProps> = ({
                 </button>
               </div>
 
-              <div className="overflow-auto flex justify-center flex-col flex-1 px-8 py-10 text-left rounded-t-md">
+              <div className="overflow-auto flex justify-center flex-col flex-1 px-4 py-10 text-left rounded-t-md">
                 {children}
               </div>
             </Dialog.Panel>
