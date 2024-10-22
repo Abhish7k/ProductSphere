@@ -249,6 +249,33 @@ export const getProductById = async (productId: string) => {
   }
 };
 
+export const isUserAdmin = async () => {
+  const authenticatedUser = await auth();
+
+  if (
+    !authenticatedUser ||
+    !authenticatedUser.user ||
+    !authenticatedUser.user.id
+  ) {
+    return;
+  }
+
+  const userId = authenticatedUser.user.id;
+
+  // get the user
+  const user = await db.user.findUnique({
+    where: {
+      id: userId,
+    },
+  });
+
+  if (!user) {
+    throw new Error("User not found");
+  }
+
+  return user.isAdmin;
+};
+
 export const getUsers = async () => {
   try {
     const users = await db.user.findMany();

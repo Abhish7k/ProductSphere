@@ -11,9 +11,17 @@ import {
   getRejectedProducts,
   getTotalUpvotesCount,
   getUsers,
+  isUserAdmin,
 } from "@/lib/actions";
+import { redirect } from "next/navigation";
 
 const AdminPage = async () => {
+  const isAdmin = await isUserAdmin();
+
+  if (!isAdmin) {
+    return redirect("/");
+  }
+
   const authenticatedUser = await auth();
 
   const users = await getUsers();
@@ -27,8 +35,6 @@ const AdminPage = async () => {
   const totalUpvotesCount = await getTotalUpvotesCount();
 
   const premiumUsers = users.filter((user) => user.isPremium);
-
-  console.log(pendingProducts);
 
   return (
     <div className="px-8 md:px-20 transition-all">
