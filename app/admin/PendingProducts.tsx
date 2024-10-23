@@ -7,6 +7,7 @@ import RejectProductModal from "@/components/ui/modal/RejectProductModal";
 import Image from "next/image";
 import { useState } from "react";
 import { PiCheckCircle, PiXCircle } from "react-icons/pi";
+import ActivateProductModalContent from "./ActivateProductModalContent";
 
 interface PendingProductsProps {
   pendingProducts: any;
@@ -162,7 +163,10 @@ const PendingProducts: React.FC<PendingProductsProps> = ({
           visible={activateProductModalVisible}
           setVisible={setActivateProductModalVisible}
         >
-          ActivateProductModal
+          <ActivateProductModalContent
+            currentProduct={currentProduct}
+            closeModal={() => setActivateProductModalVisible(false)}
+          />
         </ActivateProductModal>
 
         <RejectProductModal

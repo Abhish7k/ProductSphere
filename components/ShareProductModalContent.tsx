@@ -55,7 +55,7 @@ const ShareModalContent: React.FC<ShareModalContentProps> = ({
       <div className="py-4 flex flex-col items-center gap-2">
         <h1 className="text-xl font-medium">Share this product</h1>
         <p className="text-sm sm:text-base text-gray-600 text-center transition-all">
-          Stay connect by following the product on social media
+          Stay connected by following the product on social media
         </p>
 
         <div className="flex items-center justify-center gap-4 pt-4">

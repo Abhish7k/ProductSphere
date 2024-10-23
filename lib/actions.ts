@@ -372,6 +372,54 @@ export const getTotalUpvotesCount = async () => {
     return totalUpvotes;
   } catch (error) {
     console.log("Error fetching total upvotes:", error);
-    throw new Error("Could not fetch total upvotes");
+  }
+};
+
+export const activateProduct = async (productId: string) => {
+  try {
+    const product = await db.product.findUnique({
+      where: {
+        id: productId,
+      },
+    });
+
+    if (!product) {
+      throw new Error("Product not found");
+    }
+
+    if (product.status === "ACTIVE") {
+      throw new Error("Product is already active");
+    }
+
+    if (product.status !== "PENDING") {
+      throw new Error(
+        `Product is not in 'PENDING' status and cannot be activated`
+      );
+    }
+
+    await db.product.update({
+      where: {
+        id: productId,
+      },
+      data: {
+        status: "ACTIVE",
+      },
+    });
+
+    await db.notification.create({
+      data: {
+        userId: product.userId,
+        body: `Your product ${product.name} has been activated`,
+        type: "ACTIVATED",
+        status: "UNREAD",
+        profilePicture: product.logo,
+        productId: product.id,
+      },
+    });
+
+    return product;
+  } catch (error: any) {
+    console.error("Error activating product:", error);
+    return null;
   }
 };

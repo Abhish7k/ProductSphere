@@ -125,6 +125,7 @@ const AdminPage = async () => {
 
         <div className="pb-10 space-y-10">
           <h1 className="text-2xl font-bold">Pending Products</h1>
+
           <PendingProducts
             pendingProducts={pendingProducts}
             authenticatedUser={authenticatedUser}

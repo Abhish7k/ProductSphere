@@ -38,7 +38,7 @@ const ActivateProductModal: React.FC<ModalProps> = ({
           leaveTo="opacity-0 scale-95 0"
         >
           <div className="fixed inset-0 z-50 flex items-center justify-center">
-            <Dialog.Panel className="relative h-[80vh] w-[80vw] md:max-h-[60vh] xl:h-[500px] sm:mt-0 sm:w-[650px] flex bg-white k rounded-sm shadow-md">
+            <Dialog.Panel className="relative h-fit w-fit max-h-[80vh] max-w-[80vw] flex bg-white k rounded-sm shadow-md">
               <div className="absolute top-0 right-0 mt-4 mr-4">
                 <button
                   onClick={() => setVisible(false)}
