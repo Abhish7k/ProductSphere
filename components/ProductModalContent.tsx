@@ -1,5 +1,6 @@
 import Image from "next/image";
-import { PiCaretUpFill } from "react-icons/pi";
+import Link from "next/link";
+import { PiCaretUpFill, PiChatCircle, PiUploadSimple } from "react-icons/pi";
 
 interface ProductModalContentProps {
   currentProduct: any;
@@ -46,7 +47,7 @@ const ProductModalContent = ({
             <div className="flex items-center gap-2 pt-4">
               <button
                 onClick={() => window.open(currentProduct.website, "_blank")}
-                className="border rounded-md flex justify-center items-center p-5 cursor-pointer
+                className="border rounded-md flex justify-center items-center py-5 px-8 cursor-pointer
                 hover:bg-foreground/5 transition-all duration-300
                 "
               >
@@ -67,12 +68,41 @@ const ProductModalContent = ({
                     hasUpvoted ? "text-white" : "text-black"
                   }`}
                 />
-                {totalUpvotes}
+                Upvote {totalUpvotes}
               </button>
             </div>
           </div>
 
           <h2 className="text-gray-600 py-10">{currentProduct.description}</h2>
+
+          <div className="md:flex justify-between items-center">
+            <div className="flex gap-x-2">
+              {currentProduct.categories.map((category: any) => (
+                <Link
+                  key={category}
+                  href={`/category/${category.toLowerCase()}`}
+                  className="bg-foreground/5 text-gray-600 px-4 py-2 font-medium rounded-md cursor-pointer hover:bg-foreground/10 transition-all duration-300"
+                >
+                  {category}
+                </Link>
+              ))}
+            </div>
+
+            <div className="flex items-center gap-x-6 py-4">
+              <div className="text-md text-foreground/70 font-medium flex items-center gap-x-1 cursor-pointer hover:text-foreground/90 transition-all duration-300">
+                <PiChatCircle />
+                <p>Discuss</p>
+              </div>
+
+              <div
+                // onClick={handleShareClick}
+                className="text-md text-foreground/70 font-medium flex items-center gap-x-1 cursor-pointer hover:text-foreground/90 transition-all duration-300"
+              >
+                <PiUploadSimple />
+                <p>Share</p>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </div>
