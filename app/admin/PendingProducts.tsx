@@ -68,8 +68,6 @@ const PendingProducts: React.FC<PendingProductsProps> = ({
     };
   });
 
-  // console.log("Pending products -> ", pendingProducts);
-
   const handleViewProductModal = (product: any) => {
     const formattedProduct = formattedProducts.find(
       (formattedProduct: any) => formattedProduct.id === product.id
@@ -107,7 +105,7 @@ const PendingProducts: React.FC<PendingProductsProps> = ({
               />
 
               <div className="space-y-1">
-                <h1 className="text md:text-2xl font-bold capitalize">
+                <h1 className="md:text-2xl font-bold capitalize">
                   {product.name}{" "}
                 </h1>
                 <p className="hidden md:flex text-gray-500 text-xs lg:text-sm pr-6">
@@ -122,23 +120,22 @@ const PendingProducts: React.FC<PendingProductsProps> = ({
             <div className="flex flex-col lg:flex-row items-center gap-2 md:gap-x-4 justify-center">
               <button
                 onClick={() => handleViewProductModal(product)}
-                className="bg-[#ff6154] text-white px-4 py-2 text-center text-sm rounded-md hover:bg-[#ff4437] transition-all duration-300"
+                className="bg-[#ff6154] text-white px-6 py-2 text-center text-sm rounded-md hover:bg-[#ff4437] transition-all duration-300"
               >
-                <span className="hidden sm:block">View Product</span>
-                <span className="block sm:hidden">X</span>
+                View
               </button>
 
               <div className="flex items-center gap-2">
                 <button
                   onClick={() => handleActivateProductModal(product)}
-                  className="bg-emerald-100 text-white px-4 py-2 text-center text-sm rounded-md hover:bg-emerald-200 transition-all duration-300"
+                  className="bg-emerald-100 text-white p-2 md:px-4 md:py-2 text-center text-sm rounded-md hover:bg-emerald-200 transition-all duration-300"
                 >
                   <PiCheckCircle className="text-xl text-emerald-500" />
                 </button>
 
                 <button
                   onClick={() => handleRejectProductModal(product)}
-                  className="bg-red-100 text-white px-4 py-2 text-center text-sm rounded-md hover:bg-red-200 transition-all duration-300"
+                  className="bg-red-100 text-white p-2 md:px-4 md:py-2 text-center text-sm rounded-md hover:bg-red-200 transition-all duration-300"
                 >
                   <PiXCircle className="text-xl text-red-500" />
                 </button>

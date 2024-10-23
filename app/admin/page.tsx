@@ -108,7 +108,6 @@ const AdminPage = async () => {
               <CardTitle className="text-md font-bold">
                 Rejected Products
               </CardTitle>
-              {/* ❌ */}
               🚫
             </CardHeader>
             <CardContent>{rejectedProducts.length}</CardContent>
