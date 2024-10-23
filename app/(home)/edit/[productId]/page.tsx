@@ -20,8 +20,11 @@ const ProductIdPage = async ({ params }: { params: IParams }) => {
 
   return (
     <div className="md:w-4/5 mx-auto px-6 md:px-0 py-10 transition-all">
-      <Link href="/my-products" className="flex items-center gap-2 mb-5">
-        <PiArrowLeft className="text-xl text-gray-500" />
+      <Link
+        href="/my-products"
+        className="flex items-center gap-1 mb-5 group w-fit font-medium text-foreground/70 hover:text-foreground/90 transition-all"
+      >
+        <PiArrowLeft className="text-xl group-hover:-translate-x-0.5 transition" />
         <p>Go Back</p>
       </Link>
 

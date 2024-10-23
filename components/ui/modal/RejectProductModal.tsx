@@ -39,8 +39,8 @@ const RejectProductModal: React.FC<ModalProps> = ({
         >
           <div className="fixed inset-0 z-50 flex items-center justify-center">
             <Dialog.Panel
-              className="relative h-[80vh] w-[80vw] md:max-h-[60vh] xl:h-[550px]  
-                sm:mt-0 sm:w-[650px] 
+              className="relative
+                h-fit w-fit max-h-[80vh] max-w-[80vw]
                 flex bg-white k rounded-sm shadow-md"
             >
               <div className="absolute top-0 right-0 mt-4 mr-4">

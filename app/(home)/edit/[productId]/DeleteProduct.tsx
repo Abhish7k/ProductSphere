@@ -70,10 +70,9 @@ const DeleteProduct = ({ productId }: { productId: string }) => {
     <>
       <button
         onClick={handleDeleteProductClick}
-        className=" cursor-pointer bg-red-100 p-4 
-    justify-center rounded-md items-center flex"
+        className=" cursor-pointer bg-red-100 p-4 justify-center rounded-md flex items-center hover:bg-red-200 transition-all duration-300"
       >
-        <PiTrash className="text-xl text-red-500" />
+        <PiTrash className="text-xl text-red-500 " />
       </button>
 
       <Modal
@@ -81,10 +80,7 @@ const DeleteProduct = ({ productId }: { productId: string }) => {
         setVisible={setDeleteProductModalVisible}
       >
         <div>
-          <PiStorefront
-            className="text-red-500 mb-10 text-5xl
-             bg-red-100 p-1 rounded-md"
-          />
+          <PiStorefront className="text-red-500 mb-10 text-5xl bg-red-100 p-1 rounded-md" />
           <h1 className="text-xl font-semibold mb-10">Delete Product</h1>
 
           <p className="text-sm">

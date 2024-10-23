@@ -423,3 +423,46 @@ export const activateProduct = async (productId: string) => {
     return null;
   }
 };
+
+export const rejectProduct = async (productId: string, reason: string) => {
+  try {
+    const product = await db.product.findUnique({
+      where: {
+        id: productId,
+      },
+    });
+
+    if (!product) {
+      throw new Error("Product not found");
+    }
+
+    if (product.status === "REJECTED") {
+      throw new Error("Product is already rejected");
+    }
+
+    await db.product.update({
+      where: {
+        id: productId,
+      },
+      data: {
+        status: "REJECTED",
+      },
+    });
+
+    await db.notification.create({
+      data: {
+        userId: product.userId,
+        body: `Your product ${product.name} has been rejected. Reason : ${reason}`,
+        type: "ACTIVATED",
+        status: "UNREAD",
+        profilePicture: product.logo,
+        productId: product.id,
+      },
+    });
+
+    return product;
+  } catch (error: any) {
+    console.error("Error rejecting product:", error);
+    return null;
+  }
+};
