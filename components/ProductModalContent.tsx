@@ -107,6 +107,50 @@ const ProductModalContent = ({
           </div>
 
           <CarouselComponent productImages={currentProduct.images} />
+
+          <div className="py-10 ">
+            <h1 className="font-semibold py-10">Community Feedback</h1>
+
+            <div className="border-t border-b py-2">
+              <div className="w-full flex items-center gap-4">
+                <Image
+                  src={authenticatedUser.user.image}
+                  alt="profile"
+                  width={50}
+                  height={50}
+                  className="rounded-full h-10 w-10"
+                />
+
+                <textarea
+                  // value={commentText}
+                  // onChange={handleCommentChange}
+                  placeholder="What do you think about this product?"
+                  className="w-full rounded-md p-4 focus:outline-none text-gray-600 placeholder:text-sm hidden md:block"
+                  rows={1}
+                />
+
+                <textarea
+                  // value={commentText}
+                  // onChange={handleCommentChange}
+                  placeholder="What do you think about this product?"
+                  className="w-full rounded-md p-4 focus:outline-none text-gray-600 placeholder:text-sm block md:hidden"
+                  rows={2}
+                />
+              </div>
+
+              <div className="flex justify-end mt-4">
+                <Button
+                  variant="outline"
+                  // onClick={handleCommentSubmit}
+                  className="hover:bg-[#ff6154] hover:text-white transition-all"
+                >
+                  Comment
+                </Button>
+              </div>
+            </div>
+
+            <div className="pt-10">comments</div>
+          </div>
         </div>
       </div>
     </div>
