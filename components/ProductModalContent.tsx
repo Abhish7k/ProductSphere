@@ -1,8 +1,15 @@
+"use client";
+
 import Image from "next/image";
 import Link from "next/link";
 import { PiCaretUpFill, PiChatCircle, PiUploadSimple } from "react-icons/pi";
 import CarouselComponent from "./CarouselComponent";
 import { Button } from "./ui/button";
+import { AvatarFallback, AvatarImage, AvatarShadcn } from "./ui/avatar";
+import Avvvatars from "avvvatars-react";
+import { useState } from "react";
+import ShareModal from "./ui/modal/ShareProductModal";
+import ShareModalContent from "./ShareProductModalContent";
 
 interface ProductModalContentProps {
   currentProduct: any;
@@ -21,8 +28,14 @@ const ProductModalContent = ({
   setTotalUpvotes,
   setHasUpvoted,
 }: ProductModalContentProps) => {
+  const [shareModalModalVisible, setShareModalVisible] = useState(false);
+
   const handleUpvoteClick = () => {
     // hasUpvoted = true;
+  };
+
+  const handleShareClick = () => {
+    setShareModalVisible(true);
   };
 
   return (
@@ -97,7 +110,7 @@ const ProductModalContent = ({
               </div>
 
               <div
-                // onClick={handleShareClick}
+                onClick={handleShareClick}
                 className="text-md text-foreground/70 font-medium flex items-center gap-x-1 cursor-pointer hover:text-foreground/90 transition-all duration-300"
               >
                 <PiUploadSimple />
@@ -113,13 +126,13 @@ const ProductModalContent = ({
 
             <div className="border-t border-b py-2">
               <div className="w-full flex items-center gap-4">
-                <Image
-                  src={authenticatedUser.user.image}
-                  alt="profile"
-                  width={50}
-                  height={50}
-                  className="rounded-full h-10 w-10"
-                />
+                <AvatarShadcn>
+                  <AvatarImage src={authenticatedUser.user.image} />
+
+                  <AvatarFallback>
+                    <Avvvatars value={authenticatedUser.user.email} />
+                  </AvatarFallback>
+                </AvatarShadcn>
 
                 <textarea
                   // value={commentText}
@@ -153,6 +166,13 @@ const ProductModalContent = ({
           </div>
         </div>
       </div>
+
+      <ShareModal
+        visible={shareModalModalVisible}
+        setVisible={setShareModalVisible}
+      >
+        <ShareModalContent currentProduct={currentProduct} />
+      </ShareModal>
     </div>
   );
 };
