@@ -23,6 +23,22 @@ const ProductItem = ({ product, authenticatedUser }: ProductItemProps) => {
     setHasUpvoted(true);
   };
 
+  const handleArrowClick = (
+    e: React.MouseEvent<HTMLDivElement, MouseEvent>
+  ) => {
+    // Prevent the click event from propagating to the product item container
+    e.stopPropagation();
+
+    // Open the link in a new tab
+    window.open(`${product.website}`, "_blank");
+  };
+
+  const handleCategoryClick = (
+    e: React.MouseEvent<HTMLAnchorElement, MouseEvent>
+  ) => {
+    e.stopPropagation();
+  };
+
   const variants = {
     initital: { scale: 1 },
     upvoted: { scale: [1, 1.2, 1], transition: { duration: 0.3 } },
@@ -48,15 +64,17 @@ const ProductItem = ({ product, authenticatedUser }: ProductItemProps) => {
                 <h1 className="text-xl font-medium capitalize">
                   {product.name}
                 </h1>
+
                 <p className="hidden md:flex text-xs">-</p>
+
                 <p className="text-foreground/70 text-sm md:text-base pr-2 font-medium">
                   {product.headline}
                 </p>
+
                 <div
-                  // onClick={handleArrowClick}
+                  onClick={handleArrowClick}
                   className="hidden md:flex cursor-pointer"
                 >
-                  {/* <PiArrowBendDoubleUpRight /> */}
                   <CiGlobe className="hover:text-blue-500 transition-all duration-300" />
                 </div>
               </div>
@@ -77,7 +95,7 @@ const ProductItem = ({ product, authenticatedUser }: ProductItemProps) => {
                       <Link
                         href={`/category/${category.toLowerCase()}`}
                         className="hover:underline"
-                        //   onClick={handleCategoryClick}
+                        onClick={handleCategoryClick}
                       >
                         {category}
                       </Link>
