@@ -6,6 +6,11 @@ import { CiGlobe } from "react-icons/ci";
 import { PiCaretUpFill, PiChatCircle } from "react-icons/pi";
 import { motion } from "framer-motion";
 import { useState } from "react";
+import ProductModal from "./ui/modal/ProductModal";
+import ProductModalContent from "./ProductModalContent";
+import Modal from "./ui/modal/modal";
+import AuthContent from "./navbar/AuthContent";
+import { upvoteProduct } from "@/lib/actions";
 
 interface ProductItemProps {
   product: any;
@@ -13,14 +18,38 @@ interface ProductItemProps {
 }
 
 const ProductItem = ({ product, authenticatedUser }: ProductItemProps) => {
+  const [showLoginModal, setShowLoginModal] = useState(false);
+  const [showProductModal, setShowProductModal] = useState(false);
+  const [currentProduct, setCurrentProduct] = useState<any>(null);
+
   const [hasUpvoted, setHasUpvoted] = useState(
     product.upvoters?.includes(authenticatedUser?.user.id)
   );
 
   const [totalUpvotes, setTotalUpvotes] = useState(product.upvotes || 0);
 
-  const handleUpvoteClick = () => {
-    setHasUpvoted(true);
+  const handleProductItemClick = () => {
+    if (!authenticatedUser) {
+      setShowLoginModal(true);
+    } else {
+      setCurrentProduct(product);
+      setShowProductModal(true);
+      console.log("helloS");
+    }
+  };
+
+  const handleUpvoteClick = async (
+    e: React.MouseEvent<HTMLDivElement, MouseEvent>
+  ) => {
+    e.stopPropagation();
+
+    try {
+      await upvoteProduct(product.id);
+      setHasUpvoted(!hasUpvoted);
+      setTotalUpvotes(hasUpvoted ? totalUpvotes - 1 : totalUpvotes + 1);
+    } catch (error) {
+      console.error(error);
+    }
   };
 
   const handleArrowClick = (
@@ -41,7 +70,7 @@ const ProductItem = ({ product, authenticatedUser }: ProductItemProps) => {
 
   const variants = {
     initital: { scale: 1 },
-    upvoted: { scale: [1, 1.2, 1], transition: { duration: 0.3 } },
+    upvoted: { scale: [1, 1.1, 1], transition: { duration: 0.3 } },
   };
 
   return (
@@ -50,7 +79,10 @@ const ProductItem = ({ product, authenticatedUser }: ProductItemProps) => {
         <div className="absolute inset-0 bg-gradient-to-bl from-[#ffe6d3] via-[#fdfdfd] to-white opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-md" />
 
         <div className="relative flex items-center justify-between">
-          <div className="flex items-center gap-5">
+          <div
+            onClick={handleProductItemClick}
+            className="flex items-center gap-5 w-full"
+          >
             <Image
               src={product.logo}
               alt="logo"
@@ -111,6 +143,7 @@ const ProductItem = ({ product, authenticatedUser }: ProductItemProps) => {
               onClick={handleUpvoteClick}
               variants={variants}
               animate={hasUpvoted ? "upvoted" : "initital"}
+              className=""
             >
               {hasUpvoted ? (
                 <div
@@ -130,6 +163,21 @@ const ProductItem = ({ product, authenticatedUser }: ProductItemProps) => {
           </div>
         </div>
       </div>
+
+      <ProductModal visible={showProductModal} setVisible={setShowProductModal}>
+        <ProductModalContent
+          currentProduct={currentProduct}
+          authenticatedUser={authenticatedUser}
+          setTotalUpvotes={setTotalUpvotes}
+          totalUpvotes={totalUpvotes}
+          hasUpvoted={hasUpvoted}
+          setHasUpvoted={setHasUpvoted}
+        />
+      </ProductModal>
+
+      <Modal visible={showLoginModal} setVisible={setShowLoginModal}>
+        <AuthContent />
+      </Modal>
     </div>
   );
 };
