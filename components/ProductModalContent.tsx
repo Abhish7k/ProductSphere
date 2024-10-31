@@ -4,7 +4,6 @@ import Image from "next/image";
 import Link from "next/link";
 import { PiCaretUpFill, PiChatCircle, PiUploadSimple } from "react-icons/pi";
 import CarouselComponent from "./CarouselComponent";
-import { Button } from "./ui/button";
 import { AvatarFallback, AvatarImage, AvatarShadcn } from "./ui/avatar";
 import Avvvatars from "avvvatars-react";
 import { useState } from "react";
@@ -152,13 +151,12 @@ const ProductModalContent = ({
               </div>
 
               <div className="flex justify-end mt-4">
-                <Button
-                  variant="outline"
+                <button
                   // onClick={handleCommentSubmit}
-                  className="hover:bg-[#ff6154] hover:text-white transition-all"
+                  className="px-3 py-2 text-sm text-foreground/80 border hover:border-[#ff6154] rounded-md transition-all duration-300"
                 >
                   Comment
-                </Button>
+                </button>
               </div>
             </div>
 
