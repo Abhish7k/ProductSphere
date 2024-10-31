@@ -466,3 +466,70 @@ export const rejectProduct = async (productId: string, reason: string) => {
     return null;
   }
 };
+
+export const upvoteProduct = async (productId: string) => {
+  try {
+    const authenticatedUser = await auth();
+
+    if (
+      !authenticatedUser ||
+      !authenticatedUser.user ||
+      !authenticatedUser.user.id
+    ) {
+      throw new Error("User id is missing or invalid");
+    }
+
+    const userId = authenticatedUser.user.id;
+
+    const upvote = await db.upvote.findFirst({
+      where: {
+        productId,
+        userId,
+      },
+    });
+
+    const profilePicture = authenticatedUser.user.image || "";
+
+    if (upvote) {
+      await db.upvote.delete({
+        where: {
+          id: upvote.id,
+        },
+      });
+    } else {
+      await db.upvote.create({
+        data: {
+          productId,
+          userId,
+        },
+      });
+
+      const productOwner = await db.product.findUnique({
+        where: {
+          id: productId,
+        },
+        select: {
+          userId: true,
+        },
+      });
+
+      if (productOwner && productOwner.userId !== userId) {
+        await db.notification.create({
+          data: {
+            userId: productOwner.userId,
+            body: `Your product received an upvote`,
+            profilePicture: profilePicture,
+            productId: productId,
+            type: "UPVOTE",
+            status: "UNREAD",
+          },
+        });
+      }
+    }
+
+    return true;
+  } catch (error) {
+    console.log("Error upvoting product", error);
+    throw error;
+  }
+};
