@@ -9,6 +9,7 @@ import Avvvatars from "avvvatars-react";
 import { useState } from "react";
 import ShareModal from "./ui/modal/ShareProductModal";
 import ShareModalContent from "./ShareProductModalContent";
+import { commentOnProduct } from "@/lib/actions";
 
 interface ProductModalContentProps {
   currentProduct: any;
@@ -29,6 +30,8 @@ const ProductModalContent = ({
 }: ProductModalContentProps) => {
   const [shareModalModalVisible, setShareModalVisible] = useState(false);
 
+  const [commentText, setCommentText] = useState("");
+
   const handleUpvoteClick = () => {
     // hasUpvoted = true;
   };
@@ -36,6 +39,22 @@ const ProductModalContent = ({
   const handleShareClick = () => {
     setShareModalVisible(true);
   };
+
+  const handleCommentSubmit = async () => {
+    try {
+      await commentOnProduct(currentProduct.id, commentText);
+
+      setCommentText("");
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  const handleCommentChange = (event: any) => {
+    setCommentText(event.target.value);
+  };
+
+  console.log(currentProduct.commentData);
 
   return (
     <div className="h-full">
@@ -134,16 +153,16 @@ const ProductModalContent = ({
                 </AvatarShadcn>
 
                 <textarea
-                  // value={commentText}
-                  // onChange={handleCommentChange}
+                  value={commentText}
+                  onChange={handleCommentChange}
                   placeholder="What do you think about this product?"
                   className="w-full rounded-md p-4 focus:outline-none text-gray-600 placeholder:text-sm hidden md:block"
                   rows={1}
                 />
 
                 <textarea
-                  // value={commentText}
-                  // onChange={handleCommentChange}
+                  value={commentText}
+                  onChange={handleCommentChange}
                   placeholder="What do you think about this product?"
                   className="w-full rounded-md p-4 focus:outline-none text-gray-600 placeholder:text-sm block md:hidden"
                   rows={2}
@@ -152,7 +171,7 @@ const ProductModalContent = ({
 
               <div className="flex justify-end mt-4">
                 <button
-                  // onClick={handleCommentSubmit}
+                  onClick={handleCommentSubmit}
                   className="px-3 py-2 text-sm text-foreground/80 border hover:border-[#ff6154] rounded-md transition-all duration-300"
                 >
                   Comment

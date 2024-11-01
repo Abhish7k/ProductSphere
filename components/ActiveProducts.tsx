@@ -26,10 +26,24 @@ const ActiveProducts = async ({ activeProducts }: Props) => {
       status,
       images,
       categories,
+      comments,
     } = product;
 
     const imageUrls = images.map((image: any) => image.url);
     const categoryNames = categories.map((category: any) => category.name);
+    const commentsCount = comments ? comments.length : 0;
+
+    const commentText = comments
+      ? comments.map((comment: any) => ({
+          id: comment.id,
+          profile: comment.profilePicture,
+          body: comment.body,
+          user: comment.user.name,
+          timestamp: comment.createdAt,
+          userId: comment.user.id,
+          name: comment.user.name.toLowerCase().replace(/\s/g, "_"),
+        }))
+      : [];
 
     return {
       id,
@@ -48,10 +62,10 @@ const ActiveProducts = async ({ activeProducts }: Props) => {
       status,
       images: imageUrls,
       categories: categoryNames,
+      commentsLength: commentsCount,
+      commentData: commentText,
     };
   });
-
-  console.log(formattedActiveProducts, "-> Formatted Products ");
 
   return (
     <div className="w-full">

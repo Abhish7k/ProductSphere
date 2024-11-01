@@ -19,14 +19,17 @@ const CarouselComponent = ({ productImages }: { productImages: string[] }) => {
         {Array.from({
           length: productImages.length,
         }).map((_, index) => (
-          <CarouselItem key={index} className="basis-1/3">
+          <CarouselItem
+            key={index}
+            className="basis-[80%] lg:basis-2/3  xl:basis-1/3"
+          >
             <Image
               priority
               src={productImages[index]}
               alt="product-image"
               width={500}
               height={500}
-              className="rounded-md object-cover border border-gray-200 h-60 w-full"
+              className="rounded-md object-cover border border-gray-200 h-fit w-full"
             />
           </CarouselItem>
         ))}

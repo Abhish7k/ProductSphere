@@ -34,7 +34,6 @@ const ProductItem = ({ product, authenticatedUser }: ProductItemProps) => {
     } else {
       setCurrentProduct(product);
       setShowProductModal(true);
-      console.log("helloS");
     }
   };
 

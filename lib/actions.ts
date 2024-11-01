@@ -320,6 +320,11 @@ export const getActiveProducts = async () => {
       include: {
         categories: true,
         images: true,
+        comments: {
+          include: {
+            user: true,
+          },
+        },
       },
 
       //
