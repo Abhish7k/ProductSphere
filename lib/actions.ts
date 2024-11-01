@@ -533,3 +533,64 @@ export const upvoteProduct = async (productId: string) => {
     throw error;
   }
 };
+
+export const commentOnProduct = async (
+  productId: string,
+  commentText: string
+) => {
+  try {
+    const authenticatedUser = await auth();
+
+    if (
+      !authenticatedUser ||
+      !authenticatedUser.user ||
+      !authenticatedUser.user.id
+    ) {
+      throw new Error("User Id is missing or invalid");
+    }
+
+    const userId = authenticatedUser.user.id;
+
+    //
+    const profilePicture = authenticatedUser.user.image || "";
+
+    await db.comment.create({
+      data: {
+        createdAt: new Date(),
+        productId,
+        userId,
+        body: commentText,
+        profilePicture: profilePicture,
+      },
+      include: {
+        user: true,
+      },
+    });
+
+    const productDetails = await db.product.findUnique({
+      where: {
+        id: productId,
+      },
+      select: {
+        userId: true,
+        name: true,
+      },
+    });
+
+    if (productDetails && productDetails?.userId !== productId) {
+      await db.notification.create({
+        data: {
+          userId: productDetails.userId,
+          body: `Someone commented on your product "${productDetails.name}"`,
+          profilePicture: profilePicture,
+          productId: productId,
+          type: "COMMENT",
+          status: "UNREAD",
+        },
+      });
+    }
+  } catch (error) {
+    console.log("Error commenting on product", error);
+    throw error;
+  }
+};
