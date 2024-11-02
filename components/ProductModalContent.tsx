@@ -11,10 +11,10 @@ import {
 import CarouselComponent from "./CarouselComponent";
 import { AvatarFallback, AvatarImage, AvatarShadcn } from "./ui/avatar";
 import Avvvatars from "avvvatars-react";
-import { useState } from "react";
+import React, { useState } from "react";
 import ShareModal from "./ui/modal/ShareProductModal";
 import ShareModalContent from "./ShareProductModalContent";
-import { commentOnProduct, deleteComment } from "@/lib/actions";
+import { commentOnProduct, deleteComment, upvoteProduct } from "@/lib/actions";
 import { Badge } from "./ui/badge";
 
 interface ProductModalContentProps {
@@ -39,8 +39,20 @@ const ProductModalContent = ({
   const [commentText, setCommentText] = useState("");
   const [comments, setComments] = useState(currentProduct.commentData || []);
 
-  const handleUpvoteClick = () => {
-    // hasUpvoted = true;
+  const handleUpvoteClick = async (
+    event: React.MouseEvent<HTMLButtonElement, MouseEvent>
+  ) => {
+    event.stopPropagation();
+
+    try {
+      await upvoteProduct(currentProduct.id);
+
+      setTotalUpvotes(hasUpvoted ? totalUpvotes - 1 : totalUpvotes + 1);
+
+      setHasUpvoted(!hasUpvoted);
+    } catch (error) {
+      console.log("Error while upvoting product:", error);
+    }
   };
 
   const handleShareClick = () => {
@@ -85,9 +97,6 @@ const ProductModalContent = ({
       console.log(error);
     }
   };
-
-  // console.log(currentProduct.commentData);
-  console.log(comments);
 
   return (
     <div className="h-full">
