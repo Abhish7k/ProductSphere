@@ -2,7 +2,12 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { PiCaretUpFill, PiChatCircle, PiUploadSimple } from "react-icons/pi";
+import {
+  PiCaretUpFill,
+  PiChatCircle,
+  PiTrash,
+  PiUploadSimple,
+} from "react-icons/pi";
 import CarouselComponent from "./CarouselComponent";
 import { AvatarFallback, AvatarImage, AvatarShadcn } from "./ui/avatar";
 import Avvvatars from "avvvatars-react";
@@ -10,6 +15,7 @@ import { useState } from "react";
 import ShareModal from "./ui/modal/ShareProductModal";
 import ShareModalContent from "./ShareProductModalContent";
 import { commentOnProduct } from "@/lib/actions";
+import { Badge } from "./ui/badge";
 
 interface ProductModalContentProps {
   currentProduct: any;
@@ -31,6 +37,7 @@ const ProductModalContent = ({
   const [shareModalModalVisible, setShareModalVisible] = useState(false);
 
   const [commentText, setCommentText] = useState("");
+  const [comments, setComments] = useState(currentProduct.commentData || []);
 
   const handleUpvoteClick = () => {
     // hasUpvoted = true;
@@ -42,9 +49,22 @@ const ProductModalContent = ({
 
   const handleCommentSubmit = async () => {
     try {
+      // call comment server action
       await commentOnProduct(currentProduct.id, commentText);
 
+      // reset the comment textarea
       setCommentText("");
+
+      setComments([
+        ...comments,
+        {
+          user: authenticatedUser.user.name,
+          body: commentText,
+          profile: authenticatedUser.user.image,
+          userId: authenticatedUser.user.id,
+          timestamp: new Date().toISOString(),
+        },
+      ]);
     } catch (error) {
       console.log(error);
     }
@@ -114,7 +134,7 @@ const ProductModalContent = ({
                 <Link
                   key={category}
                   href={`/category/${category.toLowerCase()}`}
-                  className="bg-foreground/5 text-gray-600 px-4 py-2 text-sm lg:text-base font-medium rounded-md cursor-pointer hover:bg-foreground/10 transition-all duration-300"
+                  className="bg-foreground/5 text-gray-600 px-4 py-2 text-xs md:text-sm lg:text-base font-medium rounded-md cursor-pointer hover:bg-foreground/10 transition-all duration-300 overflow-hidden h-fit"
                 >
                   {category}
                 </Link>
@@ -179,7 +199,53 @@ const ProductModalContent = ({
               </div>
             </div>
 
-            <div className="pt-10">comments</div>
+            <div className="py-10 space-y-8">
+              {comments.map((comment: any) => (
+                <div key={comment.id} className="flex gap-4">
+                  <AvatarShadcn className="w-8 h-8">
+                    <AvatarImage src={comment.profile} />
+
+                    <AvatarFallback>
+                      <Avvvatars value={comment.name} />
+                    </AvatarFallback>
+                  </AvatarShadcn>
+
+                  <div className="w-full">
+                    <div className="flex justify-between items-center">
+                      <div className="flex flex-col sm:flex-row gap-x-2 items-start sm:items-center transition-all">
+                        <div className="flex gap-x-2">
+                          <h1 className="text-gray-600 font-semibold cursor-pointer">
+                            {comment.user}
+                          </h1>
+                          {comment.userId === currentProduct.userId && (
+                            <Badge className="bg-[#88aaff] text-xs hover:bg-[#88aaff] px-2 py-0">
+                              Creator
+                            </Badge>
+                          )}
+                        </div>
+
+                        <div className="text-gray-500 text-xs">
+                          {new Date(comment.timestamp).toDateString()}
+                        </div>
+                      </div>
+
+                      {(comment.userId === authenticatedUser?.user?.id ||
+                        currentProduct.userId ===
+                          authenticatedUser?.user?.id) && (
+                        <PiTrash
+                          // onClick={() => handleDeleteComment(comment.id)}
+                          className="text-red-500 hover:cursor-pointer"
+                        />
+                      )}
+                    </div>
+
+                    <div className="text-gray-600 text-sm mt-2">
+                      {comment.body}
+                    </div>
+                  </div>
+                </div>
+              ))}
+            </div>
           </div>
         </div>
       </div>

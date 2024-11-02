@@ -33,7 +33,7 @@ const categories = [
   "Data",
   "Design",
   "Photography",
-  "E-commerce",
+  "Ecommerce",
   "Education",
   "Entertainment",
   "Video",
