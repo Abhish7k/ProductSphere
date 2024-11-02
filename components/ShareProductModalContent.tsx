@@ -59,21 +59,21 @@ const ShareModalContent: React.FC<ShareModalContentProps> = ({
         </p>
 
         <div className="flex items-center justify-center gap-4 pt-4">
-          <Link
+          <a
             href={currentProduct.twitter}
             target="_blank"
             className="bg-gradient-to-r from-sky-400 via-sky-500 to-sky-600 p-3 rounded-full transition-all hover:scale-105 hover:shadow-lg duration-500"
           >
             <FaTwitter className="text-3xl text-white" />
-          </Link>
+          </a>
 
-          <Link
+          <a
             href={currentProduct.instagram}
             target="_blank"
             className="bg-gradient-to-r from-pink-500 via-red-500 to-yellow-500 p-3 rounded-full transition-all hover:scale-105 hover:shadow-lg duration-500"
           >
             <FaInstagram className="text-3xl text-white" />
-          </Link>
+          </a>
         </div>
 
         <h1 className="pt-6 font-semibold">Copy Link</h1>

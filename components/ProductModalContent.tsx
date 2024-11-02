@@ -164,11 +164,6 @@ const ProductModalContent = ({
             </div>
 
             <div className="flex items-center gap-x-6 py-4">
-              <div className="text-md text-foreground/70 font-medium flex items-center gap-x-1 cursor-pointer hover:text-foreground/90 transition-all duration-300">
-                <PiChatCircle />
-                <p>Discuss</p>
-              </div>
-
               <div
                 onClick={handleShareClick}
                 className="text-md text-foreground/70 font-medium flex items-center gap-x-1 cursor-pointer hover:text-foreground/90 transition-all duration-300"
