@@ -599,3 +599,18 @@ export const commentOnProduct = async (
     throw error;
   }
 };
+
+export const deleteComment = async (commentId: string) => {
+  try {
+    await db.comment.delete({
+      where: {
+        id: commentId,
+      },
+    });
+
+    return true;
+  } catch (error) {
+    console.log("Error while deleting a comment", error);
+    throw Error;
+  }
+};

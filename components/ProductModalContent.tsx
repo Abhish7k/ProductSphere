@@ -14,7 +14,7 @@ import Avvvatars from "avvvatars-react";
 import { useState } from "react";
 import ShareModal from "./ui/modal/ShareProductModal";
 import ShareModalContent from "./ShareProductModalContent";
-import { commentOnProduct } from "@/lib/actions";
+import { commentOnProduct, deleteComment } from "@/lib/actions";
 import { Badge } from "./ui/badge";
 
 interface ProductModalContentProps {
@@ -47,6 +47,10 @@ const ProductModalContent = ({
     setShareModalVisible(true);
   };
 
+  const handleCommentChange = (event: any) => {
+    setCommentText(event.target.value);
+  };
+
   const handleCommentSubmit = async () => {
     try {
       // call comment server action
@@ -70,11 +74,20 @@ const ProductModalContent = ({
     }
   };
 
-  const handleCommentChange = (event: any) => {
-    setCommentText(event.target.value);
+  const handleDeleteComment = async (commentId: string) => {
+    try {
+      // call delete comment server action
+      await deleteComment(commentId);
+
+      // remove the comment from the section
+      setComments(comments.filter((comment: any) => comment.id !== commentId));
+    } catch (error) {
+      console.log(error);
+    }
   };
 
-  console.log(currentProduct.commentData);
+  // console.log(currentProduct.commentData);
+  console.log(comments);
 
   return (
     <div className="h-full">
@@ -200,8 +213,8 @@ const ProductModalContent = ({
             </div>
 
             <div className="py-10 space-y-8">
-              {comments.map((comment: any) => (
-                <div key={comment.id} className="flex gap-4">
+              {comments.map((comment: any, idx: string) => (
+                <div key={idx} className="flex gap-4">
                   <AvatarShadcn className="w-8 h-8">
                     <AvatarImage src={comment.profile} />
 
@@ -233,7 +246,7 @@ const ProductModalContent = ({
                         currentProduct.userId ===
                           authenticatedUser?.user?.id) && (
                         <PiTrash
-                          // onClick={() => handleDeleteComment(comment.id)}
+                          onClick={() => handleDeleteComment(comment.id)}
                           className="text-red-500 hover:cursor-pointer"
                         />
                       )}
