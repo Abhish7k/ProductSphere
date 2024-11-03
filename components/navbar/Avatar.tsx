@@ -28,10 +28,6 @@ interface AvatarProps {
 const Avatar: React.FC<AvatarProps> = ({ authenticatedUser }) => {
   noStore();
 
-  const handleMyUpvotes = () => {
-    window.location.href = "/my-upvoted";
-  };
-
   return (
     <div className="mr-2">
       <DropdownMenu>
@@ -70,13 +66,13 @@ const Avatar: React.FC<AvatarProps> = ({ authenticatedUser }) => {
           </DropdownMenuItem>
 
           <DropdownMenuItem>
-            <div
-              onClick={handleMyUpvotes}
+            <Link
+              href="/my-upvoted"
               className="flex gap-x-2 rounded-sm w-full cursor-pointer"
             >
               <PiHeart className="text-xl" />
               Upvoted
-            </div>
+            </Link>
           </DropdownMenuItem>
 
           <DropdownMenuItem>

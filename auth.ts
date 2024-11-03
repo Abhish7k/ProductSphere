@@ -7,6 +7,7 @@ import { db } from "./lib/db";
 export const { auth, handlers, signIn, signOut } = NextAuth({
   adapter: PrismaAdapter(db),
   session: { strategy: "jwt" },
+
   providers: [
     GitHub({
       clientId: process.env.GITHUB_ID,
