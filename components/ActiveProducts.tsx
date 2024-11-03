@@ -27,6 +27,7 @@ const ActiveProducts = async ({ activeProducts }: Props) => {
       images,
       categories,
       comments,
+      upvotes,
     } = product;
 
     const imageUrls = images.map((image: any) => image.url);
@@ -44,6 +45,9 @@ const ActiveProducts = async ({ activeProducts }: Props) => {
           name: comment.user.name.toLowerCase().replace(/\s/g, "_"),
         }))
       : [];
+
+    const upvotesCount = upvotes ? upvotes.length : 0;
+    const upvotesData = upvotes?.map((upvote: any) => upvote.user.id);
 
     return {
       id,
@@ -64,6 +68,8 @@ const ActiveProducts = async ({ activeProducts }: Props) => {
       categories: categoryNames,
       commentsLength: commentsCount,
       commentData: commentText,
+      upvoters: upvotesData,
+      upvotes: upvotesCount,
     };
   });
 

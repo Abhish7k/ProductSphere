@@ -614,3 +614,33 @@ export const deleteComment = async (commentId: string) => {
     throw Error;
   }
 };
+
+export const getUpvotedProducts = async () => {
+  try {
+    const authenticatedUser = await auth();
+
+    if (
+      !authenticatedUser ||
+      !authenticatedUser.user ||
+      !authenticatedUser.user.id
+    ) {
+      throw new Error("User id is missing or invalid");
+    }
+
+    const userId = authenticatedUser.user.id;
+
+    const upvotedProducts = await db.upvote.findMany({
+      where: {
+        userId,
+      },
+      include: {
+        product: true,
+      },
+    });
+
+    return upvotedProducts.map((upvote) => upvote.product);
+  } catch (error) {
+    console.log("Error getting upvoted products", error);
+    throw Error;
+  }
+};
