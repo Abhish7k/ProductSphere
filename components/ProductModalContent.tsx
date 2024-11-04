@@ -120,17 +120,16 @@ const ProductModalContent = ({
             </p>
 
             <div className="flex items-center gap-2 pt-4">
-              <button
-                onClick={() => window.open(currentProduct.website, "_blank")}
-                className="border rounded-md flex justify-center items-center py-5 px-8 cursor-pointer
-                hover:bg-foreground/5 transition-all duration-300
-                "
+              <a
+                href={currentProduct.website}
+                target="_blank"
+                className="border rounded-md flex justify-center items-center py-4 px-8 cursor-pointer hover:bg-foreground/5 transition-all duration-300"
               >
                 Visit
-              </button>
+              </a>
 
               <button
-                className={`rounded-md flex justify-center items-center p-5 gap-x-3 cursor-pointer bg-gradient-to-r w-full xl:w-56
+                className={`rounded-md flex justify-center items-center px-8 py-4 gap-x-3 cursor-pointer bg-gradient-to-r w-full
                 ${
                   hasUpvoted
                     ? "from-[#ff6154] to-[#ff4582] border-[#ff6154] text-white"

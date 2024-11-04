@@ -644,3 +644,32 @@ export const getUpvotedProducts = async () => {
     throw Error;
   }
 };
+
+export const getProductBySlug = async (slug: string) => {
+  try {
+    const product = await db.product.findUnique({
+      where: {
+        slug,
+      },
+      include: {
+        images: true,
+        categories: true,
+        comments: {
+          include: {
+            user: true,
+          },
+        },
+        upvotes: {
+          include: {
+            user: true,
+          },
+        },
+      },
+    });
+
+    return product;
+  } catch (error) {
+    console.log("Error getting product by slug", error);
+    return null;
+  }
+};
