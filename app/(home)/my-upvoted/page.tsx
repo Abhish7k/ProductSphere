@@ -49,7 +49,7 @@ const MyUpvotedProductsPage = async () => {
                       className="rounded-t-lg object-cover h-40"
                     />
 
-                    <h2 className="font-semibold text-lg p-4">
+                    <h2 className="font-semibold text-lg p-4 capitalize">
                       {product.name}
                     </h2>
                   </div>
