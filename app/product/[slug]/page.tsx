@@ -48,7 +48,7 @@ const ProductPage = async ({ params }: { params: ProductParams }) => {
             target="_blank"
             className="px-5 py-2 border rounded flex justify-center items-center font-medium cursor-pointer
             bg-gradient-to-r from-[#ff6154] to-[#ff4582] border-[#ff6154] text-white
-            hover:ring-1 transition-all duration-300"
+            hover:ring-2 hover:ring-offset-2 hover:ring-[#ff6154] transition-all duration-300"
           >
             Visit Website
           </a>

@@ -677,6 +677,13 @@ export const getProductBySlug = async (slug: string) => {
 export const getAllCategories = async () => {
   try {
     const categories = await db.category.findMany({
+      where: {
+        products: {
+          some: {
+            status: "ACTIVE",
+          },
+        },
+      },
       orderBy: {
         name: "asc",
       },
