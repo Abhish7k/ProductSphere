@@ -20,12 +20,10 @@ const ProductPage = async ({ params }: { params: ProductParams }) => {
     );
   }
 
-  //   console.log(product);
-
   const productImageUrls = product.images.map((image: any) => image.url);
 
   return (
-    <div className="mx-auto md:w-3/5 px-6 py-10 md:px-0">
+    <div className="mx-auto lg:w-3/5 px-6 py-10 lg:px-0">
       <div className="flex items-center justify-between">
         <div className="flex gap-x-4 items-start">
           <Image

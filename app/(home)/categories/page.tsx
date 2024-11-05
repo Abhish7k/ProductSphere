@@ -5,8 +5,6 @@ import { BsArrowRight } from "react-icons/bs";
 const CategoriesPage = async () => {
   const categories = await getAllCategories();
 
-  console.log(categories);
-
   return (
     <div className="pt-6 md:py-10 mx-auto px-6 md:px-0 xl:w-3/5 w-4/5 ">
       <div className="bg-gray-100 rounded-md w-full p-10 ">

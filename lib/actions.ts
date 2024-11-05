@@ -688,3 +688,28 @@ export const getAllCategories = async () => {
     return null;
   }
 };
+
+export const getProductsByCategoryName = async (categoryName: string) => {
+  try {
+    const products = await db.product.findMany({
+      where: {
+        categories: {
+          some: {
+            name: categoryName,
+          },
+        },
+
+        status: "ACTIVE",
+      },
+      include: {
+        comments: true,
+        categories: true,
+      },
+    });
+
+    return products;
+  } catch (error) {
+    console.log("Error getting the category", error);
+    throw null;
+  }
+};
