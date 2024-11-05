@@ -673,3 +673,18 @@ export const getProductBySlug = async (slug: string) => {
     return null;
   }
 };
+
+export const getAllCategories = async () => {
+  try {
+    const categories = await db.category.findMany({
+      orderBy: {
+        name: "asc",
+      },
+    });
+
+    return categories;
+  } catch (error) {
+    console.log("Error getting all categories", error);
+    return null;
+  }
+};
