@@ -10,17 +10,20 @@ import MobileNav from "./MobileNav";
 import Modal from "../ui/modal/modal";
 import AuthContent from "./AuthContent";
 import Avatar from "./Avatar";
-import { unstable_noStore as noStore } from "next/cache";
 import NotificationIcon from "./NotificationIcon";
 import SubmitButton from "./SubmitButton";
 
 interface NavbarProps {
   authenticatedUser?: any;
+  notifications: any;
+  products: any;
 }
 
-const Navbar: React.FC<NavbarProps> = ({ authenticatedUser }) => {
-  noStore();
-
+const Navbar: React.FC<NavbarProps> = ({
+  authenticatedUser,
+  notifications,
+  products,
+}) => {
   const [authModalVisible, setAuthModalVisible] = useState(false);
 
   const handleButtonClick = () => {
@@ -51,9 +54,12 @@ const Navbar: React.FC<NavbarProps> = ({ authenticatedUser }) => {
       <div className="flex items-center gap-5">
         {authenticatedUser ? (
           <div className="flex items-center gap-5">
-            <SubmitButton />
+            <SubmitButton
+              products={products}
+              authenticatedUser={authenticatedUser}
+            />
 
-            <NotificationIcon />
+            <NotificationIcon notifications={notifications} />
 
             <Avatar authenticatedUser={authenticatedUser} />
           </div>
