@@ -194,16 +194,17 @@ const EditProductForm = ({ product }: { product: any }) => {
           />
         </div>
 
-        <div>
+        <div className="">
           <div className="text-lg font-medium">Short Description</div>
           <textarea
             className="border w-full focus:outline-none mt-6 p-4 rounded-xl"
             value={description}
             onChange={(e) => setDescription(e.target.value)}
+            rows={3}
           />
         </div>
 
-        <div>
+        <div className="">
           <div className="text-lg font-medium">Twitter</div>
           <input
             type="text"

@@ -240,6 +240,12 @@ export const getProductById = async (productId: string) => {
       include: {
         categories: true,
         images: true,
+        upvotes: true,
+        comments: {
+          include: {
+            user: true,
+          },
+        },
       },
     });
 
