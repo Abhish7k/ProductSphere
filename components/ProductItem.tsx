@@ -3,7 +3,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { CiGlobe } from "react-icons/ci";
-import { PiCaretUpFill, PiChatCircle } from "react-icons/pi";
+import { PiCaretUpFill, PiChatCircle, PiXCircleFill } from "react-icons/pi";
 import { motion } from "framer-motion";
 import { useState } from "react";
 import ProductModal from "./ui/modal/ProductModal";
@@ -11,6 +11,8 @@ import ProductModalContent from "./ProductModalContent";
 import Modal from "./ui/modal/modal";
 import AuthContent from "./navbar/AuthContent";
 import { upvoteProduct } from "@/lib/actions";
+import { toast } from "sonner";
+import { FaExclamation } from "react-icons/fa";
 
 interface ProductItemProps {
   product: any;
@@ -43,9 +45,27 @@ const ProductItem = ({ product, authenticatedUser }: ProductItemProps) => {
     e.stopPropagation();
 
     try {
-      await upvoteProduct(product.id);
-      setHasUpvoted(!hasUpvoted);
-      setTotalUpvotes(hasUpvoted ? totalUpvotes - 1 : totalUpvotes + 1);
+      if (await upvoteProduct(product.id)) {
+        setHasUpvoted(!hasUpvoted);
+        setTotalUpvotes(hasUpvoted ? totalUpvotes - 1 : totalUpvotes + 1);
+      } else {
+        toast(
+          <>
+            <div className="flex items-center gap-4 mx-auto w-full">
+              <FaExclamation className="text-red-500 text-xl" />
+
+              <div className="text-md font-semibold">
+                Please Sign in to upvote products.
+              </div>
+            </div>
+          </>,
+          {
+            position: "top-right",
+          }
+        );
+
+        setShowLoginModal(true);
+      }
     } catch (error) {
       console.error(error);
     }

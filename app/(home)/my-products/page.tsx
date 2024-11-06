@@ -1,9 +1,9 @@
 import { auth } from "@/auth";
-import { getOwnerProducts } from "@/lib/actions";
+import { getOwnerProducts, isUserPremium } from "@/lib/actions";
 import Image from "next/image";
 import Link from "next/link";
 import { redirect } from "next/navigation";
-import { PiPlus } from "react-icons/pi";
+import { PiCrown, PiPlus } from "react-icons/pi";
 
 const MyProducts = async () => {
   const authenticatedUser = await auth();
@@ -13,6 +13,8 @@ const MyProducts = async () => {
   }
 
   const products = await getOwnerProducts();
+
+  const isPremium = await isUserPremium();
 
   return (
     <div className="mx-auto lg:w-3/5 py-10 px-10 transition-all">
@@ -38,6 +40,17 @@ const MyProducts = async () => {
         <div>
           <h1 className="text-3xl font-bold">Your Products</h1>
           <p>Manage your products here</p>
+
+          {isPremium ? (
+            <div className="flex gap-x-2 items-center mt-10">
+              <PiCrown className="text-2xl text-orange-300" />
+              <p className="text-lg">You are a premium user</p>
+            </div>
+          ) : (
+            <>
+              <p className="pt-6">({products.length}/2) Free products </p>
+            </>
+          )}
 
           <div className="grid grid-cols-2 md:grid-cols-3 xl:grid-cols-4 gap-4 mt-10 transition-all">
             {products.map((product) => (

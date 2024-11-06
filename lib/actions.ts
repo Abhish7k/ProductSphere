@@ -276,6 +276,33 @@ export const isUserAdmin = async () => {
   return user.isAdmin;
 };
 
+export const isUserPremium = async () => {
+  const authenticatedUser = await auth();
+
+  if (
+    !authenticatedUser ||
+    !authenticatedUser.user ||
+    !authenticatedUser.user.id
+  ) {
+    return;
+  }
+
+  const userId = authenticatedUser.user.id;
+
+  // get the user
+  const user = await db.user.findUnique({
+    where: {
+      id: userId,
+    },
+  });
+
+  if (!user) {
+    throw new Error("User not found");
+  }
+
+  return user.isPremium;
+};
+
 export const getUsers = async () => {
   try {
     const users = await db.user.findMany();
@@ -481,7 +508,8 @@ export const upvoteProduct = async (productId: string) => {
       !authenticatedUser.user ||
       !authenticatedUser.user.id
     ) {
-      throw new Error("User id is missing or invalid");
+      console.log("User id is missing or invalid");
+      return null;
     }
 
     const userId = authenticatedUser.user.id;
