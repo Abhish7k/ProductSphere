@@ -1,6 +1,6 @@
 import { auth } from "@/auth";
 import Navbar from "@/components/navbar/Navbar";
-import { unstable_noStore as noStore } from "next/cache";
+import { getNotifications } from "@/lib/actions";
 import { redirect } from "next/navigation";
 
 const PagesLayout = async ({
@@ -8,18 +8,21 @@ const PagesLayout = async ({
 }: Readonly<{
   children: React.ReactNode;
 }>) => {
-  noStore();
-
   const authenticatedUser = await auth();
 
   if (!authenticatedUser) {
     redirect("/");
   }
 
+  const notifications = await getNotifications();
+
   return (
     <html lang="en">
       <body>
-        <Navbar authenticatedUser={authenticatedUser} />
+        <Navbar
+          authenticatedUser={authenticatedUser}
+          notifications={notifications}
+        />
 
         {children}
       </body>

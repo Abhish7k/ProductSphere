@@ -19,15 +19,11 @@ import { PiGear, PiHeart, PiPackage } from "react-icons/pi";
 import { signOut } from "next-auth/react";
 import { IoLogOutOutline } from "react-icons/io5";
 
-import { unstable_noStore as noStore } from "next/cache";
-
 interface AvatarProps {
   authenticatedUser?: any;
 }
 
 const Avatar: React.FC<AvatarProps> = ({ authenticatedUser }) => {
-  noStore();
-
   return (
     <div className="mr-2">
       <DropdownMenu>

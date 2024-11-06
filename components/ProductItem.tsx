@@ -5,7 +5,7 @@ import Link from "next/link";
 import { CiGlobe } from "react-icons/ci";
 import { PiCaretUpFill, PiChatCircle, PiXCircleFill } from "react-icons/pi";
 import { motion } from "framer-motion";
-import { useState } from "react";
+import React, { useState } from "react";
 import ProductModal from "./ui/modal/ProductModal";
 import ProductModalContent from "./ProductModalContent";
 import Modal from "./ui/modal/modal";
@@ -19,7 +19,10 @@ interface ProductItemProps {
   authenticatedUser: any;
 }
 
-const ProductItem = ({ product, authenticatedUser }: ProductItemProps) => {
+const ProductItem: React.FC<ProductItemProps> = ({
+  product,
+  authenticatedUser,
+}) => {
   const [showLoginModal, setShowLoginModal] = useState(false);
   const [showProductModal, setShowProductModal] = useState(false);
   const [currentProduct, setCurrentProduct] = useState<any>(null);
@@ -44,28 +47,31 @@ const ProductItem = ({ product, authenticatedUser }: ProductItemProps) => {
   ) => {
     e.stopPropagation();
 
-    try {
-      if (await upvoteProduct(product.id)) {
-        setHasUpvoted(!hasUpvoted);
-        setTotalUpvotes(hasUpvoted ? totalUpvotes - 1 : totalUpvotes + 1);
-      } else {
-        toast(
-          <>
-            <div className="flex items-center gap-4 mx-auto w-full">
-              <FaExclamation className="text-red-500 text-xl" />
+    if (!authenticatedUser) {
+      toast(
+        <>
+          <div className="flex items-center gap-4 mx-auto w-full">
+            <FaExclamation className="text-red-500 text-xl" />
 
-              <div className="text-md font-semibold">
-                Please Sign in to upvote products.
-              </div>
+            <div className="text-md font-semibold">
+              Please Sign in to upvote products.
             </div>
-          </>,
-          {
-            position: "top-right",
-          }
-        );
+          </div>
+        </>,
+        {
+          position: "top-right",
+        }
+      );
 
-        setShowLoginModal(true);
-      }
+      setShowLoginModal(true);
+    }
+
+    try {
+      await upvoteProduct(product.id);
+
+      setHasUpvoted(!hasUpvoted);
+
+      setTotalUpvotes(hasUpvoted ? totalUpvotes - 1 : totalUpvotes + 1);
     } catch (error) {
       console.error(error);
     }

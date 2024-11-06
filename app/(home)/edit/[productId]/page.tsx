@@ -20,8 +20,6 @@ const ProductIdPage = async ({ params }: { params: IParams }) => {
     return <div>products not found</div>;
   }
 
-  console.log(product.rank);
-
   return (
     <div className="md:w-4/5 mx-auto px-6 md:px-0 py-10 transition-all">
       <Link

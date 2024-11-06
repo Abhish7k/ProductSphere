@@ -358,11 +358,17 @@ export const getActiveProducts = async () => {
             user: true,
           },
         },
+        upvotes: {
+          include: {
+            user: true,
+          },
+        },
       },
 
-      //
       orderBy: {
-        createdAt: "desc",
+        upvotes: {
+          _count: "desc",
+        },
       },
     });
 
@@ -514,8 +520,7 @@ export const upvoteProduct = async (productId: string) => {
       !authenticatedUser.user ||
       !authenticatedUser.user.id
     ) {
-      console.log("User id is missing or invalid");
-      return null;
+      throw new Error("User ID is missing or invalid");
     }
 
     const userId = authenticatedUser.user.id;
@@ -527,6 +532,7 @@ export const upvoteProduct = async (productId: string) => {
       },
     });
 
+    // Use an empty string if profile picture is undefined
     const profilePicture = authenticatedUser.user.image || "";
 
     if (upvote) {
@@ -552,11 +558,12 @@ export const upvoteProduct = async (productId: string) => {
         },
       });
 
+      // notify the product owner about the upvote
       if (productOwner && productOwner.userId !== userId) {
         await db.notification.create({
           data: {
             userId: productOwner.userId,
-            body: `Your product received an upvote`,
+            body: `Upvoted your product`,
             profilePicture: profilePicture,
             productId: productId,
             type: "UPVOTE",
@@ -565,10 +572,9 @@ export const upvoteProduct = async (productId: string) => {
         });
       }
     }
-
     return true;
   } catch (error) {
-    console.log("Error upvoting product", error);
+    console.error("Error upvoting product:", error);
     throw error;
   }
 };
@@ -752,5 +758,84 @@ export const getProductsByCategoryName = async (categoryName: string) => {
   } catch (error) {
     console.log("Error getting the category", error);
     throw null;
+  }
+};
+
+export const getNotifications = async () => {
+  try {
+    const authenticatedUser = await auth();
+
+    if (
+      !authenticatedUser ||
+      !authenticatedUser.user ||
+      !authenticatedUser.user.id
+    ) {
+      throw new Error("User ID is missing or invalid");
+    }
+
+    const userId = authenticatedUser.user.id;
+
+    const notifications = await db.notification.findMany({
+      where: {
+        userId: userId,
+      },
+      orderBy: {
+        createdAt: "desc",
+      },
+    });
+
+    if (notifications.length === 0) {
+      return null;
+    }
+
+    return notifications;
+  } catch (error) {
+    console.log("Error getting notifications", error);
+    return [];
+  }
+};
+
+export const markAllNotificationsAsRead = async () => {
+  try {
+    const authenticatedUser = await auth();
+
+    if (
+      !authenticatedUser ||
+      !authenticatedUser.user ||
+      !authenticatedUser.user.id
+    ) {
+      throw new Error("User ID is missing or invalid");
+    }
+
+    const userId = authenticatedUser.user.id;
+
+    await db.notification.updateMany({
+      where: {
+        userId,
+      },
+      data: {
+        status: "READ",
+      },
+    });
+
+    return;
+  } catch (error) {
+    console.log("Error marking all notifications as read", error);
+    throw Error;
+  }
+};
+
+export const getProductsByUserId = async (userId: string) => {
+  try {
+    const products = await db.product.findMany({
+      where: {
+        userId,
+      },
+    });
+
+    return products;
+  } catch (error) {
+    console.log("Error getting producst by user id", error);
+    throw error;
   }
 };
