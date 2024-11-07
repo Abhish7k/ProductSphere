@@ -59,7 +59,7 @@ const NotificationIcon: React.FC<NotificationIconProps> = ({
   };
 
   return (
-    <div>
+    <div className="hidden md:block">
       <Sheet>
         <SheetTrigger className="flex items-center">
           <PiBell className={`text-gray-600 text-xl mt-1`} />

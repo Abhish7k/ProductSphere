@@ -32,10 +32,10 @@ const SubmitButton: React.FC<SubmitButtonProps> = ({
   };
 
   return (
-    <div>
+    <div className="">
       <button
         onClick={handleButtonClick}
-        className="group relative px-4 py-1.5 flex transform items-center justify-center gap-2 overflow-hidden whitespace-nowrap rounded-md border border-white text-white bg-indigo-500 font-medium transition-all duration-300"
+        className="group relative px-2 py-1 sm:px-4 sm:py-1.5 flex transform items-center justify-center gap-2 overflow-hidden whitespace-nowrap rounded-md border border-white text-white bg-indigo-500 font-medium transition-all duration-300"
       >
         <span className="relative z-10 flex items-center gap-2">Submit</span>
 
