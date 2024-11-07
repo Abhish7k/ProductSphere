@@ -37,6 +37,46 @@ const handlePremiumSubscription = async (event: Stripe.Event) => {
   }
 };
 
+const handleCancelledSubscription = async (event: Stripe.Event) => {
+  const subscription = event.data.object as Stripe.Subscription;
+  const customerId = subscription.customer as string;
+
+  try {
+    const customerResponse = await stripe.customers.retrieve(customerId);
+
+    if (!("email" in customerResponse)) {
+      console.log(
+        `Customer not found or has been deleted for customer ID ${customerId}.`
+      );
+      return;
+    }
+
+    const customerEmail = customerResponse.email;
+
+    if (!customerEmail) {
+      console.log(`Customer email not found for customer ID ${customerId}.`);
+      return;
+    }
+
+    // Find user by email and set isPremium to false
+    const user = await db.user.findFirst({
+      where: { email: customerEmail },
+    });
+
+    if (user) {
+      await db.user.update({
+        where: { id: user.id },
+        data: { isPremium: false },
+      });
+      console.log(`User ${customerEmail} updated to non-premium.`);
+    } else {
+      console.log(`User with email ${customerEmail} not found.`);
+    }
+  } catch (error: any) {
+    console.error(`Error handling cancelled subscription: ${error.message}`);
+  }
+};
+
 export async function POST(req: NextRequest) {
   const body = await req.text();
 
@@ -67,7 +107,7 @@ export async function POST(req: NextRequest) {
 
   // cancelled subscription
   if (event.type === "customer.subscription.deleted") {
-    // await handleCancelledSubscription(event)
+    await handleCancelledSubscription(event);
   }
 
   return new NextResponse(null, { status: 200 });

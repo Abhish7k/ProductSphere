@@ -2,6 +2,7 @@ import { auth } from "@/auth";
 import { isUserPremium } from "@/lib/actions";
 import { redirect } from "next/navigation";
 import ManageBilling from "./ManageBilling";
+import { getNextPaymentDetails } from "@/lib/stripe";
 
 const SettingsPage = async () => {
   const authenticatedUser = await auth();
@@ -12,7 +13,7 @@ const SettingsPage = async () => {
 
   const isPremium = await isUserPremium();
 
-  //   const subscriptionDetails
+  const subscriptionDetails = await getNextPaymentDetails();
 
   return (
     <div className="md:w-3/5 mx-auto py-10 px-6 md:px-0">
@@ -23,15 +24,20 @@ const SettingsPage = async () => {
         <div className="space-y-10">
           <div className="flex items-center justify-between">
             <h1>Next Payment Date</h1>
-            <p className="text-sm text-gray-400 font-light">
-              {/* {subscriptionDetails ? subscriptionDetails.nextPaymentDate : "No payment date"} */}
+            <p className="">
+              {subscriptionDetails
+                ? subscriptionDetails.nextPaymentDate
+                : "No payment date"}
             </p>
           </div>
 
           <div className="flex items-center justify-between">
             <h1>Next Payment Amount</h1>
-            <p className="text-sm text-gray-400 font-light">
-              {/* {subscriptionDetails ?  subscriptionDetails.amount : "No payment amount"}    */}
+            <p className="">
+              ${" "}
+              {subscriptionDetails
+                ? subscriptionDetails.amount
+                : "No payment amount"}
             </p>
           </div>
 
