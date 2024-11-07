@@ -19,8 +19,8 @@ export const createCheckoutSession = async ({ email }: { email: string }) => {
         },
       ],
       mode: "subscription",
-      success_url: `http://localhost:3000/new-product`,
-      cancel_url: `http://localhost:3000/`,
+      success_url: `http://localhost:3000/payment/success`,
+      cancel_url: `http://localhost:3000/payment/failed`,
     });
 
     return session;
