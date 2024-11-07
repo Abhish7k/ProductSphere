@@ -31,27 +31,33 @@ const Navbar: React.FC<NavbarProps> = ({
   };
 
   return (
-    <div className="h-16 px-5 py-3 xl:px-10 border-b flex items-center justify-between transition-all">
+    <div className="h-16 px-4 py-3 xl:px-[10%] border-b flex items-center justify-between transition-all">
       {/* logo */}
-      <div className="flex items-center">
-        <Link href="/" className="flex items-start gap-2">
-          <Image src="/logo.svg" alt="logo" height={28} width={28} />
-          <h1 className="hidden text-2xl font-medium tracking-tight">
-            ProductPulse
+      <div className="flex items-center ">
+        <Link href="/" className="flex items-center gap-2">
+          <Image
+            src="/logo.svg"
+            alt="logo"
+            height={28}
+            width={28}
+            className=""
+          />
+          <h1 className="hidden min-[400px]:block text-2xl font-bold text-indigo-600 transition-all">
+            ProductSphere
           </h1>
         </Link>
 
-        <div className="hidden md:block ml-5">
+        <div className="hidden md:block ml-10 mr-5">
           <Search />
+        </div>
+
+        <div className="">
+          <Menu />
         </div>
       </div>
 
       {/* menu */}
-      <div className="absolute right-1/2 translate-x-1/2 transform z-10">
-        <Menu />
-      </div>
-
-      <div className="flex items-center gap-5">
+      <div className="flex items-center gap-2 md:gap-5">
         {authenticatedUser ? (
           <div className="flex items-center gap-5">
             <SubmitButton

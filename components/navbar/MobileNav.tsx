@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState } from "react";
+import React from "react";
 import {
   Sheet,
   SheetContent,
@@ -14,8 +14,6 @@ import Search from "./Search";
 import Link from "next/link";
 
 const MobileNav = () => {
-  const [showLaunchesMenu, setShowLaunchesMenu] = useState(false);
-
   return (
     <div className="lg:hidden mt-2 transition-all">
       <Sheet>
@@ -32,30 +30,26 @@ const MobileNav = () => {
               <Search />
             </div>
 
-            <div className="text-xl font-medium text-foreground/80 hover:text-orange-400 transition-all">
-              <h1
-                className="flex cursor-pointer"
-                onClick={() => setShowLaunchesMenu(!showLaunchesMenu)}
-              >
-                Launches
-              </h1>
-              {showLaunchesMenu && "hello"}
-            </div>
-
             <Link
               href="/categories"
-              className="text-xl font-medium text-foreground/80 hover:text-orange-400 cursor-pointer transition-all"
+              className="text-xl font-medium text-foreground/80 hover:text-indigo-500 cursor-pointer transition-all"
             >
               Categories
             </Link>
 
-            <div className="text-xl font-medium text-foreground/80 hover:text-orange-400 cursor-pointer transition-all">
-              <h1 className="cursor-pointer">Community</h1>
-            </div>
+            <Link
+              href="/"
+              className="text-xl font-medium text-foreground/80 hover:text-indigo-500 cursor-pointer transition-all"
+            >
+              <h1 className="cursor-pointer">Pricing</h1>
+            </Link>
 
-            <div className="text-xl font-medium text-foreground/80 hover:text-orange-400 cursor-pointer transition-all">
+            <Link
+              href="/"
+              className="text-xl font-medium text-foreground/80 hover:text-indigo-500 cursor-pointer transition-all"
+            >
               About
-            </div>
+            </Link>
           </div>
         </SheetContent>
       </Sheet>
