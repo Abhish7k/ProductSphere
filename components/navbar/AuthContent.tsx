@@ -40,7 +40,7 @@ const AuthContent = () => {
         }
         className="border rounded-md py-2 mt-4 flex items-center gap-4 px-5 md:px-10 hover:bg-foreground/5 transition-all duration-300"
       >
-        <FaGithub className="text-xl text-purple-800" />
+        <FaGithub className="text-xl" />
         Sign in with Github
       </button>
     </div>

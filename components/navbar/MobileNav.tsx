@@ -12,6 +12,7 @@ import {
 import { MenuIcon } from "lucide-react";
 import Search from "./Search";
 import Link from "next/link";
+import Image from "next/image";
 
 const MobileNav = () => {
   return (
@@ -22,7 +23,16 @@ const MobileNav = () => {
         </SheetTrigger>
         <SheetContent className="transition-all">
           <SheetHeader>
-            <SheetTitle className="text-2xl">ProductSphere</SheetTitle>
+            <SheetTitle className="flex items-center justify-start gap-2">
+              <Image
+                src={"/logo.svg"}
+                alt="logo"
+                width={30}
+                height={30}
+                className=""
+              />
+              <span className="text-3xl text-indigo-600">ProductSphere</span>
+            </SheetTitle>
           </SheetHeader>
 
           <div className="mt-10 flex flex-col gap-5">

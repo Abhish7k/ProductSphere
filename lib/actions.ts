@@ -770,7 +770,8 @@ export const getNotifications = async () => {
       !authenticatedUser.user ||
       !authenticatedUser.user.id
     ) {
-      throw new Error("User ID is missing or invalid");
+      console.log("Getting Notifications: User ID is missing or invalid");
+      return null;
     }
 
     const userId = authenticatedUser.user.id;

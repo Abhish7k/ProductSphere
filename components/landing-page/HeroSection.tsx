@@ -13,14 +13,11 @@ const HeroSection = () => {
       "
     >
       <div className="pt-24 md:pt-28 flex flex-col items-center w-full text-center">
-        <h1 className="text-4xl sm:text-5xl lg:text-6xl md:max-w-2xl py-2 md:py-0 lg:!leading-[4rem] font-medium tracking-tight transition-all">
+        <h1 className="text-3xl sm:text-5xl lg:text-6xl md:max-w-2xl py-2 md:py-0 lg:!leading-[4rem] font-medium tracking-tight transition-all">
           Your ultimate platform to discover new products
         </h1>
 
-        <p
-          className="mt-2 md:mt-4 max-w-sm md:max-w-[26rem] text-lg text-foreground/70 font-medium leading-6
-        "
-        >
+        <p className="mt-2 md:mt-4 max-w-sm md:max-w-[26rem] md:text-lg text-foreground/70 font-medium leading-6 transition-all">
           Discover, share, and discuss the latest products in tech and
           innovation.
         </p>
@@ -32,7 +29,7 @@ const HeroSection = () => {
           hover:ring-2 hover:ring-offset-1 hover:ring-indigo-500
           "
         >
-          <span className="group relative z-10 flex items-center gap-2 text-lg">
+          <span className="group relative z-10 flex items-center gap-2 md:text-lg transition-all">
             Discover
             <GoArrowRight
               className="size-4 group-hover:translate-x-1 transition-all duration-500"
