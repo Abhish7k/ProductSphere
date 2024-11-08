@@ -2,39 +2,53 @@
 
 import React from "react";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 
 const Menu = () => {
+  const pathname = usePathname();
+
+  const isActive = (pathname: string, href: string) => {
+    return pathname === href || pathname.startsWith(href);
+  };
+
   return (
-    <div className="hidden lg:flex items-center gap-6 transition-all text-sm">
-      <Link
-        href="/products"
-        className="font-medium text-foreground/70 hover:text-foreground/90 transition-all"
-      >
-        Products
-      </Link>
-
-      <Link
-        href="/categories"
-        className="font-medium text-foreground/70 hover:text-foreground/90 transition-all"
-      >
-        Categories
-      </Link>
-
-      <Link
-        href="/"
-        className="font-medium text-foreground/70 hover:text-foreground/90 transition-all"
-      >
-        Pricing
-      </Link>
-
-      <Link
-        href="/"
-        className="font-medium text-foreground/70 hover:text-foreground/90 transition-all"
-      >
-        About
-      </Link>
+    <div className="hidden lg:flex items-center gap-6 transition-all s">
+      {NavLinks.map((link, idx) => (
+        <Link
+          key={idx}
+          href={link.href}
+          className={`font-medium hover:text-foreground/90 transition-all
+             ${
+               isActive(pathname, link.href)
+                 ? "text-foreground/95"
+                 : "text-foreground/70"
+             }
+            `}
+        >
+          {link.name}
+        </Link>
+      ))}
     </div>
   );
 };
+
+const NavLinks = [
+  {
+    name: "Products",
+    href: "/products",
+  },
+  {
+    name: "Categories",
+    href: "/categories",
+  },
+  {
+    name: "Pricing",
+    href: "/pricing",
+  },
+  {
+    name: "About",
+    href: "/about",
+  },
+];
 
 export default Menu;
