@@ -110,7 +110,7 @@ const ProductModalContent = ({
         />
 
         <div className="py-5 space-y-2">
-          <h1 className="text-3xl font-semibold capitalize">
+          <h1 className="text-3xl font-semibold capitalize -mb-5">
             {currentProduct.name}
           </h1>
 
@@ -123,23 +123,23 @@ const ProductModalContent = ({
               <a
                 href={currentProduct.website}
                 target="_blank"
-                className="border rounded-md flex justify-center items-center py-4 px-8 cursor-pointer hover:bg-foreground/5 transition-all duration-300"
+                className="border rounded-md flex justify-center items-center py-3 px-8 cursor-pointer hover:bg-neutral-50 transition-all duration-300"
               >
                 Visit
               </a>
 
               <button
-                className={`rounded-md flex justify-center items-center px-8 py-4 gap-x-3 cursor-pointer bg-gradient-to-r w-full
+                className={`rounded-md flex justify-center items-center px-8 py-3 gap-x-3 cursor-pointer bg-gradient-to-r w-full
                 ${
                   hasUpvoted
-                    ? "from-[#ff6154] to-[#ff4582] border-[#ff6154] text-white"
-                    : "text-black border hover:bg-red-100 transition-all duration-300"
+                    ? "border border-indigo-500 hover:bg-indigo-50 transition-all"
+                    : "text-black border hover:bg-indigo-50 transition-all duration-300"
                 }`}
                 onClick={handleUpvoteClick}
               >
                 <PiCaretUpFill
                   className={`text-xl ${
-                    hasUpvoted ? "text-white" : "text-black"
+                    hasUpvoted ? "text-indigo-500" : "text-black"
                   }`}
                 />
                 Upvote {totalUpvotes}

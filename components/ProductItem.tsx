@@ -100,11 +100,12 @@ const ProductItem: React.FC<ProductItemProps> = ({
 
   return (
     <div>
-      <div className="group relative py-3 px-4 w-full cursor-pointer rounded-md">
+      <div className="group relative py-3 px-4 w-full cursor-pointer rounded-md transition-all ">
         <div
-          className="absolute inset-0 bg-gradient-to-bl 
-        from-[#c9cef0] via-[#fefefe] to-white 
-        opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-md"
+          className="absolute inset-0 
+          bg-gradient-to-bl from-[#c9cef0] via-[#fefefe] to-white 
+          opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-md 
+          group-hover:transition-all"
         />
 
         <div className="relative flex items-center justify-between">
@@ -175,15 +176,12 @@ const ProductItem: React.FC<ProductItemProps> = ({
               className=""
             >
               {hasUpvoted ? (
-                <div
-                  className="border px-3 py-1 rounded-md flex flex-col items-center text-white font-medium
-                  bg-gradient-to-bl from-[#ff6154] to-[#ff4582] border-[#ff6154]"
-                >
+                <div className="border px-3 py-1 rounded-md flex flex-col items-center font-medium border-indigo-500 bg-white hover:bg-gray-50 transition-all">
                   <PiCaretUpFill className="text-xl -mb-1" />
                   {totalUpvotes}
                 </div>
               ) : (
-                <div className="border px-3 py-1 rounded flex flex-col items-center bg-white font-medium hover:bg-gray-50 transition-all duration-500">
+                <div className="border px-3 py-1 rounded flex flex-col items-center bg-white font-medium hover:bg-gray-50 transition-all">
                   <PiCaretUpFill className="text-xl -mb-1" />
                   <span className="text-sm">{totalUpvotes}</span>
                 </div>
