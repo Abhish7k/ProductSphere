@@ -5,7 +5,7 @@ import Link from "next/link";
 
 const Menu = () => {
   return (
-    <div className="hidden lg:flex items-center gap-8 transition-all">
+    <div className="hidden lg:flex items-center gap-8 transition-all text-sm">
       <Link
         href="/categories"
         className="font-medium text-foreground/70 hover:text-foreground/90 transition-all"

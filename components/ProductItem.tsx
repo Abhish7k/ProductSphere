@@ -101,7 +101,11 @@ const ProductItem: React.FC<ProductItemProps> = ({
   return (
     <div>
       <div className="group relative py-3 px-4 w-full cursor-pointer rounded-md">
-        <div className="absolute inset-0 bg-gradient-to-bl from-[#ffe6d3] via-[#fdfdfd] to-white opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-md" />
+        <div
+          className="absolute inset-0 bg-gradient-to-bl 
+        from-[#c9cef0] via-[#fefefe] to-white 
+        opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-md"
+        />
 
         <div className="relative flex items-center justify-between">
           <div

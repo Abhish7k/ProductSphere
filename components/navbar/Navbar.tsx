@@ -38,11 +38,11 @@ const Navbar: React.FC<NavbarProps> = ({
           <Image
             src="/logo.svg"
             alt="logo"
-            height={28}
-            width={28}
+            height={26}
+            width={26}
             className=""
           />
-          <h1 className="hidden min-[400px]:block text-2xl font-bold text-indigo-600 transition-all">
+          <h1 className="hidden min-[400px]:block text-[23px] font-bold text-indigo-600 transition-all">
             ProductSphere
           </h1>
         </Link>
