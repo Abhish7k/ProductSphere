@@ -28,7 +28,7 @@ const MyProducts = async () => {
 
           <Link href={"/new-product"}>
             <div
-              className="bg-[#ff6154] text-white p-4 
+              className="bg-indigo-200 text-neutral-800 p-4 
             rounded-md mt-4 w-52 h-40 flex items-center justify-center flex-col hover:scale-105 transition-all"
             >
               <PiPlus className="text-3xl mb-4" />

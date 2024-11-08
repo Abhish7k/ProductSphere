@@ -19,7 +19,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={font.className}>
-        <NextTopLoader color="#FF6154" showSpinner={false} />
+        <NextTopLoader showSpinner={false} />
         {children}
 
         <Toaster />
