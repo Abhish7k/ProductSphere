@@ -1,12 +1,13 @@
-import ActiveProducts from "@/components/ActiveProducts";
-import { getActiveProducts } from "@/lib/actions";
+import HeroSection from "@/components/landing-page/HeroSection";
 
 export default async function Home() {
-  const activeProducts = await getActiveProducts();
-
   return (
-    <main className="w-full md:w-4/5 xl:w-3/5 mx-auto py-10 px-5 transition-all">
-      <ActiveProducts activeProducts={activeProducts} />
+    <main
+      className="  
+      border 
+      "
+    >
+      <HeroSection />
     </main>
   );
 }
