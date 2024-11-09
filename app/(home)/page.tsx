@@ -4,7 +4,7 @@ export default async function Home() {
   return (
     <main
       className="  
-      
+        h-[200vh]
       "
     >
       <HeroSection />

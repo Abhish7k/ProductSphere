@@ -12,12 +12,12 @@ const Menu = () => {
   };
 
   return (
-    <div className="hidden lg:flex items-center gap-6 transition-all s">
+    <div className="hidden min-[900px]:flex items-center gap-6 transition-all">
       {NavLinks.map((link, idx) => (
         <Link
           key={idx}
           href={link.href}
-          className={`text-sm font-medium hover:text-foreground/90 transition-all
+          className={`font-medium hover:text-foreground/90 transition-all
              ${
                isActive(pathname, link.href)
                  ? "text-foreground/95"

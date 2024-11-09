@@ -35,7 +35,7 @@ const HeroSection = () => {
         </div>
 
         {/*  */}
-        <h1 className="text-3xl sm:text-5xl lg:text-6xl md:max-w-2xl py-2 md:py-0 lg:!leading-[3.75rem] font-medium tracking-tight transition-all">
+        <h1 className="text-2xl min-[400px]:text-3xl min-[500px]:text-4xl min-[620px]:text-5xl md:text-6xl md:max-w-2xl lg:!leading-[3.75rem] font-medium tracking-tight transition-all">
           Your ultimate platform to <br /> discover new products
         </h1>
 
