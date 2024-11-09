@@ -48,7 +48,7 @@ const ProductPage = async ({ params }: { params: ProductParams }) => {
           <a
             href={product.website}
             target="_blank"
-            className="px-3 py-1 sm:px-5 sm:py-2 border rounded flex justify-center items-center font-medium hover:border-indigo-500 transition-all duration-300"
+            className="px-3 py-1 sm:px-5 sm:py-2 border rounded flex justify-center items-center font-medium hover:border-indigo-500 transition-all duration-300 active:scale-90"
           >
             Visit
           </a>
@@ -67,7 +67,7 @@ const ProductPage = async ({ params }: { params: ProductParams }) => {
             href={`/category/${category.name.toLowerCase()}`}
             key={category.id}
             className="px-4 py-2 bg-gray-100 text-gray-600 rounded-md cursor-pointer
-            hover:bg-gray-200 transition-all duration-300"
+            hover:bg-gray-200 transition-all duration-300 active:scale-90"
           >
             <h2 className="text-xs text-center">{category.name}</h2>
           </Link>
@@ -105,10 +105,7 @@ const ProductPage = async ({ params }: { params: ProductParams }) => {
         </div>
       ) : (
         <div className="pt-4">
-          <h2 className="text-xl font-semibold">No comments yet</h2>
-          <p className="text-gray-500 pt-4">
-            Be the first to comment on this product
-          </p>
+          <h2 className="text-xl">No comments yet</h2>
         </div>
       )}
     </div>

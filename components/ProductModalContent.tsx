@@ -123,13 +123,13 @@ const ProductModalContent = ({
               <a
                 href={currentProduct.website}
                 target="_blank"
-                className="border rounded-md flex justify-center items-center py-3 px-8 cursor-pointer hover:bg-neutral-50 transition-all duration-300"
+                className="border rounded-md flex justify-center items-center py-3 px-8 cursor-pointer hover:bg-neutral-50 transition-all duration-300 active:scale-90"
               >
                 Visit
               </a>
 
               <button
-                className={`rounded-md flex justify-center items-center px-8 py-3 gap-x-3 cursor-pointer bg-gradient-to-r w-full
+                className={`rounded-md flex justify-center items-center px-8 py-3 gap-x-3 cursor-pointer bg-gradient-to-r w-full active:scale-90
                 ${
                   hasUpvoted
                     ? "border border-indigo-500 hover:bg-indigo-50 transition-all"
@@ -155,7 +155,7 @@ const ProductModalContent = ({
                 <Link
                   key={category}
                   href={`/category/${category.toLowerCase()}`}
-                  className="bg-foreground/5 text-gray-600 px-4 py-2 text-xs md:text-sm lg:text-base font-medium rounded-md cursor-pointer hover:bg-foreground/10 transition-all duration-300 overflow-hidden h-fit"
+                  className="bg-foreground/5 text-gray-600 px-4 py-2 text-xs md:text-sm lg:text-base font-medium rounded-md cursor-pointer hover:bg-foreground/10 transition-all duration-300 overflow-hidden h-fit active:scale-90"
                 >
                   {category}
                 </Link>
@@ -208,7 +208,7 @@ const ProductModalContent = ({
               <div className="flex justify-end mt-4">
                 <button
                   onClick={handleCommentSubmit}
-                  className="px-3 py-2 text-sm text-foreground/80 border hover:border-[#ff6154] rounded-md transition-all duration-300"
+                  className="px-3 py-2 text-sm text-foreground/80 border hover:border-[#ff6154] rounded-md transition-all duration-300 active:scale-90"
                 >
                   Comment
                 </button>

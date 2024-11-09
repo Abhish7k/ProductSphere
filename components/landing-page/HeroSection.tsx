@@ -47,9 +47,7 @@ const HeroSection = () => {
         <Link
           href="/products"
           className="group relative mt-10 px-6 py-1.5 flex transform items-center justify-center gap-2 overflow-hidden whitespace-nowrap rounded-md text-white bg-indigo-500 font-medium transition-all 
-          duration-300 
-          hover:ring-2 hover:ring-offset-1 hover:ring-indigo-500
-          "
+          duration-300 hover:ring-2 hover:ring-offset-1 hover:ring-indigo-500 active:scale-90"
         >
           <span className="group relative z-10 flex items-center gap-2 md:text-lg transition-all">
             Discover

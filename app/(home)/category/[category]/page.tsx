@@ -111,7 +111,7 @@ const CategoryPage = async ({ params }: { params: CategoryParams }) => {
                   <a
                     href={product.website}
                     target="_blank"
-                    className="w-fit px-5 py-1.5 rounded flex justify-center items-center font-medium cursor-pointer border bg-white hover:border-indigo-500 transition-all duration-300 text-sm md:text-base"
+                    className="w-fit px-5 py-1.5 rounded flex justify-center items-center font-medium cursor-pointer border bg-white hover:border-indigo-500 transition-all duration-300 text-sm md:text-base active:scale-90"
                   >
                     Visit
                   </a>
