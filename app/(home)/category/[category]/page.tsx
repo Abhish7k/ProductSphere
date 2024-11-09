@@ -58,7 +58,7 @@ const CategoryPage = async ({ params }: { params: CategoryParams }) => {
               href={`/product/${product.slug}`}
               className="flex gap-x-4 items-center p-2 rounded-md group relative py-3 px-4 w-full"
             >
-              <div className="absolute inset-0 bg-gradient-to-bl from-[#ffe6d3] via-[#fdfdfd] to-white opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-md" />
+              <div className="absolute inset-0 bg-gradient-to-bl from-[#c9cef0] via-[#fefefe] to-white opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-md group-hover:transition-all" />
 
               <div className="relative flex items-center justify-between w-full">
                 <div className="flex items-center gap-5 w-full">
@@ -111,11 +111,7 @@ const CategoryPage = async ({ params }: { params: CategoryParams }) => {
                   <a
                     href={product.website}
                     target="_blank"
-                    className="w-fit px-5 py-1.5 rounded flex justify-center items-center font-medium cursor-pointer
-                    bg-gradient-to-r from-[#ff6154] to-[#ff4582] border-[#ff6154] text-white
-                    hover:ring-2 hover:ring-offset-2 hover:ring-[#ff6154]
-                    transition-all duration-300
-                    text-sm md:text-base"
+                    className="w-fit px-5 py-1.5 rounded flex justify-center items-center font-medium cursor-pointer border bg-white hover:border-indigo-500 transition-all duration-300 text-sm md:text-base"
                   >
                     Visit
                   </a>

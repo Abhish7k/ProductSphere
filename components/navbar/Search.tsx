@@ -9,7 +9,7 @@ const Search = () => {
       <input
         type="text"
         placeholder="Search"
-        className="px-2 py-1 w-full text-sm rounded-full focus:outline-none"
+        className="px-2 py-1 w-full text-sm rounded-full focus:outline-none placeholder:text-sm"
       />
     </div>
   );

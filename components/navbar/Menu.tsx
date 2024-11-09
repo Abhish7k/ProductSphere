@@ -17,7 +17,7 @@ const Menu = () => {
         <Link
           key={idx}
           href={link.href}
-          className={`font-medium hover:text-foreground/90 transition-all
+          className={`text-sm font-medium hover:text-foreground/90 transition-all
              ${
                isActive(pathname, link.href)
                  ? "text-foreground/95"

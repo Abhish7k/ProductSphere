@@ -25,18 +25,20 @@ const ProductPage = async ({ params }: { params: ProductParams }) => {
   return (
     <div className="mx-auto lg:w-3/5 px-6 py-10 lg:px-0">
       <div className="flex items-center justify-between">
-        <div className="flex gap-x-4 items-start">
+        <div className="flex gap-x-4 items-center">
           <Image
             src={product.logo}
             alt="logo"
             width={1000}
             height={1000}
-            className="w-16 h-16 md:w-20 md:h-20 rounded-md cursor-pointer border shadow-md"
+            className="w-16 h-16 md:w-20 md:h-20 rounded-md cursor-pointer border shadow-md transition-all"
           />
 
-          <div>
-            <h2 className="font-semibold text-3xl">{product.name}</h2>
-            <p className="py-2 pl-0.5 font-medium text-foreground/80">
+          <div className="flex flex-col gap-2">
+            <h2 className="font-semibold text-xl sm:text-3xl transition-all">
+              {product.name}
+            </h2>
+            <p className="pl-0.5 text-sm sm:text-base font-medium text-foreground/80">
               {product.headline}
             </p>
           </div>
@@ -46,11 +48,9 @@ const ProductPage = async ({ params }: { params: ProductParams }) => {
           <a
             href={product.website}
             target="_blank"
-            className="px-5 py-2 border rounded flex justify-center items-center font-medium cursor-pointer
-            bg-gradient-to-r from-[#ff6154] to-[#ff4582] border-[#ff6154] text-white
-            hover:ring-2 hover:ring-offset-2 hover:ring-[#ff6154] transition-all duration-300"
+            className="px-3 py-1 sm:px-5 sm:py-2 border rounded flex justify-center items-center font-medium hover:border-indigo-500 transition-all duration-300"
           >
-            Visit Website
+            Visit
           </a>
         </div>
       </div>

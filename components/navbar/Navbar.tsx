@@ -31,9 +31,9 @@ const Navbar: React.FC<NavbarProps> = ({
   };
 
   return (
-    <div className="h-16 px-4 py-3 xl:px-[10%] border-b flex items-center justify-between transition-all">
+    <div className="h-16 px-4 py-3 2xl:px-[10%] border-b flex items-center justify-between transition-all">
       {/* logo */}
-      <div className="flex items-center ">
+      <div className="flex items-center">
         <Link href="/" className="flex items-center gap-2">
           <Image
             src="/logo.svg"
@@ -47,7 +47,7 @@ const Navbar: React.FC<NavbarProps> = ({
           </h1>
         </Link>
 
-        <div className="hidden md:block ml-10 mr-5">
+        <div className="hidden md:block ml-10 mr-5 w-60">
           <Search />
         </div>
 

@@ -22,12 +22,12 @@ const CategoriesPage = async () => {
             <Link
               href={`/category/${category.name.toLowerCase()}`}
               key={category.id}
-              className="space-x-10 p-5 rounded-xl shadow-md bg-orange-100 group 
+              className="space-x-10 p-5 rounded-xl shadow-md bg-indigo-100 group 
                   hover:ring-2 transition-transform duration-500 ease-in-out"
             >
               <div className="md:flex justify-between items-center">
                 <h2 className="md:text-2xl font-semibold">{category.name}</h2>
-                <BsArrowRight className="font-bold text-xl group-hover:translate-x-1 transition-all duration-300" />
+                <BsArrowRight className="font-bold text-xl group-hover:translate-x-1 transition-all duration-300 will-change-transform" />
               </div>
             </Link>
           ))}
