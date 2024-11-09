@@ -1,3 +1,5 @@
+import { FaqSection } from "@/components/landing-page/FaqSection";
+
 const AboutPage = () => {
   return (
     <div className="max-w-4xl mx-auto px-6 py-12">
@@ -48,6 +50,7 @@ const AboutPage = () => {
       </section>
 
       {/*  */}
+      <FaqSection />
     </div>
   );
 };
