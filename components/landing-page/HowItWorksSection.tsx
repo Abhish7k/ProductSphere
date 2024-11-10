@@ -1,4 +1,4 @@
-import { Plus, Eye, ThumbsUp, Edit, Rocket } from "lucide-react";
+import { RocketIcon, EditIcon, PlusIcon, LucideIcon } from "lucide-react";
 import { cn } from "@/lib/utils";
 
 export const HowItWorksSection = () => {
@@ -25,19 +25,19 @@ function MainSection() {
       title: "Add Your Product",
       description:
         "Create an account and submit your product with all the essential details.",
-      icon: <Plus />,
+      icon: PlusIcon,
     },
     {
       title: "Customize Your Listing",
       description:
         "Enhance your product page with descriptions, images, and links to showcase its features.",
-      icon: <Edit />,
+      icon: EditIcon,
     },
     {
       title: "Launch",
       description:
         "Share your product with the community and watch it gain traction.",
-      icon: <Rocket />,
+      icon: RocketIcon,
     },
   ];
   return (
@@ -52,18 +52,18 @@ function MainSection() {
 const Feature = ({
   title,
   description,
-  icon,
+  icon: Icon,
   index,
 }: {
   title: string;
   description: string;
-  icon: React.ReactNode;
+  icon: LucideIcon;
   index: number;
 }) => {
   return (
     <div
       className={cn(
-        "flex flex-col lg:border-r  py-10 relative group/feature dark:border-neutral-800",
+        "flex flex-col lg:border-r py-10 relative group/feature dark:border-neutral-800",
         (index === 0 || index === 4) && "lg:border-l dark:border-neutral-800",
         index < 4 && " dark:border-neutral-800"
       )}
@@ -74,18 +74,30 @@ const Feature = ({
       {index >= 4 && (
         <div className="opacity-0 group-hover/feature:opacity-100 transition duration-200 absolute inset-0 h-full w-full bg-gradient-to-b from-neutral-100 dark:from-neutral-800 to-transparent pointer-events-none" />
       )}
-      <div className="mb-4 relative z-10 px-10 text-neutral-600 dark:text-neutral-400">
-        {icon}
+
+      <div className="group-hover/feature:-translate-y-1 transform-gpu transition-all duration-300 flex flex-col w-full">
+        <div
+          className="mb-4 relative z-10 px-10 text-neutral-600 dark:text-neutral-400
+      "
+        >
+          <Icon
+            strokeWidth="1.5"
+            className=" w-8 h-8 group-hover/feature:scale-90 transition-all will-change-transform"
+          />
+        </div>
+
+        <div className="text-lg font-bold mb-2 relative z-10 px-10">
+          <div className="absolute left-0 inset-y-0 h-6 group-hover/feature:h-8 w-1 rounded-tr-full rounded-br-full bg-neutral-300 dark:bg-neutral-700 group-hover/feature:bg-blue-500 transition-all duration-200 origin-center" />
+
+          <span className=" transition duration-200 inline-block text-neutral-800 dark:text-neutral-100">
+            {title}
+          </span>
+        </div>
+
+        <p className="text-sm text-neutral-600 dark:text-neutral-300 max-w-xs relative z-10 px-10">
+          {description}
+        </p>
       </div>
-      <div className="text-lg font-bold mb-2 relative z-10 px-10">
-        <div className="absolute left-0 inset-y-0 h-6 group-hover/feature:h-8 w-1 rounded-tr-full rounded-br-full bg-neutral-300 dark:bg-neutral-700 group-hover/feature:bg-blue-500 transition-all duration-200 origin-center" />
-        <span className="group-hover/feature:translate-x-2 transition duration-200 inline-block text-neutral-800 dark:text-neutral-100">
-          {title}
-        </span>
-      </div>
-      <p className="text-sm text-neutral-600 dark:text-neutral-300 max-w-xs relative z-10 px-10">
-        {description}
-      </p>
     </div>
   );
 };
