@@ -3,7 +3,6 @@
 import Image from "next/image";
 import Link from "next/link";
 import React, { useState } from "react";
-import Search from "./Search";
 import Menu from "./Menu";
 import AuthButtons from "./AuthButtons";
 import MobileNav from "./MobileNav";
@@ -31,7 +30,7 @@ const Navbar: React.FC<NavbarProps> = ({
   };
 
   return (
-    <div className="h-16 px-4 py-3 xl:px-[10%] border-b flex items-center justify-between transition-all">
+    <div className="sticky top-0 z-50 h-16 px-4 py-3 xl:px-[10%] bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60 border-b flex items-center justify-between bg-white transition-all">
       {/* logo */}
       <div className="flex items-center gap-10">
         <Link href="/" className="flex items-center gap-2">
