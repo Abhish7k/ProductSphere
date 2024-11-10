@@ -28,7 +28,7 @@ const AuthContent = () => {
         onClick={() =>
           signIn("google", { redirect: false }, { prompt: "login" })
         }
-        className="border rounded-md py-2 mt-4 flex items-center gap-4 px-5 md:px-10 hover:bg-foreground/5 transition-all duration-300"
+        className="border rounded-md py-2 mt-4 flex items-center gap-4 px-5 md:px-10 hover:bg-foreground/5 transition-all duration-300 active:scale-90"
       >
         <FcGoogle className="text-xl" />
         Sign in with Google
@@ -38,7 +38,7 @@ const AuthContent = () => {
         onClick={() =>
           signIn("github", { redirect: false }, { prompt: "login" })
         }
-        className="border rounded-md py-2 mt-4 flex items-center gap-4 px-5 md:px-10 hover:bg-foreground/5 transition-all duration-300"
+        className="border rounded-md py-2 mt-4 flex items-center gap-4 px-5 md:px-10 hover:bg-foreground/5 transition-all duration-300 active:scale-90"
       >
         <FaGithub className="text-xl" />
         Sign in with Github

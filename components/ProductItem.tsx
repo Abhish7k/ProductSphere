@@ -34,12 +34,8 @@ const ProductItem: React.FC<ProductItemProps> = ({
   const [totalUpvotes, setTotalUpvotes] = useState(product.upvotes || 0);
 
   const handleProductItemClick = () => {
-    if (!authenticatedUser) {
-      setShowLoginModal(true);
-    } else {
-      setCurrentProduct(product);
-      setShowProductModal(true);
-    }
+    setCurrentProduct(product);
+    setShowProductModal(true);
   };
 
   const handleUpvoteClick = async (
@@ -155,7 +151,7 @@ const ProductItem: React.FC<ProductItemProps> = ({
                     <div className="flex gap-x-1 items-center">
                       <div className="mr-1">•</div>
                       <Link
-                        href={`/category/${category.toLowerCase()}`}
+                        href={`/category/${category}.toLowerCase()}`}
                         className="hover:underline"
                         onClick={handleCategoryClick}
                       >

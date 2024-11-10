@@ -16,6 +16,10 @@ import ShareModal from "./ui/modal/ShareProductModal";
 import ShareModalContent from "./ShareProductModalContent";
 import { commentOnProduct, deleteComment, upvoteProduct } from "@/lib/actions";
 import { Badge } from "./ui/badge";
+import { toast } from "sonner";
+import { FaCheck, FaExclamation } from "react-icons/fa";
+import Modal from "./ui/modal/modal";
+import AuthContent from "./navbar/AuthContent";
 
 interface ProductModalContentProps {
   currentProduct: any;
@@ -35,6 +39,7 @@ const ProductModalContent = ({
   setHasUpvoted,
 }: ProductModalContentProps) => {
   const [shareModalModalVisible, setShareModalVisible] = useState(false);
+  const [showLoginModal, setShowLoginModal] = useState(false);
 
   const [commentText, setCommentText] = useState("");
   const [comments, setComments] = useState(currentProduct.commentData || []);
@@ -44,12 +49,44 @@ const ProductModalContent = ({
   ) => {
     event.stopPropagation();
 
+    if (!authenticatedUser) {
+      toast(
+        <>
+          <div className="flex items-center gap-4 mx-auto w-full">
+            <FaExclamation className="text-red-500 text-xl" />
+
+            <div className="text-md font-semibold">
+              Please Sign in to upvote products.
+            </div>
+          </div>
+        </>,
+        {
+          position: "top-right",
+        }
+      );
+
+      setShowLoginModal(true);
+    }
+
     try {
       await upvoteProduct(currentProduct.id);
 
       setTotalUpvotes(hasUpvoted ? totalUpvotes - 1 : totalUpvotes + 1);
 
       setHasUpvoted(!hasUpvoted);
+
+      toast(
+        <>
+          <div className="flex items-center gap-4 mx-auto w-full">
+            <FaCheck className="text-green-500 text-xl" />
+
+            <div className="text-md font-semibold">Product upvoted.</div>
+          </div>
+        </>,
+        {
+          position: "top-right",
+        }
+      );
     } catch (error) {
       console.log("Error while upvoting product:", error);
     }
@@ -181,11 +218,17 @@ const ProductModalContent = ({
             <div className="border-t border-b py-2">
               <div className="w-full flex items-center gap-4">
                 <AvatarShadcn>
-                  <AvatarImage src={authenticatedUser.user.image} />
+                  {authenticatedUser ? (
+                    <>
+                      <AvatarImage src={authenticatedUser.user.image} />
 
-                  <AvatarFallback>
-                    <Avvvatars value={authenticatedUser.user.email} />
-                  </AvatarFallback>
+                      <AvatarFallback>
+                        <Avvvatars value={authenticatedUser.user.email} />
+                      </AvatarFallback>
+                    </>
+                  ) : (
+                    <Avvvatars style="shape" value={currentProduct.name} />
+                  )}
                 </AvatarShadcn>
 
                 <textarea
@@ -206,12 +249,21 @@ const ProductModalContent = ({
               </div>
 
               <div className="flex justify-end mt-4">
-                <button
-                  onClick={handleCommentSubmit}
-                  className="px-3 py-2 text-sm text-foreground/80 border hover:border-[#ff6154] rounded-md transition-all duration-300 active:scale-90"
-                >
-                  Comment
-                </button>
+                {authenticatedUser ? (
+                  <button
+                    onClick={handleCommentSubmit}
+                    className="px-3 py-2 text-sm text-foreground/80 border hover:border-[#ff6154] rounded-md transition-all duration-300 active:scale-90"
+                  >
+                    Comment
+                  </button>
+                ) : (
+                  <button
+                    onClick={() => setShowLoginModal(true)}
+                    className="px-3 py-2 text-sm text-foreground/80 border hover:border-[#ff6154] rounded-md transition-all duration-300 active:scale-90"
+                  >
+                    Sign in to comment
+                  </button>
+                )}
               </div>
             </div>
 
@@ -272,6 +324,10 @@ const ProductModalContent = ({
       >
         <ShareModalContent currentProduct={currentProduct} />
       </ShareModal>
+
+      <Modal visible={showLoginModal} setVisible={setShowLoginModal}>
+        <AuthContent />
+      </Modal>
     </div>
   );
 };
