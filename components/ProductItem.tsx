@@ -60,16 +60,16 @@ const ProductItem: React.FC<ProductItemProps> = ({
       );
 
       setShowLoginModal(true);
-    }
+    } else {
+      try {
+        await upvoteProduct(product.id);
 
-    try {
-      await upvoteProduct(product.id);
+        setHasUpvoted(!hasUpvoted);
 
-      setHasUpvoted(!hasUpvoted);
-
-      setTotalUpvotes(hasUpvoted ? totalUpvotes - 1 : totalUpvotes + 1);
-    } catch (error) {
-      console.error(error);
+        setTotalUpvotes(hasUpvoted ? totalUpvotes - 1 : totalUpvotes + 1);
+      } catch (error) {
+        console.error(error);
+      }
     }
   };
 
@@ -129,12 +129,14 @@ const ProductItem: React.FC<ProductItemProps> = ({
                   {product.headline}
                 </p>
 
-                <div
-                  onClick={handleArrowClick}
+                <Link
+                  href={`/product/${product.website}`}
+                  target="_blank"
+                  // onClick={handleArrowClick}
                   className="hidden md:flex cursor-pointer"
                 >
                   <CiGlobe className="hover:text-blue-500 transition-all duration-300" />
-                </div>
+                </Link>
               </div>
 
               <div className="hidden md:flex gap-x-2 items-center">

@@ -66,29 +66,31 @@ const ProductModalContent = ({
       );
 
       setShowLoginModal(true);
-    }
 
-    try {
-      await upvoteProduct(currentProduct.id);
+      console.log("hola");
+    } else {
+      try {
+        await upvoteProduct(currentProduct.id);
 
-      setTotalUpvotes(hasUpvoted ? totalUpvotes - 1 : totalUpvotes + 1);
+        setTotalUpvotes(hasUpvoted ? totalUpvotes - 1 : totalUpvotes + 1);
 
-      setHasUpvoted(!hasUpvoted);
+        setHasUpvoted(!hasUpvoted);
 
-      toast(
-        <>
-          <div className="flex items-center gap-4 mx-auto w-full">
-            <FaCheck className="text-green-500 text-xl" />
+        toast(
+          <>
+            <div className="flex items-center gap-4 mx-auto w-full">
+              <FaCheck className="text-green-500 text-xl" />
 
-            <div className="text-md font-semibold">Product upvoted.</div>
-          </div>
-        </>,
-        {
-          position: "top-right",
-        }
-      );
-    } catch (error) {
-      console.log("Error while upvoting product:", error);
+              <div className="text-md font-semibold">Product upvoted.</div>
+            </div>
+          </>,
+          {
+            position: "top-right",
+          }
+        );
+      } catch (error) {
+        console.log("Error while upvoting product:", error);
+      }
     }
   };
 
@@ -179,7 +181,8 @@ const ProductModalContent = ({
                     hasUpvoted ? "text-indigo-500" : "text-black"
                   }`}
                 />
-                Upvote {totalUpvotes}
+                {/* Upvote  */}
+                {totalUpvotes}
               </button>
             </div>
           </div>
