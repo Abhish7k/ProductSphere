@@ -96,7 +96,7 @@ const ProductItem: React.FC<ProductItemProps> = ({
 
   return (
     <div>
-      <div className="group relative py-3 px-4 w-full cursor-pointer rounded-md transition-all ">
+      <div className="group relative py-3 px-4 w-full cursor-pointer rounded-md active:scale-[99%]  transition-all ">
         <div
           className="absolute inset-0 
           bg-gradient-to-bl from-[#c9cef0] via-[#fefefe] to-white 

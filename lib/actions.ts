@@ -840,3 +840,19 @@ export const getProductsByUserId = async (userId: string) => {
     throw error;
   }
 };
+
+export const getAdminData = async () => {
+  const totalProducts = await db.product.count();
+  const totalUsers = await db.user.count();
+  const totalUpvotes = await db.upvote.count();
+  const totalComment = await db.comment.count();
+  const totalCategories = await db.category.count();
+
+  return {
+    totalProducts,
+    totalUsers,
+    totalUpvotes,
+    totalComment,
+    totalCategories,
+  };
+};
