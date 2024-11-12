@@ -8,7 +8,6 @@ import {
 import { Separator } from "@/components/ui/separator";
 import Image from "next/image";
 import Link from "next/link";
-import { PiBell, PiGear } from "react-icons/pi";
 import PendingProducts from "./PendingProducts";
 import { auth } from "@/auth";
 import {
