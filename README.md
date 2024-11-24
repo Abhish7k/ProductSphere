@@ -1,4 +1,4 @@
-# 📝 ProductSphere
+# 🌐 ProductSphere
 
 ![Preview](./public/readme-ss.png)
 
