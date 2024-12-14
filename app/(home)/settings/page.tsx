@@ -16,8 +16,6 @@ const SettingsPage = async () => {
 
   const subscriptionDetails = await getNextPaymentDetails();
 
-  console.log(isPremium);
-
   return (
     <div className="md:w-3/5 mx-auto py-10 px-6 md:px-0">
       <h1 className="text-3xl font-bold">Settings</h1>
@@ -47,17 +45,10 @@ const SettingsPage = async () => {
 
             <hr />
 
-            {isPremium ? (
+            {isPremium && (
               <>
                 <ManageBilling />
               </>
-            ) : (
-              <div
-                className="mt-10 text-blue-500 
-            cursor-pointer hover:underline"
-              >
-                Membership Info
-              </div>
             )}
           </div>
         ) : (

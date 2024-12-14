@@ -4,7 +4,11 @@ import MembershipModal from "@/components/ui/modal/UpgradeMembershipModal";
 import UpgradeMembershipModalContent from "@/components/UpgradeMembershipModalContent";
 import { useState } from "react";
 
-const UpgradePremiumButton = (authenticatedUser: any) => {
+interface Props {
+  authenticatedUser: any;
+}
+
+const UpgradePremiumButton: React.FC<Props> = ({ authenticatedUser }) => {
   const [isUpgradeModalVisible, setIsUpgradeModalVisible] = useState(false);
 
   const handleButtonClick = () => {
