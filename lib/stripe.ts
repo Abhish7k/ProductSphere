@@ -19,8 +19,8 @@ export const createCheckoutSession = async ({ email }: { email: string }) => {
         },
       ],
       mode: "subscription",
-      success_url: `http://localhost:3000/payment/success`,
-      cancel_url: `http://localhost:3000/payment/failed`,
+      success_url: `https://product-sphere.vercel.app/payment/success`,
+      cancel_url: `https://product-sphere.vercel.app/payment/failed`,
     });
 
     return session;
@@ -62,7 +62,7 @@ export const createCustomerLink = async () => {
 
     const portal = await stripe.billingPortal.sessions.create({
       customer: customer.id,
-      return_url: `http://localhost:3000/`,
+      return_url: `https://product-sphere.vercel.app/`,
     });
 
     return portal.url;

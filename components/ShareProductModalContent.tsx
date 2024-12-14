@@ -18,7 +18,7 @@ const ShareModalContent: React.FC<ShareModalContentProps> = ({
   const [copiedText, setCopiedText] = useState("");
   const [isCopied, setIsCopied] = useState(false);
 
-  const urlPrefix = "http://localhost:3000/products/";
+  const urlPrefix = "https://product-sphere.vercel.app/products/";
 
   useEffect(() => {
     if (currentProduct && currentProduct.slug) {
