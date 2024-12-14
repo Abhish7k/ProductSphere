@@ -91,60 +91,64 @@ const PendingProducts: React.FC<PendingProductsProps> = ({
 
   return (
     <div>
-      <div className="flex flex-col w-full my-5">
-        {formattedProducts?.map((product: any) => (
-          <div
-            key={product.id}
-            className="flex items-center rounded-md p-4 justify-between border"
-          >
-            <div className="flex gap-x-6 items-center">
-              <Image
-                src={product.logo}
-                alt="logo"
-                width={200}
-                height={200}
-                className="w-14 h-14 md:w-20 md:h-20 rounded-md cursor-pointer"
-              />
+      <div className="flex flex-col w-full my-5 gap-5">
+        {formattedProducts.length === 0 ? (
+          <div>No pending products</div>
+        ) : (
+          formattedProducts?.map((product: any) => (
+            <div
+              key={product.id}
+              className="flex items-center rounded-md p-4 justify-between border"
+            >
+              <div className="flex gap-x-6 items-center">
+                <Image
+                  src={product.logo}
+                  alt="logo"
+                  width={200}
+                  height={200}
+                  className="w-14 h-14 md:w-20 md:h-20 rounded-md cursor-pointer"
+                />
 
-              <div className="space-y-1">
-                <h1 className="md:text-2xl font-bold capitalize">
-                  {product.name}{" "}
-                </h1>
-                <p className="hidden md:flex text-gray-500 text-xs lg:text-sm pr-6">
-                  {product.description}
-                </p>
-                <div className="hidden md:flex text-gray-500 font-medium">
-                  Release Date : {product.releaseDate}
+                <div className="space-y-1">
+                  <h1 className="md:text-2xl font-bold capitalize">
+                    {product.name}{" "}
+                  </h1>
+                  <p className="hidden md:flex text-gray-500 text-xs lg:text-sm pr-6">
+                    {product.description}
+                  </p>
+                  <div className="hidden md:flex text-gray-500 font-medium">
+                    Release Date : {product.releaseDate}
+                  </div>
+                </div>
+              </div>
+
+              <div className="flex flex-col lg:flex-row items-center gap-2 md:gap-x-4 justify-center">
+                <button
+                  onClick={() => handleViewProductModal(product)}
+                  className="bg-[#ff6154] text-white px-6 py-2 text-center text-sm rounded-md hover:bg-[#ff4437] transition-all duration-300"
+                >
+                  View
+                </button>
+
+                <div className="flex items-center gap-2">
+                  <button
+                    onClick={() => handleActivateProductModal(product)}
+                    className="bg-emerald-100 text-white p-2 md:px-4 md:py-2 text-center text-sm rounded-md hover:bg-emerald-200 transition-all duration-300"
+                  >
+                    <PiCheckCircle className="text-xl text-emerald-500" />
+                  </button>
+
+                  <button
+                    onClick={() => handleRejectProductModal(product)}
+                    className="bg-red-100 text-white p-2 md:px-4 md:py-2 text-center text-sm rounded-md hover:bg-red-200 transition-all duration-300"
+                  >
+                    <PiXCircle className="text-xl text-red-500" />
+                  </button>
                 </div>
               </div>
             </div>
-
-            <div className="flex flex-col lg:flex-row items-center gap-2 md:gap-x-4 justify-center">
-              <button
-                onClick={() => handleViewProductModal(product)}
-                className="bg-[#ff6154] text-white px-6 py-2 text-center text-sm rounded-md hover:bg-[#ff4437] transition-all duration-300"
-              >
-                View
-              </button>
-
-              <div className="flex items-center gap-2">
-                <button
-                  onClick={() => handleActivateProductModal(product)}
-                  className="bg-emerald-100 text-white p-2 md:px-4 md:py-2 text-center text-sm rounded-md hover:bg-emerald-200 transition-all duration-300"
-                >
-                  <PiCheckCircle className="text-xl text-emerald-500" />
-                </button>
-
-                <button
-                  onClick={() => handleRejectProductModal(product)}
-                  className="bg-red-100 text-white p-2 md:px-4 md:py-2 text-center text-sm rounded-md hover:bg-red-200 transition-all duration-300"
-                >
-                  <PiXCircle className="text-xl text-red-500" />
-                </button>
-              </div>
-            </div>
-          </div>
-        ))}
+          ))
+        )}
 
         <ProductModal
           visible={viewProductModalVisible}
