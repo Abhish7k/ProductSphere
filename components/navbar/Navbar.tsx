@@ -14,8 +14,8 @@ import SubmitButton from "./SubmitButton";
 
 interface NavbarProps {
   authenticatedUser?: any;
-  notifications: any;
-  products: any;
+  notifications?: any;
+  products?: any;
 }
 
 const Navbar: React.FC<NavbarProps> = ({
