@@ -62,7 +62,7 @@ export const createCustomerLink = async () => {
 
     const portal = await stripe.billingPortal.sessions.create({
       customer: customer.id,
-      return_url: `https://product-sphere.vercel.app/`,
+      return_url: `https://product-sphere.vercel.app/settings`,
     });
 
     return portal.url;
