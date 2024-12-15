@@ -6,6 +6,7 @@ import {
   CarouselNext,
   CarouselPrevious,
 } from "./ui/carousel";
+import Autoplay from "embla-carousel-autoplay";
 
 const CarouselComponent = ({ productImages }: { productImages: string[] }) => {
   return (
@@ -13,6 +14,11 @@ const CarouselComponent = ({ productImages }: { productImages: string[] }) => {
       opts={{
         align: "start",
       }}
+      plugins={[
+        Autoplay({
+          delay: 3000,
+        }),
+      ]}
       className="w-full overflow-hidden md:overflow-visible"
     >
       <CarouselContent>
