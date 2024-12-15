@@ -2,6 +2,7 @@
 
 import { Stripe } from "stripe";
 import { auth } from "@/auth";
+import { db } from "./db";
 
 const stripe = new Stripe(process.env.STRIPE_SECRET_KEY as string);
 
@@ -21,6 +22,23 @@ export const createCheckoutSession = async ({ email }: { email: string }) => {
       mode: "subscription",
       success_url: `https://product-sphere.vercel.app/payment/success`,
       cancel_url: `https://product-sphere.vercel.app/payment/failed`,
+    });
+
+    const user = await db.user.findUnique({
+      where: {
+        email: email,
+      },
+    });
+
+    const userId = user?.id;
+
+    await db.user.update({
+      where: {
+        id: userId,
+      },
+      data: {
+        isPremium: true,
+      },
     });
 
     return session;
