@@ -52,6 +52,7 @@ const categories = [
   "Art",
   "Analytics",
   "SaaS",
+  "Artificial Intelligence",
 ];
 
 const NewProduct = () => {
@@ -94,13 +95,13 @@ const NewProduct = () => {
       return;
     }
 
-    if (step === 2 && selectedCategories.length < 3) {
+    if (step === 2 && selectedCategories.length < 1) {
       toast(
         <>
           <div className="flex items-center gap-4  mx-auto">
             <PiXCircleFill className="text-red-500 text-3xl" />
             <div className="text-md font-semibold">
-              Please select at least 3 categories for the product.
+              Please select at least 1 category for the product.
             </div>
           </div>
         </>,
@@ -430,8 +431,8 @@ const NewProduct = () => {
               🏷️ What category does your product belong to ?
             </h1>
             <p className="text-xl font-light mt-4 leading-8">
-              Choose at least 3 categories that best fits your product. This
-              will people discover your product
+              Choose at least 1 category that best fits your product. This will
+              people discover your product
             </p>
 
             <div className="mt-10">
