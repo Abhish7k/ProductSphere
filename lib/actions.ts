@@ -352,7 +352,11 @@ export const getActiveProducts = async () => {
       },
       include: {
         categories: true,
-        images: true,
+        images: {
+          orderBy: {
+            updatedAt: "desc",
+          },
+        },
         comments: {
           include: {
             user: true,
