@@ -153,7 +153,8 @@ const ProductItem: React.FC<ProductItemProps> = ({
                     <div className="flex gap-x-1 items-center">
                       <div className="mr-1">•</div>
                       <Link
-                        href={`/category/${category}.toLowerCase()}`}
+                        // href={`/category/${category}.toLowerCase()}`}
+                        href={`/category/${category}`}
                         className="hover:underline"
                         onClick={handleCategoryClick}
                       >

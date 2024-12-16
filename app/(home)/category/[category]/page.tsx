@@ -14,8 +14,16 @@ interface CategoryParams {
 }
 
 const CategoryPage = async ({ params }: { params: CategoryParams }) => {
-  const capitalizedCategory =
-    params.category.charAt(0).toUpperCase() + params.category.slice(1);
+  let capitalizedCategory = "";
+
+  if (params.category === "ai") {
+    console.log("hello");
+
+    capitalizedCategory = "AI";
+  } else {
+    capitalizedCategory =
+      params.category.charAt(0).toUpperCase() + params.category.slice(1);
+  }
 
   const products = await getProductsByCategoryName(capitalizedCategory);
 
