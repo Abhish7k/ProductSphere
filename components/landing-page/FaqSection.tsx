@@ -11,12 +11,12 @@ export function FaqSection() {
     <motion.div
       className="mt-24 mb-20"
       viewport={{ once: true }}
-      initial={{ opacity: 0, y: 20 }}
+      initial={{ opacity: 0, y: 10 }}
       whileInView={{ opacity: 1, y: 0 }}
-      transition={{ type: "easIn", duration: 0.5, delay: 0.6 }}
+      transition={{ duration: 0.5, delay: 0.6 }}
     >
       <div className="flex flex-col items-center justify-center w-full pt-12">
-        <h2 className="mt-6 font-semibold text-center text-3xl xl:text-4xl">
+        <h2 className="mt-6 font-semibold text-center text-3xl xl:text-5xl">
           Frequently Asked Questions
         </h2>
         <p className="max-w-lg mt-4 text-center text-neutral-500">

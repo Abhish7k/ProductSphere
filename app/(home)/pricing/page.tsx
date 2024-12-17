@@ -1,4 +1,5 @@
-import { buttonVariants } from "@/components/ui/button";
+"use client";
+
 import {
   Card,
   CardContent,
@@ -9,14 +10,25 @@ import {
 } from "@/components/ui/card";
 import { cn } from "@/lib/utils";
 import { CheckCircleIcon } from "lucide-react";
+import { motion } from "framer-motion";
 
 const PricingPage = () => {
   return (
-    <div className="flex flex-col items-center pb-24">
+    <motion.div
+      className="flex flex-col items-center pb-24"
+      initial={{ opacity: 0, y: 10 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{
+        duration: 0.5,
+        delay: 0.1,
+        ease: "easeInOut",
+      }}
+    >
       <div className="flex flex-col items-center justify-center mt-16 mb-12 mx-10">
         <h1 className="text-5xl font-semibold text-center mt-5 !leading-tight md:tracking-tight">
           Fair pricing, unfair advantage.
         </h1>
+
         <p className="text-base md:text-lg mt-6 text-center text-muted-foreground">
           Get started and take your product to the next level.
         </p>
@@ -82,7 +94,7 @@ const PricingPage = () => {
           </Card>
         ))}
       </div>
-    </div>
+    </motion.div>
   );
 };
 

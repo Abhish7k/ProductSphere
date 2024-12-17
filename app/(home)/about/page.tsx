@@ -7,17 +7,18 @@ const AboutPage = () => {
   return (
     <div className="max-w-4xl mx-auto px-6 my-10">
       <motion.div
-        className="flex flex-col gap-20 justify-center min-h-[80vh]"
-        initial={{ opacity: 0, y: 20 }}
+        className="flex flex-col gap-20 mt-20 min-h-[80vh]"
+        initial={{ opacity: 0, y: 10 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{
-          duration: 0.8,
-          delay: 0.4,
+          duration: 0.5,
+          delay: 0.1,
+          ease: "easeInOut",
         }}
       >
         <div className="text-center">
-          <h1 className="text-4xl font-semibold mb-4">About Us</h1>
-          <p className="text-lg text-gray-600">
+          <h1 className="text-5xl font-semibold mb-4">About Us</h1>
+          <p className="text-lg text-gray-600 mx-auto max-w-2xl">
             We’re on a mission to help creators and innovators bring their
             products to life by connecting them with an engaged, supportive
             community.
@@ -25,7 +26,7 @@ const AboutPage = () => {
         </div>
 
         {/*  */}
-        <section className="">
+        <section className="mt-10">
           <h2 className="text-2xl font-semibold mb-4">Our Mission</h2>
           <p className="text-gray-600">
             Our platform is designed for creators, makers, and innovators who
