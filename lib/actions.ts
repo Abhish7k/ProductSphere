@@ -696,7 +696,11 @@ export const getProductBySlug = async (slug: string) => {
         slug,
       },
       include: {
-        images: true,
+        images: {
+          orderBy: {
+            updatedAt: "desc",
+          },
+        },
         categories: true,
         comments: {
           include: {

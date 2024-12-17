@@ -79,7 +79,7 @@ const DeleteProduct = ({ productId }: { productId: string }) => {
         visible={deleteProductModalVisible}
         setVisible={setDeleteProductModalVisible}
       >
-        <div>
+        <div className="max-w-lg">
           <PiStorefront className="text-red-500 mb-10 text-5xl bg-red-100 p-1 rounded-md" />
           <h1 className="text-xl font-semibold mb-10">Delete Product</h1>
 
