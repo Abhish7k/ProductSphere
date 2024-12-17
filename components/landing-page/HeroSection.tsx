@@ -1,13 +1,16 @@
+"use client";
+
 import { ChevronRight } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 import { GoArrowRight } from "react-icons/go";
 import AnimatedGradientText from "../ui/animated-gradient-text";
 import { cn } from "@/lib/utils";
+import { motion } from "framer-motion";
 
 const HeroSection = () => {
   return (
-    <div
+    <motion.div
       className="
       min-h-[90vh]
       px-6 xl:px-[15%]
@@ -15,7 +18,15 @@ const HeroSection = () => {
       transition-all
       "
     >
-      <div className="pt-24  flex flex-col items-center w-full text-center">
+      <motion.div
+        className="pt-24  flex flex-col items-center w-full text-center"
+        initial={{ opacity: 0, y: 10 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{
+          duration: 0.5,
+          delay: 0.1,
+        }}
+      >
         {/*  */}
         <div className="z-10 mb-5 md:mb-10 flex items-center justify-center">
           <AnimatedGradientText>
@@ -59,11 +70,9 @@ const HeroSection = () => {
 
           <div className="ease-&lsqb;cubic-bezier(0.19,1,0.22,1)&rsqb; absolute -left-[75px] -top-[50px] -z-10 h-[155px] w-8 rotate-[35deg] bg-white opacity-20 transition-all duration-500 group-hover:left-[120%]" />
         </Link>
-      </div>
+      </motion.div>
 
       <div className="relative mt-5">
-        {/* <div className="absolute top-20 md:top-[12%] left-1/2 gradient w-3/4 -translate-x-1/2 h-1/4 md:h-1/3 inset-0 blur-[5rem]"></div> */}
-
         <div className="absolute top-1/2 left-1/2 -z-10 gradient w-full -translate-x-1/2 h-3/4 -translate-y-1/2 inset-0 blur-[10rem]"></div>
 
         <div
@@ -82,7 +91,7 @@ const HeroSection = () => {
           </div>
         </div>
       </div>
-    </div>
+    </motion.div>
   );
 };
 
