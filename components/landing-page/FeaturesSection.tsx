@@ -12,12 +12,11 @@ import {
   BarChart,
 } from "lucide-react";
 
-export const FeaturesSection = () => {
+const FeaturesSection = () => {
   return (
     <motion.div
       className="flex flex-col items-center justify-center relative mx-auto w-full max-w-screen-xl 
-      min-h-[100vh]
-      "
+      mb-20"
       viewport={{ once: true, amount: 0.2 }}
       initial={{ opacity: 0, y: 20 }}
       whileInView={{ opacity: 1, y: 0 }}
@@ -56,6 +55,8 @@ export const FeaturesSection = () => {
     </motion.div>
   );
 };
+
+export default FeaturesSection;
 
 function FeaturesGrid() {
   return (

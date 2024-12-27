@@ -11,25 +11,30 @@ import {
 import { cn } from "@/lib/utils";
 import { CheckCircleIcon } from "lucide-react";
 import { motion } from "framer-motion";
+import { useState } from "react";
 
-const PricingPage = () => {
+const PricingSection = () => {
   return (
     <motion.div
-      className="flex flex-col items-center pb-24"
-      initial={{ opacity: 0, y: 10 }}
-      animate={{ opacity: 1, y: 0 }}
+      className="flex flex-col items-center pb-40"
+      viewport={{ once: false, amount: 0.2 }}
+      initial={{ opacity: 0, y: 20 }}
+      whileInView={{ opacity: 1, y: 0 }}
       transition={{
-        duration: 0.5,
-        delay: 0.1,
         ease: "easeInOut",
+        duration: 0.4,
+        delay: 0.6,
+        type: "spring",
+        stiffness: 260,
+        damping: 20,
       }}
     >
       <div className="flex flex-col items-center justify-center mt-16 mb-12 mx-10">
-        <h1 className="text-5xl font-semibold text-center mt-5 !leading-tight md:tracking-tight">
+        <h1 className="text-5xl font-medium text-center mt-5 !leading-tight md:tracking-tight">
           Fair pricing, unfair advantage.
         </h1>
 
-        <p className="text-base md:text-lg mt-6 text-center text-muted-foreground">
+        <p className="text-base md:text-lg mt-2 text-center text-muted-foreground">
           Get started and take your product to the next level.
         </p>
       </div>
@@ -123,4 +128,4 @@ const Plans = [
   },
 ];
 
-export default PricingPage;
+export default PricingSection;

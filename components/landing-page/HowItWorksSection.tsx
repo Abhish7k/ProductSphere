@@ -4,7 +4,7 @@ import { RocketIcon, EditIcon, PlusIcon, LucideIcon } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { motion } from "framer-motion";
 
-export const HowItWorksSection = () => {
+const HowItWorksSection = () => {
   return (
     <motion.div
       className="flex flex-col items-center justify-center px-10 xl:px-[15%] my-40"
@@ -64,6 +64,8 @@ function MainSection() {
     </div>
   );
 }
+
+export default HowItWorksSection;
 
 const Feature = ({
   title,
