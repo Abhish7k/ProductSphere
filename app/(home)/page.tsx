@@ -1,3 +1,4 @@
+import { FeaturesSection } from "@/components/landing-page/FeaturesSection";
 import HeroSection from "@/components/landing-page/HeroSection";
 import { HowItWorksSection } from "@/components/landing-page/HowItWorksSection";
 
@@ -7,6 +8,8 @@ export default async function Home() {
       <HeroSection />
 
       <HowItWorksSection />
+
+      <FeaturesSection />
     </main>
   );
 }
