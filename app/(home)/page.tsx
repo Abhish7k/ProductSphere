@@ -2,6 +2,7 @@ import FeaturesSection from "@/components/landing-page/FeaturesSection";
 import HeroSection from "@/components/landing-page/HeroSection";
 import HowItWorksSection from "@/components/landing-page/HowItWorksSection";
 import PricingSection from "@/components/landing-page/PricingSection";
+import TestimonialSection from "@/components/landing-page/TestimonialSection";
 
 export default async function Home() {
   return (
@@ -13,6 +14,8 @@ export default async function Home() {
       <FeaturesSection />
 
       <PricingSection />
+
+      <TestimonialSection />
     </main>
   );
 }

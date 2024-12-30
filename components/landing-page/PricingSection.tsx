@@ -11,13 +11,12 @@ import {
 import { cn } from "@/lib/utils";
 import { CheckCircleIcon } from "lucide-react";
 import { motion } from "framer-motion";
-import { useState } from "react";
 
 const PricingSection = () => {
   return (
     <motion.div
       className="flex flex-col items-center pb-40"
-      viewport={{ once: false, amount: 0.2 }}
+      viewport={{ once: true, amount: 0.2 }}
       initial={{ opacity: 0, y: 20 }}
       whileInView={{ opacity: 1, y: 0 }}
       transition={{
