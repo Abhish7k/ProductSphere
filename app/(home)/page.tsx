@@ -1,3 +1,4 @@
+import CtaSection from "@/components/landing-page/CtaSection";
 import FeaturesSection from "@/components/landing-page/FeaturesSection";
 import HeroSection from "@/components/landing-page/HeroSection";
 import HowItWorksSection from "@/components/landing-page/HowItWorksSection";
@@ -16,6 +17,8 @@ export default async function Home() {
       <PricingSection />
 
       <TestimonialSection />
+
+      <CtaSection />
     </main>
   );
 }
