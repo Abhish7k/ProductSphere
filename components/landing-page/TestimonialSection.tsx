@@ -8,7 +8,7 @@ import React from "react";
 const TestimonialSection = () => {
   return (
     <motion.div
-      className="flex flex-col items-center justify-center mb-40 px-10 xl:px-[14%]"
+      className="flex flex-col items-center justify-center mb-40 px-10 xl:px-[14%] min-h-[70vh]"
       viewport={{ once: true, amount: 0.2 }}
       initial={{ opacity: 0, y: 20 }}
       whileInView={{ opacity: 1, y: 0 }}
@@ -21,12 +21,12 @@ const TestimonialSection = () => {
         damping: 20,
       }}
     >
-      <div className="max-w-md mx-auto text-center">
-        <h2 className="text-3xl lg:text-4xl font-semibold mt-6">
+      <div className="mx-auto text-center">
+        <h2 className="text-3xl sm:text-4xl md:text-5xl font-medium mt-6 transition-all">
           What people are saying
         </h2>
 
-        <p className="text-muted-foreground mt-4">
+        <p className="text-muted-foreground mt-4 max-w-md mx-auto">
           Discover how ProductSphere helps creators and innovators shine.
           Here&apos;s what real users are saying about us.
         </p>
