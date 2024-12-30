@@ -1,5 +1,6 @@
 import CtaSection from "@/components/landing-page/CtaSection";
 import FeaturesSection from "@/components/landing-page/FeaturesSection";
+import FooterSection from "@/components/landing-page/FooterSection";
 import HeroSection from "@/components/landing-page/HeroSection";
 import HowItWorksSection from "@/components/landing-page/HowItWorksSection";
 import PricingSection from "@/components/landing-page/PricingSection";
@@ -19,6 +20,8 @@ export default async function Home() {
       <TestimonialSection />
 
       <CtaSection />
+
+      <FooterSection />
     </main>
   );
 }
