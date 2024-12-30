@@ -38,7 +38,7 @@ const PricingSection = () => {
         </p>
       </div>
 
-      <div className="flex flex-col md:flex-row gap-10 transition-all">
+      <div className="flex flex-col min-[840px]:flex-row gap-10 transition-all px-10">
         {Plans.map((plan) => (
           <Card
             key={plan.name}
@@ -65,6 +65,7 @@ const PricingSection = () => {
               </CardTitle>
 
               <CardDescription>{plan.description}</CardDescription>
+
               <h5 className="text-3xl font-semibold">
                 ${plan.price}
                 <span className="text-base text-muted-foreground font-normal">
@@ -77,7 +78,9 @@ const PricingSection = () => {
               {plan.features.map((feature, index) => (
                 <div key={index} className="flex items-center gap-2">
                   <CheckCircleIcon className="text-purple-500 w-4 h-4" />
-                  <p className="">{feature}</p>
+                  <p className="text-sm sm:text-base transition-all">
+                    {feature}
+                  </p>
                 </div>
               ))}
             </CardContent>

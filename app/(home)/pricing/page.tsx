@@ -25,7 +25,7 @@ const PricingPage = () => {
       }}
     >
       <div className="flex flex-col items-center justify-center mt-16 mb-12 mx-10">
-        <h1 className="text-5xl font-semibold text-center mt-5 !leading-tight md:tracking-tight">
+        <h1 className="text-4xl sm:text-5xl font-semibold text-center mt-5 !leading-tight md:tracking-tight transition-all">
           Fair pricing, unfair advantage.
         </h1>
 
@@ -34,7 +34,7 @@ const PricingPage = () => {
         </p>
       </div>
 
-      <div className="flex flex-col md:flex-row gap-10">
+      <div className="flex flex-col min-[840px]:flex-row gap-10 transition-all px-10">
         {Plans.map((plan) => (
           <Card
             key={plan.name}
@@ -73,7 +73,9 @@ const PricingPage = () => {
               {plan.features.map((feature, index) => (
                 <div key={index} className="flex items-center gap-2">
                   <CheckCircleIcon className="text-purple-500 w-4 h-4" />
-                  <p className="">{feature}</p>
+                  <p className="text-sm sm:text-base transition-all">
+                    {feature}
+                  </p>
                 </div>
               ))}
             </CardContent>

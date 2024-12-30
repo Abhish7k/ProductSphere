@@ -1,16 +1,13 @@
 "use client";
 
 import React from "react";
-import { Button } from "../ui/button";
-import Link from "next/link";
-import { ArrowRight } from "lucide-react";
 import { motion } from "framer-motion";
 import { GoArrowRight } from "react-icons/go";
 
 const CtaSection = () => {
   return (
     <motion.div
-      className="flex flex-col items-center justify-center mb-40 mx-5 md:mx-[10%] lg:mx-[12%] 2xl:mx-[20%]"
+      className="flex flex-col items-center justify-center mb-40 max-w-md sm:max-w-xl md:max-w-3xl lg:max-w-4xl xl:max-w-5xl mx-auto"
       viewport={{ once: true, amount: 0.2 }}
       initial={{ opacity: 0, y: 20 }}
       whileInView={{ opacity: 1, y: 0 }}
@@ -26,8 +23,7 @@ const CtaSection = () => {
       <div
         className="flex flex-col items-center justify-center relative text-center
       border rounded-2xl w-full py-20 bg-blue-900 shadow 
-      [background-image:radial-gradient(88%_100%_at_top,rgba(255,255,255,0.5),rgba(255,255,255,0))] 
-      "
+      [background-image:radial-gradient(88%_100%_at_top,rgba(255,255,255,0.5),rgba(255,255,255,0))] "
       >
         <h2 className="text-white text-3xl min-[450px]:text-4xl sm:text-5xl font-semibold transition-all">
           From Idea to Launch <br /> Faster Than Ever
