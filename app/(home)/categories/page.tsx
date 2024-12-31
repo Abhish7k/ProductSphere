@@ -8,7 +8,7 @@ const CategoriesPage = async () => {
 
   return (
     <AnimateContainer>
-      <div className="pt-6 md:py-10 mx-auto px-6 md:px-0 xl:w-3/5 w-4/5 ">
+      <div className="pt-6 md:py-10 mx-auto px-6 md:px-0 xl:w-3/5 w-4/5 max-w-screen-xl">
         <div className="bg-gray-100 rounded-md w-full p-10 ">
           <h1 className="text-4xl font-semibold">Categories</h1>
 

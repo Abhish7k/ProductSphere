@@ -47,7 +47,7 @@ const AdminPage = async () => {
   const data = await getAdminData();
 
   return (
-    <div className="px-8 md:px-20 xl:px-[10%] 2xl:px-[12%] transition-all">
+    <div className="px-8 md:px-20 max-w-screen-2xl mx-auto transition-all">
       <div className="flex justify-between items-center">
         <div className="flex gap-x-6 items-center py-10">
           <Link href="/">

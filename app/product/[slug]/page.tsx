@@ -25,7 +25,7 @@ const ProductPage = async ({ params }: { params: ProductParams }) => {
 
   return (
     <AnimateContainer>
-      <div className="mx-auto lg:w-3/5 px-6 py-10 lg:px-0">
+      <div className="mx-auto lg:w-3/5 px-6 py-10 lg:px-0 max-w-screen-xl">
         <div className="flex items-center justify-between">
           <div className="flex gap-x-4 items-center">
             <Image

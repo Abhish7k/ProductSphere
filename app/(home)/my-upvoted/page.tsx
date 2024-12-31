@@ -16,7 +16,7 @@ const MyUpvotedProductsPage = async () => {
 
   return (
     <AnimateContainer>
-      <div className="mx-auto lg:w-4/5 xl:w-3/5 pt-10 px-6">
+      <div className="mx-auto lg:w-4/5 xl:w-3/5 pt-10 px-6 max-w-screen-xl">
         {products.length === 0 ? (
           <div>
             <h1 className="text-3xl font-bold">
