@@ -8,7 +8,7 @@ import React from "react";
 const TestimonialSection = () => {
   return (
     <motion.div
-      className="flex flex-col items-center justify-center mb-40 px-10 max-w-6xl mx-auto min-h-[70vh]"
+      className="flex flex-col items-center justify-center my-52 px-10 max-w-6xl mx-auto"
       viewport={{ once: true, amount: 0.2 }}
       initial={{ opacity: 0, y: 20 }}
       whileInView={{ opacity: 1, y: 0 }}

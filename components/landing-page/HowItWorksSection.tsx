@@ -7,7 +7,7 @@ import { motion } from "framer-motion";
 const HowItWorksSection = () => {
   return (
     <motion.div
-      className="flex flex-col items-center justify-center px-10 xl:px-[15%] my-40"
+      className="flex flex-col items-center justify-center px-10 xl:px-[15%] mt-60 mb-40"
       viewport={{ once: true }}
       initial={{ opacity: 0, y: 20 }}
       whileInView={{ opacity: 1, y: 0 }}

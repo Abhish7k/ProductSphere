@@ -16,7 +16,7 @@ const FeaturesSection = () => {
   return (
     <motion.div
       className="flex flex-col items-center justify-center relative mx-auto w-full max-w-screen-xl 
-      mb-20"
+      my-40"
       viewport={{ once: true, amount: 0.2 }}
       initial={{ opacity: 0, y: 20 }}
       whileInView={{ opacity: 1, y: 0 }}

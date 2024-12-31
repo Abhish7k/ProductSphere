@@ -36,9 +36,12 @@ const MobileNav = () => {
           </SheetHeader>
 
           <div className="mt-10 flex flex-col gap-5">
-            <div className="mb-5">
-              <Search />
-            </div>
+            <Link
+              href="/products"
+              className="text-xl font-medium text-foreground/80 hover:text-indigo-500 cursor-pointer transition-all"
+            >
+              Products
+            </Link>
 
             <Link
               href="/categories"
@@ -48,14 +51,14 @@ const MobileNav = () => {
             </Link>
 
             <Link
-              href="/"
+              href="/pricing"
               className="text-xl font-medium text-foreground/80 hover:text-indigo-500 cursor-pointer transition-all"
             >
               <h1 className="cursor-pointer">Pricing</h1>
             </Link>
 
             <Link
-              href="/"
+              href="/about"
               className="text-xl font-medium text-foreground/80 hover:text-indigo-500 cursor-pointer transition-all"
             >
               About
