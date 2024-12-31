@@ -38,7 +38,7 @@ export const CategoryPageProductItem: React.FC<Props> = ({ product }) => {
 
               <p className="hidden md:flex text-xs">-</p>
 
-              <p className="text-foreground/70 text-sm md:text-base pr-2 font-medium">
+              <p className="text-foreground/70 text-sm xl:text-base pr-2 font-medium">
                 {product.headline}
               </p>
             </div>

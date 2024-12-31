@@ -371,8 +371,8 @@ const NewProduct = () => {
   }, [step]);
 
   return (
-    <div className="flex flex-col items-center justify-center py-8 md:py-20">
-      <div className="px-8 md:w-3/5 md:mx-auto overflow-hidden">
+    <div className="flex flex-col items-center justify-center py-8 md:py-20 max-w-screen-2xl mx-auto">
+      <div className="px-8 md:w-4/5 md:mx-auto overflow-hidden">
         {step === 1 && (
           <motion.div
             initial={{ opacity: 0, x: "100%" }} // Slide in from the right

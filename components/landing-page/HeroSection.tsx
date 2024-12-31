@@ -10,14 +10,7 @@ import { motion } from "framer-motion";
 
 const HeroSection = () => {
   return (
-    <motion.div
-      className="
-      min-h-[90vh]
-      px-6 xl:px-[15%]
-      flex flex-col items-center justify-start
-      transition-all
-      "
-    >
+    <motion.div className="px-6 xl:px-[15%] flex flex-col items-center justify-start transition-all">
       <motion.div
         className="pt-24  flex flex-col items-center w-full text-center"
         initial={{ opacity: 0, y: 10 }}
@@ -27,7 +20,7 @@ const HeroSection = () => {
           delay: 0.1,
         }}
       >
-        {/*  */}
+        {/* badge */}
         <div className="z-10 mb-5 md:mb-10 flex items-center justify-center">
           <AnimatedGradientText>
             🎉

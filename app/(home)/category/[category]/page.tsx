@@ -28,7 +28,7 @@ const CategoryPage = async ({ params }: { params: CategoryParams }) => {
 
   return (
     <AnimateContainer>
-      <div className="pt-10 px-6 md:px-0 md:w-4/5 lg:w-3/5 mx-auto transition-all">
+      <div className="pt-10 px-6 md:px-0 md:w-4/5 xl:w-3/5 mx-auto max-w-screen-xl transition-all">
         <Breadcrumb>
           <BreadcrumbList>
             <BreadcrumbItem>

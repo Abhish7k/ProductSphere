@@ -1,11 +1,27 @@
+"use client";
+
 import { RocketIcon, EditIcon, PlusIcon, LucideIcon } from "lucide-react";
 import { cn } from "@/lib/utils";
+import { motion } from "framer-motion";
 
-export const HowItWorksSection = () => {
+const HowItWorksSection = () => {
   return (
-    <div className="flex flex-col items-center justify-center px-10 xl:px-[15%] my-40">
+    <motion.div
+      className="flex flex-col items-center justify-center px-10 xl:px-[15%] mt-60 mb-40"
+      viewport={{ once: true }}
+      initial={{ opacity: 0, y: 20 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      transition={{
+        ease: "easeInOut",
+        duration: 0.4,
+        delay: 0.6,
+        type: "spring",
+        stiffness: 260,
+        damping: 20,
+      }}
+    >
       <div className="text-center">
-        <h2 className="text-3xl sm:text-4xl md:text-5xl font-medium transition-all">
+        <h2 className="text-3xl min-[470px]:text-4xl sm:text-4xl md:text-5xl font-medium transition-all">
           Three steps to launch <br /> your dream product
         </h2>
 
@@ -15,7 +31,7 @@ export const HowItWorksSection = () => {
       </div>
 
       <MainSection />
-    </div>
+    </motion.div>
   );
 };
 
@@ -48,6 +64,8 @@ function MainSection() {
     </div>
   );
 }
+
+export default HowItWorksSection;
 
 const Feature = ({
   title,

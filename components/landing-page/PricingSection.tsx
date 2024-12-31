@@ -12,24 +12,28 @@ import { cn } from "@/lib/utils";
 import { CheckCircleIcon } from "lucide-react";
 import { motion } from "framer-motion";
 
-const PricingPage = () => {
+const PricingSection = () => {
   return (
     <motion.div
-      className="flex flex-col items-center pb-24"
-      initial={{ opacity: 0, y: 10 }}
-      animate={{ opacity: 1, y: 0 }}
+      className="flex flex-col items-center my-40"
+      viewport={{ once: true, amount: 0.2 }}
+      initial={{ opacity: 0, y: 20 }}
+      whileInView={{ opacity: 1, y: 0 }}
       transition={{
-        duration: 0.5,
-        delay: 0.1,
         ease: "easeInOut",
+        duration: 0.4,
+        delay: 0.6,
+        type: "spring",
+        stiffness: 260,
+        damping: 20,
       }}
     >
-      <div className="flex flex-col items-center justify-center mt-16 mb-12 mx-10">
-        <h1 className="text-4xl sm:text-5xl font-semibold text-center mt-5 !leading-tight md:tracking-tight transition-all">
+      <div className="flex flex-col items-center justify-center mb-12 mx-10">
+        <h1 className="text-4xl md:text-5xl font-medium text-center !leading-tight md:tracking-tight transition-all">
           Fair pricing, unfair advantage.
         </h1>
 
-        <p className="text-base md:text-lg mt-6 text-center text-muted-foreground">
+        <p className="text-base md:text-lg mt-2 text-center text-muted-foreground transition-all">
           Get started and take your product to the next level.
         </p>
       </div>
@@ -61,6 +65,7 @@ const PricingPage = () => {
               </CardTitle>
 
               <CardDescription>{plan.description}</CardDescription>
+
               <h5 className="text-3xl font-semibold">
                 ${plan.price}
                 <span className="text-base text-muted-foreground font-normal">
@@ -125,4 +130,4 @@ const Plans = [
   },
 ];
 
-export default PricingPage;
+export default PricingSection;

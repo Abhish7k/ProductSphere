@@ -20,7 +20,7 @@ const ProductIdPage = async ({ params }: { params: IParams }) => {
   if (!product) {
     return (
       <AnimateContainer>
-        <div className="md:w-4/5 mx-auto px-6 md:px-0 py-10 transition-all">
+        <div className="md:w-4/5 mx-auto px-6 md:px-0 py-10 max-w-screen-xl transition-all">
           <Link
             href="/my-products"
             className="flex items-center gap-1 mb-5 group w-fit font-medium text-foreground/70 hover:text-foreground/90 transition-all"
@@ -37,7 +37,7 @@ const ProductIdPage = async ({ params }: { params: IParams }) => {
 
   return (
     <AnimateContainer>
-      <div className="md:w-4/5 mx-auto px-6 md:px-0 py-10 transition-all">
+      <div className="md:w-4/5 mx-auto px-6 md:px-0 py-10 max-w-screen-xl transition-all">
         <Link
           href="/my-products"
           className="flex items-center gap-1 mb-5 group w-fit font-medium text-foreground/70 hover:text-foreground/90 transition-all"

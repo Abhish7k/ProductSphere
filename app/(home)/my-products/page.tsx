@@ -19,7 +19,7 @@ const MyProducts = async () => {
 
   return (
     <AnimateContainer>
-      <div className="mx-auto lg:w-3/5 py-10 px-10 transition-all">
+      <div className="mx-auto lg:w-3/5 py-10 px-10 max-w-screen-xl transition-all">
         {products.length === 0 ? (
           <div>
             <h1 className="text-3xl font-bold">No products found </h1>

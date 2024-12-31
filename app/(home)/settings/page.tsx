@@ -19,8 +19,9 @@ const SettingsPage = async () => {
 
   return (
     <AnimateContainer>
-      <div className="md:w-3/5 mx-auto py-10 px-6 md:px-0">
+      <div className="md:w-3/5 mx-auto py-10 px-6 md:px-0 max-w-screen-lg">
         <h1 className="text-3xl font-bold">Settings</h1>
+
         <p className="text-gray-500">Manage your settings</p>
 
         <div className="mt-10">
